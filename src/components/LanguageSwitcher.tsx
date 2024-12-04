@@ -4,7 +4,6 @@ import '../assets/css/LanguageSwitcher.css';
 export const LanguageSwitcher = () => {
   const [language, setLanguage] = useState<'VN' | 'EN'>('EN');
   const [isOpen, setIsOpen] = useState(false);
-  
   const toggleLanguage = (lang: 'VN' | 'EN') => {
     setLanguage(lang);
     setIsOpen(false); 
@@ -13,7 +12,6 @@ export const LanguageSwitcher = () => {
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
-
   return (
    <div className="container">
      <div className={`language-switcher ${isOpen ? 'open' : ''}`}>

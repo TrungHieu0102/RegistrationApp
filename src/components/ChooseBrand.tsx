@@ -1,6 +1,5 @@
 import { ButtonBrand } from "./ButtonBrand";
 import "../assets/css/ChooseBrand.css";
-
 import images from "../assets/images";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 const brandList = [
@@ -30,11 +29,11 @@ const brandButton = brandList.map((brand) => (
   />
 ));
 
-export const ChoseBrand = () => {
+export const ChooseBrand = () => {
   return (
     <div className="container">
       <div className="chose-brand-title">
-        <div>       
+        <div>
           <h1>Appointment booking</h1>
           <h4 style={{ marginTop: "20px" }}>Choose a brand</h4>
         </div>
@@ -43,6 +42,7 @@ export const ChoseBrand = () => {
         </div>
       </div>
       <div className="choose-brand-button">{brandButton}</div>
+      
     </div>
   );
 };

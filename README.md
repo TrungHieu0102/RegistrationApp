@@ -1,50 +1,65 @@
-# React + TypeScript + Vite
+# Mobile Repair Registration System
+## Overview
+The Mobile Repair Registration System is a web platform that allows users to register their mobile devices for repair services at various stores within a network. The system connects users to local repair shops, enabling them to easily book appointments, track repair statuses, and manage device repairs. This system aims to streamline the repair process, providing convenience and reliability for both customers and repair shops.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+# Installation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 1. System Requirements
+Before getting started, ensure that you have the following installed:
+- Node :  [Download from node website](https://nodejs.org/en/download/package-manager)
+- Visual Studio Code [Download from Visual Studio Code website](https://code.visualstudio.com/)
+- Git: For cloning the project and version control [Git](https://git-scm.com/)
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## 2. Installation Guide
+### Step 1: Clone the Project
+First, clone the repository to your local machine:
+```bash
+git clone https://github.com/TrungHieu0102/RegistrationApp.git
+cd RegistrationApp
 ```
+### Step 2: Install dependencies using one of the package managers
+Using npm:
+```bash
+npm install
+```
+Using yarn:
+```bash
+yarn install
+```
+Using pnpm:
+```bash
+pnpm install
+```
+### Step 3. Set up environment variables:
+- Create a ```.env``` file in the root of the project directory.
+- Add the necessary environment variables (API keys, etc.).
+### Step 4. Run the app:
+Using npm:
+```bash
+npm dev
+```
+Using yarn:
+```bash
+yarn dev
+```
+Using pnpm:
+```bash
+pnpm dev
+```
+Access the application by navigating to ``` http://localhost:5173``` in your browser.
+# Testing
+To run tests for the project, use the following command:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+Using npm:
+```bash
+npm test
+```
+Using yarn:
+```bash
+yarn test
+```
+Using pnpm:
+```bash
+pnpm test
 ```
