@@ -1,7 +1,8 @@
 import { Box, Typography, Grid2 as Grid } from "@mui/material";
 import { ButtonBrand } from "../components/ButtonBrand";
 import { LanguageSwitcher } from "../components/LanguageSwitcher";
-import brands, { Brand } from "../Data/data";
+import brands, { Brand } from "../Data/Brand";
+import CommonContainer from "../components/UI/CommonContainer";
 
 const brandButton = brands.map((brand: Brand) => (
   <ButtonBrand
@@ -11,17 +12,18 @@ const brandButton = brands.map((brand: Brand) => (
     }}
   />
 ));
-
 export const ChooseBrand = () => {
   return (
-    <Box
+   <CommonContainer>
+     <Box
       sx={{
         display: "flex",
         flexDirection: "column",
         boxSizing: "border-box",
         padding: "16px",
         gap: "24px",
-        position: "relative", 
+        position: "relative",
+       
       }}
     >
       <Box
@@ -34,7 +36,6 @@ export const ChooseBrand = () => {
       >
         <LanguageSwitcher />
       </Box>
-
       <Box
         sx={{
           textAlign: "left",
@@ -55,5 +56,6 @@ export const ChooseBrand = () => {
         {brandButton}
       </Grid>
     </Box>
+   </CommonContainer>
   );
 };
