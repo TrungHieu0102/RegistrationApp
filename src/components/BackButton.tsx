@@ -8,14 +8,14 @@ type BackButtonProps = {
   route?: string; 
 };
 
-export const BackButton = ({ label = "Back", onClick, route }: BackButtonProps) => {
+export const BackButton = ({ label = "Back", route }: BackButtonProps) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    if (onClick) {
-      onClick();
-    } else if (route) {
+    if (route) {
       navigate(route);
+    } else {
+      navigate(-1); 
     }
   };
 

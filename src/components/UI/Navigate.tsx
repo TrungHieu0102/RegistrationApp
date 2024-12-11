@@ -1,12 +1,13 @@
 import { Stack, Typography } from "@mui/material";
+
 import { BackButton } from "../BackButton";
 import { LanguageSwitcher } from "../LanguageSwitcher";
 
-type NavigateProps = {
-  route?: string;
+type BackButtonProps = {
+  route?: string; 
 };
 
-export const Navigate = ({ route }: NavigateProps) => {
+export const Navigate = ({ route }: BackButtonProps) => {
   return (
     <Stack
       direction={"row"}

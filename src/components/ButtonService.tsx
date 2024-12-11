@@ -1,29 +1,35 @@
-import { Button, Box, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-
 interface ButtonProps {
-  image: string;
   name: string;
+  duration: string;
+  id: number;
 }
-
-export const ButtonBrand = ({ props }: { props: ButtonProps }) => {
+export const ButtonService = ({ props }: { props: ButtonProps }) => {
+  const params = new URLSearchParams(window.location.search);
+  const brand = params.get("brand");
+  const deviceId = params.get("deviceId");
   return (
-    <Link to={`/?brand=${props.name}`} style={{ textDecoration: "none" }}>
+    <Link
+      to={`/?brand=${brand}&deviceId=${deviceId}&serviceId=${props.id}`}
+      style={{ textDecoration: "none" }}
+    >
       <Button
         variant="outlined"
         sx={{
           backgroundColor: "#f4f4f4",
           borderRadius: "22px",
+          boxSizing: "border-box",
           padding: "10px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
+          margin: "0px",
           cursor: "pointer",
-          width: "90px",
-          height: "110px",
+          width: "250px",
+          height: "70px",
           border: "none",
-          fontFamily: " 'Roboto', sans-serif",
           transition: "transform 0.2s ease",
           boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
           "&:hover": {
@@ -32,17 +38,6 @@ export const ButtonBrand = ({ props }: { props: ButtonProps }) => {
           },
         }}
       >
-        <Box
-          component="img"
-          src={props.image}
-          alt={props.name}
-          sx={{
-            width: "40px",
-            height: "40px",
-            objectFit: "contain",
-            marginBottom: "8px",
-          }}
-        />
         <Typography
           variant="body2"
           sx={{
@@ -54,6 +49,18 @@ export const ButtonBrand = ({ props }: { props: ButtonProps }) => {
           }}
         >
           {props.name}
+        </Typography>
+        <Typography
+          variant="body2"
+          sx={{
+            fontSize: "14px",
+            color: "#000",
+            fontWeight: 500,
+            textAlign: "center",
+            textTransform: "none",
+          }}
+        >
+          {props.duration}
         </Typography>
       </Button>
     </Link>

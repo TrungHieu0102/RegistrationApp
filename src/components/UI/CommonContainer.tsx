@@ -7,8 +7,8 @@ const CommonContainer = ({ children }: { children: React.ReactNode }) => {
       padding: "16px",
       marginLeft: "auto",
       marginRight: "auto", 
-      paddingLeft: { xs: "8px", sm: "16px", md: "120px" },
-      paddingRight: { xs: "8px", sm: "16px", md: "120px" },
+      paddingLeft: { xs: "8px", sm: "16px", md: "24px" },
+      paddingRight: { xs: "8px", sm: "16px", md: "24px" },
     }}
   >
     {children}

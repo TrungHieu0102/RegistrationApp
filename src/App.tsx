@@ -1,11 +1,23 @@
 import "./App.css";
 import { ChooseBrand } from "./pages/ChooseBrand";
-import CommonContainer from "./components/UI/CommonContainer";
+import { useLocation } from "react-router-dom";
+import { ChooseDevice } from "./pages/ChooseDevice";
+import { ChooseService } from "./pages/ChooseService";
 function App() {
+  const location = useLocation();
+  const brand = new URLSearchParams(location.search).get("brand");
+  const deviceId = new URLSearchParams(location.search).get("deviceId");
+
   return (
-    <CommonContainer>
+    <div>
+    {deviceId ? (  
+      <ChooseService />
+    ) : brand ? (
+      <ChooseDevice />
+    ) : (
       <ChooseBrand />
-    </CommonContainer>
+    )}
+  </div>
   );
 }
 export default App;

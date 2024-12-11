@@ -4,13 +4,17 @@ import { Link } from "react-router-dom";
 interface ButtonProps {
   image: string;
   name: string;
+  id : number
 }
 
 export const ButtonDevice = ({ props }: { props: ButtonProps }) => {
+  const params = new URLSearchParams(window.location.search);
+  const brand = params.get("brand");
+
   return (
     <Link
-      to={`/?brand=${props.name}`}  
-      style={{ textDecoration: "none" }}  
+      to={`/?brand=${brand}&deviceId=${props.id}`}
+      style={{ textDecoration: "none" }}
     >
       <Button
         variant="outlined"
@@ -26,7 +30,6 @@ export const ButtonDevice = ({ props }: { props: ButtonProps }) => {
           width: "90px",
           height: "110px",
           border: "none",
-          fontFamily: " 'Roboto', sans-serif",
           transition: "transform 0.2s ease",
           boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
           "&:hover": {
