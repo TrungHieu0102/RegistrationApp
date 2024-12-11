@@ -4,10 +4,11 @@ import { BackButton } from "../BackButton";
 import { LanguageSwitcher } from "../LanguageSwitcher";
 
 type BackButtonProps = {
-  route?: string; 
+  route?: string;
 };
 
 export const Navigate = ({ route }: BackButtonProps) => {
+ 
   return (
     <Stack
       direction={"row"}

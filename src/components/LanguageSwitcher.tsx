@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Button, Menu, MenuItem, Typography } from "@mui/material";
+import i18n from "i18next";
 
 export const LanguageSwitcher = () => {
   const [language, setLanguage] = useState<"VN" | "EN">("EN");
@@ -17,6 +18,7 @@ export const LanguageSwitcher = () => {
 
   const toggleLanguage = (lang: "VN" | "EN") => {
     setLanguage(lang);
+    i18n.changeLanguage(lang === "VN" ? "vi" : "en");  
     handleClose();
   };
 
@@ -35,7 +37,6 @@ export const LanguageSwitcher = () => {
           alignItems: "center",
           gap: "8px",
           textTransform: "none",
-        
         }}
       >
         <Typography variant="body2" fontWeight="bold">

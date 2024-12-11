@@ -3,8 +3,10 @@ import { ButtonBrand } from "../components/ButtonBrand";
 import { LanguageSwitcher } from "../components/LanguageSwitcher";
 import brands, { Brand } from "../Data/Brand";
 import CommonContainer from "../components/UI/CommonContainer";
+import { useTranslation } from 'react-i18next';
 
 const brandButton = brands.map((brand: Brand) => (
+
   <ButtonBrand
     props={{
       name: brand.name,
@@ -14,6 +16,8 @@ const brandButton = brands.map((brand: Brand) => (
 ));
 
 export const ChooseBrand = () => {
+  const { t } = useTranslation();
+
   return (
     <CommonContainer>
       <Box
@@ -37,7 +41,7 @@ export const ChooseBrand = () => {
           >
             <Box>
               <Typography fontWeight={"bold"} variant="h4" component="h1">
-                Appointment booking
+              {t('title')}
               </Typography>
               <Typography
                 variant="subtitle1"
