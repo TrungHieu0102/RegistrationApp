@@ -1,8 +1,10 @@
 import { useLocation } from "react-router-dom";
-import { Devices, Services, Selection } from "../types/data";
-import devices from "../Data/Devices";
-import services from "../Data/Services";
-
+import devices, { Devices } from "../Data/Devices";
+import services, { Services } from "../Data/Services";
+export interface Selection {
+  name: string;
+  value: string | null;
+}
 export const useSelections = (): Selection[] => {
   const location = useLocation();
   const params = new URLSearchParams(location.search);

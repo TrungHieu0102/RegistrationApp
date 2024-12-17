@@ -1,5 +1,11 @@
-
-const services = [
+export interface Services {
+  id: number;
+  name: string;
+  price: number;
+  duration: string;
+  isActive: boolean;
+}
+const services : Services[]  = [
   {
     id: 1,
     name: "Replace screen",

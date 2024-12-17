@@ -1,6 +1,11 @@
 import images from "../assets/images";
+export interface Brand {
+  id: number;
+  name: string;
+  image: string;
+}
 
-const brands = [
+const brands: Brand[] = [
   {
     id: 1,
     name: "Apple",

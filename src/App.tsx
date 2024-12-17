@@ -10,16 +10,15 @@ function App() {
   const param = new URLSearchParams(location.search);
   const brand = param.get("brand");
   const deviceId = param.get("deviceId");
-  const serviceId= param.get("serviceId");
+  const serviceId = param.get("serviceId");
 
   return (
     <div>
-      {serviceId ? (  
-           <ErrorBoundary>
-           <ChooseLocation />
-         </ErrorBoundary>
-
-      ) : deviceId ? (  
+      {serviceId ? (
+        <ErrorBoundary>
+          <ChooseLocation />
+        </ErrorBoundary>
+      ) : deviceId ? (
         <ChooseService />
       ) : brand ? (
         <ChooseDevice />

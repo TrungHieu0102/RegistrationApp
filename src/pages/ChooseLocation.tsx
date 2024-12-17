@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { PreviousSelections } from "../components/PreviousSelections";
 import CommonContainer from "../components/UI/CommonContainer";
 import { Navigate } from "../components/UI/Navigate";
-import { MapWithLocations } from "../components/MapWithLocations"; // Import MapWithLocations
+import { LocationMap } from "../components/LocationMap";
 
 export const ChooseLocation = () => {
   return (
@@ -15,7 +15,7 @@ export const ChooseLocation = () => {
         </Typography>
       </Box>
       <Box marginTop={"20px"}>
-        <MapWithLocations />
+        <LocationMap />
       </Box>
     </CommonContainer>
   );
