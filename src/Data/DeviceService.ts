@@ -1,9 +1,5 @@
-export interface DeviceService {
-    deviceId: number;
-    serviceIds:  number[]
 
-  }
-  const deviceServices:DeviceService[] = [
+  const deviceServices = [
     { deviceId: 1, serviceIds: [1, 2, 3, 6] }, 
     { deviceId: 2, serviceIds: [1, 2, 3, 6] }, 
     { deviceId: 3, serviceIds: [1, 2, 3, 6] }, 

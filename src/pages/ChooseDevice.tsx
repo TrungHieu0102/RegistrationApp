@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { ButtonDevice } from "../components/ButtonDevice";
 import brands from "../Data/Brand";
-import devices, { Devices } from "../Data/Devices";
+import devices from "../Data/Devices";
 import { Box, Grid2 as Grid, Typography } from "@mui/material";
 import CommonContainer from "../components/UI/CommonContainer";
 import { Navigate } from "../components/UI/Navigate";
 import { PreviousSelections } from "../components/PreviousSelections";
+import { Devices } from "../types/data";
 
 export const ChooseDevice = () => {
   const location = useLocation();

@@ -2,13 +2,15 @@ import { Stack, Typography } from "@mui/material";
 
 import { BackButton } from "../BackButton";
 import { LanguageSwitcher } from "../LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 
 type BackButtonProps = {
   route?: string;
 };
 
 export const Navigate = ({ route }: BackButtonProps) => {
- 
+  const { t } = useTranslation();
+
   return (
     <Stack
       direction={"row"}
@@ -19,7 +21,7 @@ export const Navigate = ({ route }: BackButtonProps) => {
       <BackButton route={route} />
       <div>
         <Typography variant="h5" component="h1" fontWeight="bold">
-          Appointment booking
+          {t("title")}
         </Typography>
       </div>
       <LanguageSwitcher />

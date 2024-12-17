@@ -1,12 +1,6 @@
-  export interface Devices {
-      id: number;
-      brandId: number;
-      name: string;
-      image: string;
-      isActive: boolean;
-    }
+
     
-    const devices: Devices[] = [  
+    const devices = [  
       { id: 1, brandId: 1, name: "AirPods", image: "airpods.png", isActive: true },
       { id: 2, brandId: 1, name: "Apple TV", image: "apple-tv.png", isActive: true },
       { id: 3, brandId: 1, name: "iPhone", image: "iphone.png", isActive: true },

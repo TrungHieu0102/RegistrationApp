@@ -15,7 +15,6 @@ export const ChooseService = () => {
   useEffect(() => {
     const params = new URLSearchParams(location.search);
     const deviceId = params.get("deviceId");
-
     if (deviceId) {
       const deviceService = deviceServices.find(
         (ds) => ds.deviceId === parseInt(deviceId)
@@ -35,11 +34,14 @@ export const ChooseService = () => {
 
   return (
     <CommonContainer>
-      <Navigate />
+      <Navigate
+        
+      />
+
       <PreviousSelections />
       <Box marginTop={"20px"}>
         <Typography variant="subtitle1" fontWeight={"bold"}>
-        Choose a service type
+          Choose a service type
         </Typography>
         <Grid
           container

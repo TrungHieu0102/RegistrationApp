@@ -54,7 +54,7 @@ export const ButtonService = ({ props }: { props: ButtonProps }) => {
           variant="body2"
           sx={{
             fontSize: "14px",
-            color: "#000",
+            color: "rgb(77, 77, 77)",
             fontWeight: 500,
             textAlign: "center",
             textTransform: "none",

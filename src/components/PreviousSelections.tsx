@@ -1,23 +1,9 @@
 import { Box, Typography } from "@mui/material";
 import { Selected } from "./Selected";
 import { motion } from "framer-motion";
-import { useLocation } from "react-router-dom";
-import devices from "../Data/Devices";
-
+import { useSelections } from "../hooks/useSelections";
 export const PreviousSelections = () => {
-  const location = useLocation();
-  const params = new URLSearchParams(location.search);
-  const deviceId = params.get("deviceId");
-  const deviceName = deviceId
-    ? devices.find((device) => device.id === parseInt(deviceId))?.name
-    : null;
-  const selections = [
-    { name: "Brand", value: params.get("brand") },
-    { name: "Device", value: deviceName },
-    { name: "Service", value: params.get("serviceId") },
-    { name: "Location", value: params.get("locationName") },
-  ].filter((selection) => selection.value);
-
+  const selections = useSelections();
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
