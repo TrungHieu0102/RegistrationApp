@@ -1,6 +1,6 @@
 import { Stack, Typography } from "@mui/material";
 
-import { BackButton } from "../BackButton";
+import { BackButton } from "../Button/BackButton";
 import { LanguageSwitcher } from "../LanguageSwitcher";
 import { useTranslation } from "react-i18next";
 

@@ -1,18 +1,19 @@
-// LocationMap.tsx
-import React, { useState } from "react";
 import { Icon } from "leaflet";
 import { Grid2 as Grid } from "@mui/material";
 import images from "../assets/images";
-import LocationAccordionList from "./LocationAccordionList";
+import {LocationAccordionList} from "./LocationAccordionList";
 import useLocationMap from "../hooks/useLocationMap";
-import { LocationMap } from "./LocationMap"; // Import component bản đồ
+import { LocationMap } from "./LocationMap";
+import { useState } from "react";
 
-export const LocationMapContainer: React.FC = () => {
-  const { center, changeCenter } = useLocationMap();
+export const LocationMapContainer = () => {
+  const { center, changeCenter} = useLocationMap();
+
   const icon = new Icon({
     iconUrl: images.iconmap,
     iconSize: [38, 38],
   });
+
   const [expandedIndex, setExpandedIndex] = useState<number | false>(false);
 
   const handleAccordionChange = (index: number) => {
@@ -42,14 +43,19 @@ export const LocationMapContainer: React.FC = () => {
         }}
       >
         <LocationAccordionList
-          expandedIndex={expandedIndex}
-          handleAccordionChange={handleAccordionChange}
-          onOpen={changeCenter}
+         props={{
+          expandedIndex:expandedIndex,
+          handleAccordionChange:handleAccordionChange,
+          onOpen:changeCenter 
+         }}
         />
       </Grid>
 
       <Grid size={{ md: 8, lg: 8 }}>
-        <LocationMap center={center} icon={icon} />
+        <LocationMap
+          center={center} 
+          icon={icon} 
+        />
       </Grid>
     </Grid>
   );

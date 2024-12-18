@@ -1,6 +1,6 @@
 import { Button, Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-
+import useQueryParams from "../../hooks/useQueryParams"; 
 interface ButtonProps {
   image: string;
   name: string;
@@ -8,9 +8,7 @@ interface ButtonProps {
 }
 
 export const ButtonDevice = ({ props }: { props: ButtonProps }) => {
-  const params = new URLSearchParams(window.location.search);
-  const brand = params.get("brand");
-
+  const { brand } = useQueryParams();
   return (
     <Link
       to={`/?brand=${brand}&deviceId=${props.id}`}

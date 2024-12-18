@@ -1,5 +1,5 @@
 import { Box, Typography, Grid2 as Grid, Stack } from "@mui/material";
-import { ButtonBrand } from "../components/ButtonBrand";
+import { ButtonBrand } from "../components/Button/ButtonBrand";
 import { LanguageSwitcher } from "../components/LanguageSwitcher";
 import brands, { Brand } from "../Data/Brand";
 import CommonContainer from "../components/UI/CommonContainer";
@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 const brandButton = brands.map((brand: Brand) => (
 
   <ButtonBrand
+  key={brand.id}
     props={{
       name: brand.name,
       image: brand.image,

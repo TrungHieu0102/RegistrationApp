@@ -7,34 +7,37 @@ import {
   Box,
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import StoreStatus from "./StoreStatus";
+import { StoreStatus } from "./StoreStatus";
+import { ButtonLocation } from "./Button/ButtonLocation";
 
 interface LocationAccordionProps {
   index: number;
   expandedIndex: number | false;
   handleChange: (index: number) => void;
   name: string;
+  id: number;
   coordinates: [number, number];
   onOpen: (lat: number, lng: number) => void;
+  isActive: boolean;
 }
 
-const LocationAccordion: React.FC<LocationAccordionProps> = ({
-  index,
-  expandedIndex,
-  handleChange,
-  name,
-  coordinates,
-  onOpen,
+export const LocationAccordion = ({
+  props,
+}: {
+  props: LocationAccordionProps;
 }) => {
   const handleAccordionChange = (
     _: React.SyntheticEvent,
     expanded: boolean
   ) => {
-    if (expanded) {
-      onOpen(coordinates[0], coordinates[1]);
+    if (expanded && props.isActive) {
+      props.onOpen(props.coordinates[0], props.coordinates[1]);
     }
-    handleChange(index);
+    if (props.isActive) {
+      props.handleChange(props.index);
+    }
   };
+
   const openingHours = {
     Monday: "12:00 - 14:00",
     Tuesday: "09:00 - 17:00",
@@ -45,7 +48,7 @@ const LocationAccordion: React.FC<LocationAccordionProps> = ({
 
   return (
     <Accordion
-      expanded={expandedIndex === index}
+      expanded={props.expandedIndex === props.index}
       onChange={handleAccordionChange}
       disableGutters
       elevation={0}
@@ -65,9 +68,20 @@ const LocationAccordion: React.FC<LocationAccordionProps> = ({
       >
         <Box>
           <Typography fontWeight="bold" fontSize="18px" variant="h6">
-            {name}
+            {props.name}
           </Typography>
-          <StoreStatus openHour={9} closeHour={17} />
+          {props.isActive ? (
+            <StoreStatus props={{ openHour: 9, closeHour: 22 }} />
+          ) : (
+            <Typography
+              color="#a9a2a2"
+              fontWeight="bold"
+              fontSize="16px"
+              variant="h6"
+            >
+              Not available
+            </Typography>
+          )}
         </Box>
       </AccordionSummary>
       <AccordionDetails
@@ -79,7 +93,9 @@ const LocationAccordion: React.FC<LocationAccordionProps> = ({
         }}
       >
         <Box marginLeft="10px">
-        <Typography variant="body2" fontSize="16px" fontWeight="bold"> Opening Hours</Typography>
+          <Typography variant="body2" fontSize="16px" fontWeight="bold">
+            Opening Hours
+          </Typography>
           {Object.entries(openingHours).map(([day, hours]) => (
             <Box
               key={day}
@@ -90,17 +106,13 @@ const LocationAccordion: React.FC<LocationAccordionProps> = ({
               paddingLeft="10px"
               paddingRight="10px"
             >
-             
-              <Typography variant="body2" >
-                {day}:
-              </Typography>
+              <Typography variant="body2">{day}:</Typography>
               <Typography variant="body2">{hours}</Typography>
             </Box>
           ))}
+          <ButtonLocation props={{ locationId: props.id }} />
         </Box>
       </AccordionDetails>
     </Accordion>
   );
 };
-
-export default LocationAccordion;

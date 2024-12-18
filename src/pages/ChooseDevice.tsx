@@ -1,21 +1,18 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
-import { ButtonDevice } from "../components/ButtonDevice";
+import { ButtonDevice } from "../components/Button/ButtonDevice";
 import brands from "../Data/Brand";
 import devices, { Devices } from "../Data/Devices";
 import { Box, Grid2 as Grid, Typography } from "@mui/material";
 import CommonContainer from "../components/UI/CommonContainer";
 import { Navigate } from "../components/UI/Navigate";
 import { PreviousSelections } from "../components/PreviousSelections";
+import useQueryParams from "../hooks/useQueryParams"; 
 
 export const ChooseDevice = () => {
-  const location = useLocation();
   const [filteredDevices, setFilteredDevices] = useState<Devices[]>([]);
-
+  const { brand } = useQueryParams();
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const brandName = params.get("brand");
-
+    const brandName = brand;
     if (brandName) {
       const brand = brands.find((b) => b.name === brandName);
       if (brand) {
@@ -24,7 +21,7 @@ export const ChooseDevice = () => {
         );
       }
     }
-  }, [location]);
+  }, [brand]);
 
   return (
     <CommonContainer>

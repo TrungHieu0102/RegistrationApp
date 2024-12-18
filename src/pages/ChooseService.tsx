@@ -1,4 +1,3 @@
-import { useLocation } from "react-router-dom";
 import { PreviousSelections } from "../components/PreviousSelections";
 import CommonContainer from "../components/UI/CommonContainer";
 import { Navigate } from "../components/UI/Navigate";
@@ -6,20 +5,17 @@ import { useEffect, useState } from "react";
 import services, { Services } from "../Data/Services";
 import deviceServices from "../Data/DeviceService";
 import { Box, Grid2 as Grid, Typography } from "@mui/material";
-import { ButtonService } from "../components/ButtonService";
+import { ButtonService } from "../components/Button/ButtonService";
+import useQueryParams from "../hooks/useQueryParams"; // adjust the path
 
 export const ChooseService = () => {
-  const location = useLocation();
   const [filteredServices, setFilteredServices] = useState<Services[]>([]);
-
+  const { deviceId } = useQueryParams();
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const deviceId = params.get("deviceId");
     if (deviceId) {
       const deviceService = deviceServices.find(
         (ds) => ds.deviceId === parseInt(deviceId)
       );
-
       if (deviceService) {
         setFilteredServices(
           services.filter((service) =>
@@ -30,13 +26,11 @@ export const ChooseService = () => {
         setFilteredServices([]);
       }
     }
-  }, [location]);
+  }, [deviceId]);
 
   return (
     <CommonContainer>
-      <Navigate
-        
-      />
+      <Navigate />
 
       <PreviousSelections />
       <Box marginTop={"20px"}>
@@ -56,7 +50,7 @@ export const ChooseService = () => {
                 name: service.name,
                 duration: service.duration,
                 id: service.id,
-              }}
+              }}  
             />
           ))}
         </Grid>

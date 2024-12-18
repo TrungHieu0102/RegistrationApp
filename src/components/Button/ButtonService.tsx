@@ -1,14 +1,14 @@
 import { Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import useQueryParams from "../../hooks/useQueryParams";
+
 interface ButtonProps {
   name: string;
   duration: string;
   id: number;
 }
 export const ButtonService = ({ props }: { props: ButtonProps }) => {
-  const params = new URLSearchParams(window.location.search);
-  const brand = params.get("brand");
-  const deviceId = params.get("deviceId");
+  const { brand, deviceId } = useQueryParams();
   return (
     <Link
       to={`/?brand=${brand}&deviceId=${deviceId}&serviceId=${props.id}`}

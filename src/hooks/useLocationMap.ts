@@ -6,7 +6,6 @@ const useLocationMap = () => {
   const changeCenter = (lat: number, lng: number) => {
     setCenter([lat, lng]);
   };
-
   return { center, changeCenter };
 };
 

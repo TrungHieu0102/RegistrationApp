@@ -15,10 +15,10 @@ interface StoreStatusProps {
   closeHour: number;
 }
 
-const StoreStatus: React.FC<StoreStatusProps> = ({ openHour, closeHour }) => {
+export const StoreStatus = ({ props }: { props: StoreStatusProps }) => {
   const now = new Date();
-  const todayOpen = setSeconds(setMinutes(setHours(now, openHour), 0), 0);
-  const todayClose = setSeconds(setMinutes(setHours(now, closeHour), 0), 0);
+  const todayOpen = setSeconds(setMinutes(setHours(now, props.openHour), 0), 0);
+  const todayClose = setSeconds(setMinutes(setHours(now, props.closeHour), 0), 0);
 
   const isClosedToday = [0, 6].includes(getDay(now));
 
@@ -51,4 +51,4 @@ const StoreStatus: React.FC<StoreStatusProps> = ({ openHour, closeHour }) => {
   );
 };
 
-export default StoreStatus;
+
