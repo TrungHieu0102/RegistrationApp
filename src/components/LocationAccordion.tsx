@@ -1,6 +1,13 @@
 import React from "react";
-import { Accordion, AccordionSummary, AccordionDetails, Typography, Box } from "@mui/material";
+import {
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  Typography,
+  Box,
+} from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import StoreStatus from "./StoreStatus";
 
 interface LocationAccordionProps {
   index: number;
@@ -19,17 +26,27 @@ const LocationAccordion: React.FC<LocationAccordionProps> = ({
   coordinates,
   onOpen,
 }) => {
-  const handleAccordionChange = (_: React.SyntheticEvent, expanded: boolean) => {
+  const handleAccordionChange = (
+    _: React.SyntheticEvent,
+    expanded: boolean
+  ) => {
     if (expanded) {
-      onOpen(coordinates[0], coordinates[1]); 
+      onOpen(coordinates[0], coordinates[1]);
     }
-    handleChange(index); 
+    handleChange(index);
+  };
+  const openingHours = {
+    Monday: "12:00 - 14:00",
+    Tuesday: "09:00 - 17:00",
+    Wednesday: "09:00 - 17:00",
+    Thursday: "09:00 - 17:00",
+    Friday: "09:00 - 17:00",
   };
 
   return (
     <Accordion
       expanded={expandedIndex === index}
-      onChange={handleAccordionChange} 
+      onChange={handleAccordionChange}
       disableGutters
       elevation={0}
       square
@@ -47,9 +64,10 @@ const LocationAccordion: React.FC<LocationAccordionProps> = ({
         }}
       >
         <Box>
-          <Typography fontWeight="bold" fontSize="16px" variant="h6">
+          <Typography fontWeight="bold" fontSize="18px" variant="h6">
             {name}
           </Typography>
+          <StoreStatus openHour={9} closeHour={17} />
         </Box>
       </AccordionSummary>
       <AccordionDetails
@@ -61,7 +79,24 @@ const LocationAccordion: React.FC<LocationAccordionProps> = ({
         }}
       >
         <Box marginLeft="10px">
-          <Typography variant="body2">OPEN</Typography>
+        <Typography variant="body2" fontSize="16px" fontWeight="bold"> Opening Hours</Typography>
+          {Object.entries(openingHours).map(([day, hours]) => (
+            <Box
+              key={day}
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+              marginBottom="4px"
+              paddingLeft="10px"
+              paddingRight="10px"
+            >
+             
+              <Typography variant="body2" >
+                {day}:
+              </Typography>
+              <Typography variant="body2">{hours}</Typography>
+            </Box>
+          ))}
         </Box>
       </AccordionDetails>
     </Accordion>
