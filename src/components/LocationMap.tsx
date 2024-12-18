@@ -1,15 +1,21 @@
-import React, { useEffect } from "react";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { Icon } from "leaflet";
 import locations from "../Data/Location";
+import { useEffect } from "react";
 
-const UpdateMapCenter = ({ center, zoom }: { center: [number, number]; zoom: number }) => {
+const UpdateMapCenter = ({
+  center,
+  zoom,
+}: {
+  center: [number, number];
+  zoom: number;
+}) => {
   const map = useMap();
 
   useEffect(() => {
-    map.setView(center, 2); // Start at zoom level 2 (distant view)
-    map.flyTo(center, zoom, { animate: true, duration: 2 }); // Animate zoom to level 13
+    map.setView(center, 10);
+    map.flyTo(center, zoom, { animate: true, duration: 1 });
   }, [center, map, zoom]);
 
   return null;
@@ -20,13 +26,17 @@ interface LocationMapContainerProps {
   icon: Icon;
 }
 
-export const LocationMap: React.FC<LocationMapContainerProps> = ({ center, icon }) => {
-  const zoomLevel = 15; 
+export const LocationMap = ({
+  props,
+}: {
+  props: LocationMapContainerProps;
+}) => {
+  const zoomLevel = 15;
 
   return (
     <MapContainer
-      center={center}
-      zoom={5} 
+      center={props.center}
+      zoom={15}
       scrollWheelZoom={true}
       style={{ height: "600px", width: "100%" }}
     >
@@ -35,11 +45,15 @@ export const LocationMap: React.FC<LocationMapContainerProps> = ({ center, icon 
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       {locations.map((location) => (
-        <Marker key={location.id} position={location.coordinates} icon={icon}>
+        <Marker
+          key={location.id}
+          position={location.coordinates}
+          icon={props.icon}
+        >
           <Popup>{location.name}</Popup>
         </Marker>
       ))}
-      <UpdateMapCenter center={center} zoom={zoomLevel} />
+      <UpdateMapCenter center={props.center} zoom={zoomLevel} />
     </MapContainer>
   );
 };

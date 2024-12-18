@@ -1,13 +1,13 @@
 import { Icon } from "leaflet";
 import { Grid2 as Grid } from "@mui/material";
 import images from "../assets/images";
-import {LocationAccordionList} from "./LocationAccordionList";
+import { LocationAccordionList } from "./LocationAccordionList";
 import useLocationMap from "../hooks/useLocationMap";
 import { LocationMap } from "./LocationMap";
 import { useState } from "react";
 
 export const LocationMapContainer = () => {
-  const { center, changeCenter} = useLocationMap();
+  const { center, changeCenter } = useLocationMap();
 
   const icon = new Icon({
     iconUrl: images.iconmap,
@@ -26,36 +26,29 @@ export const LocationMapContainer = () => {
         size={{ xs: 12, md: 4, lg: 4 }}
         sx={{
           maxHeight: "600px",
-          overflowY: "auto",
           display: "flex",
           flexDirection: "column",
           paddingBottom: "20px",
-          "&::-webkit-scrollbar": {
-            width: "8px",
-          },
-          "&::-webkit-scrollbar-thumb": {
-            backgroundColor: "#E8E8E8",
-            borderRadius: "4px",
-          },
-          "&::-webkit-scrollbar-thumb:hover": {
-            backgroundColor: "#555",
-          },
         }}
       >
+         
         <LocationAccordionList
-         props={{
-          expandedIndex:expandedIndex,
-          handleAccordionChange:handleAccordionChange,
-          onOpen:changeCenter 
-         }}
+          props={{
+            expandedIndex: expandedIndex,
+            handleAccordionChange: handleAccordionChange,
+            onOpen: changeCenter,
+          }}
         />
       </Grid>
 
       <Grid size={{ md: 8, lg: 8 }}>
-        <LocationMap
-          center={center} 
-          icon={icon} 
-        />
+      
+          <LocationMap
+            props={{
+              center: center,
+              icon: icon,
+            }}
+          />
       </Grid>
     </Grid>
   );

@@ -6,7 +6,8 @@ import services, { Services } from "../Data/Services";
 import deviceServices from "../Data/DeviceService";
 import { Box, Grid2 as Grid, Typography } from "@mui/material";
 import { ButtonService } from "../components/Button/ButtonService";
-import useQueryParams from "../hooks/useQueryParams"; // adjust the path
+import useQueryParams from "../hooks/useQueryParams";
+import { motion } from "framer-motion";
 
 export const ChooseService = () => {
   const [filteredServices, setFilteredServices] = useState<Services[]>([]);
@@ -31,7 +32,11 @@ export const ChooseService = () => {
   return (
     <CommonContainer>
       <Navigate />
-
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+      >
       <PreviousSelections />
       <Box marginTop={"20px"}>
         <Typography variant="subtitle1" fontWeight={"bold"}>
@@ -55,6 +60,7 @@ export const ChooseService = () => {
           ))}
         </Grid>
       </Box>
+      </motion.div>
     </CommonContainer>
   );
 };

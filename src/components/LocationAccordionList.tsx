@@ -52,7 +52,7 @@ export const LocationAccordionList = ({
             borderRadius: "20px",
           },
           "&::-webkit-scrollbar-thumb": {
-            backgroundColor: "rgb(136, 185, 220)",
+            backgroundColor: " #8c8c8c",
             borderRadius: "20px",
           },
           "&::-webkit-scrollbar-thumb:hover": {
@@ -66,13 +66,12 @@ export const LocationAccordionList = ({
         {filteredLocations.map((location: Location, index: number) => (
           <motion.div
             key={location.id}
-            initial={{ opacity: 0, x: -100 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: -100 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{
-              duration: 0.5,
+              duration: 0.3,
               delay: index * 0.1,
-              type: "spring",
-              stiffness: 100,
+              stiffness: 90,
             }}
           >
             <LocationAccordion
