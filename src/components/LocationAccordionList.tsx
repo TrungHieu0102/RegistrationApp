@@ -8,8 +8,8 @@ import { motion } from "framer-motion";
 interface LocationAccordionListProps {
   expandedIndex: number | false;
   handleAccordionChange: (index: number) => void;
-  onOpen: (lat: number, lng: number) => void;
-  onClose:()=>void;
+  onOpen: (id: number ,lat: number, lng: number) => void;
+  onClose: () => void;
 }
 
 export const LocationAccordionList = ({
@@ -28,11 +28,7 @@ export const LocationAccordionList = ({
   );
 
   return (
-    <div
-      style={{
-        paddingRight: "5px",
-      }}
-    >
+    <div style={{ paddingRight: "5px" }}>
       <SearchBarLocation
         props={{ query: query, onSearchChange: handleSearchChange }}
       />
@@ -86,7 +82,7 @@ export const LocationAccordionList = ({
                 coordinates: location.coordinates,
                 onOpen: props.onOpen,
                 isActive: location.isActive,
-                onClose:props.onClose
+                onClose: props.onClose,
               }}
             />
           </motion.div>

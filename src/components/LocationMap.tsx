@@ -14,7 +14,7 @@ const UpdateMapCenter = ({
   const map = useMap();
 
   useEffect(() => {
-    map.setView(center,10);
+    map.setView(center, 10);
     map.flyTo(center, zoom, { animate: true, duration: 1 });
   }, [center, map, zoom]);
 
@@ -24,10 +24,16 @@ const UpdateMapCenter = ({
 interface LocationMapContainerProps {
   center: [number, number];
   icon: Icon;
-  zoom? : number;
+  zoom?: number;
+  onMarkerClick: (id: number,lat: number, lng: number) => void;
 }
 
-export const LocationMap = ({ center, icon, zoom = 11 }: LocationMapContainerProps) => {
+export const LocationMap = ({
+  center,
+  icon,
+  zoom = 11,
+  onMarkerClick,
+}: LocationMapContainerProps) => {
   const zoomLevel = zoom;
   return (
     <MapContainer
@@ -42,8 +48,11 @@ export const LocationMap = ({ center, icon, zoom = 11 }: LocationMapContainerPro
       {locations.map((location) => (
         <Marker
           key={location.id}
-          position={location.coordinates} 
+          position={location.coordinates}
           icon={icon}
+          eventHandlers={{
+            click: () => onMarkerClick(location.id, location.coordinates[0], location.coordinates[1]), // Khi click vào marker, gọi hàm handleMarkerClick
+          }}
         >
           <Popup>{location.name}</Popup>
         </Marker>

@@ -7,7 +7,7 @@ import { LocationMap } from "./LocationMap";
 import { useState } from "react";
 
 export const LocationMapContainer = () => {
-  const { center, changeCenter, zoom ,defaultZoom } = useLocationMap();
+  const { center, changeCenter, zoom, defaultZoom } = useLocationMap();
 
   const icon = new Icon({
     iconUrl: images.iconmap,
@@ -16,8 +16,15 @@ export const LocationMapContainer = () => {
 
   const [expandedIndex, setExpandedIndex] = useState<number | false>(false);
 
+  // Thay đổi trạng thái expandedIndex khi một accordion được mở
   const handleAccordionChange = (index: number) => {
     setExpandedIndex(expandedIndex === index ? false : index);
+  };
+
+  // Cập nhật khi click vào marker, mở accordion và di chuyển bản đồ
+  const handleMarkerClick = (id: number,lat: number, lng: number) => {
+    setExpandedIndex(id); // Mở accordion tương ứng
+    changeCenter(lat,lng); // Di chuyển bản đồ đến vị trí của marker
   };
 
   return (
@@ -35,14 +42,14 @@ export const LocationMapContainer = () => {
           props={{
             expandedIndex: expandedIndex,
             handleAccordionChange: handleAccordionChange,
-            onOpen: changeCenter,
-            onClose:defaultZoom
+            onOpen: handleMarkerClick,
+            onClose: defaultZoom,
           }}
         />
       </Grid>
 
       <Grid size={{ md: 8, lg: 8 }}>
-        <LocationMap center={center} icon={icon} zoom={zoom} />
+        <LocationMap center={center} icon={icon} zoom={zoom} onMarkerClick={handleMarkerClick} />
       </Grid>
     </Grid>
   );
