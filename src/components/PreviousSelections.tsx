@@ -19,7 +19,7 @@ export const PreviousSelections = () => {
       </Box>
 
       {selections.map((selection) => (
-        <Selected name={`${selection.name}`} value={selection.value || ""} />
+        <Selected key={selection.name} name={`${selection.name}`} value={selection.value || ""} />
       ))}
       <hr
         style={{

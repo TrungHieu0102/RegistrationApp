@@ -15,7 +15,7 @@ export const ButtonLocation = ({ props }: { props: ButtonProps }) => {
         variant="outlined"
         fullWidth
         sx={{
-          backgroundColor: "#0C8CE9",
+          backgroundColor: "primary.main",
           borderRadius: "22px",
           boxSizing: "border-box",
           padding: "10px",

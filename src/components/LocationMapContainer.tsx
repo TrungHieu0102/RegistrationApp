@@ -7,7 +7,7 @@ import { LocationMap } from "./LocationMap";
 import { useState } from "react";
 
 export const LocationMapContainer = () => {
-  const { center, changeCenter } = useLocationMap();
+  const { center, changeCenter, zoom ,defaultZoom } = useLocationMap();
 
   const icon = new Icon({
     iconUrl: images.iconmap,
@@ -31,24 +31,18 @@ export const LocationMapContainer = () => {
           paddingBottom: "20px",
         }}
       >
-         
         <LocationAccordionList
           props={{
             expandedIndex: expandedIndex,
             handleAccordionChange: handleAccordionChange,
             onOpen: changeCenter,
+            onClose:defaultZoom
           }}
         />
       </Grid>
 
       <Grid size={{ md: 8, lg: 8 }}>
-      
-          <LocationMap
-            props={{
-              center: center,
-              icon: icon,
-            }}
-          />
+        <LocationMap center={center} icon={icon} zoom={zoom} />
       </Grid>
     </Grid>
   );

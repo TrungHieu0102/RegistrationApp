@@ -14,7 +14,7 @@ const UpdateMapCenter = ({
   const map = useMap();
 
   useEffect(() => {
-    map.setView(center, 10);
+    map.setView(center,10);
     map.flyTo(center, zoom, { animate: true, duration: 1 });
   }, [center, map, zoom]);
 
@@ -24,19 +24,14 @@ const UpdateMapCenter = ({
 interface LocationMapContainerProps {
   center: [number, number];
   icon: Icon;
+  zoom? : number;
 }
 
-export const LocationMap = ({
-  props,
-}: {
-  props: LocationMapContainerProps;
-}) => {
-  const zoomLevel = 15;
-
+export const LocationMap = ({ center, icon, zoom = 11 }: LocationMapContainerProps) => {
+  const zoomLevel = zoom;
   return (
     <MapContainer
-      center={props.center}
-      zoom={15}
+      center={center}
       scrollWheelZoom={true}
       style={{ height: "600px", width: "100%" }}
     >
@@ -47,13 +42,13 @@ export const LocationMap = ({
       {locations.map((location) => (
         <Marker
           key={location.id}
-          position={location.coordinates}
-          icon={props.icon}
+          position={location.coordinates} 
+          icon={icon}
         >
           <Popup>{location.name}</Popup>
         </Marker>
       ))}
-      <UpdateMapCenter center={props.center} zoom={zoomLevel} />
+      <UpdateMapCenter center={center} zoom={zoomLevel} />
     </MapContainer>
   );
 };

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 const useQueryParams = () => {
-  const location = useLocation(); // Using `useLocation` to get current URL
+  const location = useLocation();
   const [params, setParams] = useState<URLSearchParams>(
     new URLSearchParams(location.search)
   );

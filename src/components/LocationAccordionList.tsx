@@ -9,6 +9,7 @@ interface LocationAccordionListProps {
   expandedIndex: number | false;
   handleAccordionChange: (index: number) => void;
   onOpen: (lat: number, lng: number) => void;
+  onClose:()=>void;
 }
 
 export const LocationAccordionList = ({
@@ -85,6 +86,7 @@ export const LocationAccordionList = ({
                 coordinates: location.coordinates,
                 onOpen: props.onOpen,
                 isActive: location.isActive,
+                onClose:props.onClose
               }}
             />
           </motion.div>

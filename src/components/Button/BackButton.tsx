@@ -25,7 +25,7 @@ export const BackButton = ({ label = "Back", route }: BackButtonProps) => {
       startIcon={<ArrowBackIosNewIcon />}
       onClick={handleClick}
       sx={{
-        color: "#0C8CE9",
+        color: "primary.main",
         textTransform: "none",
         fontSize: "16px",
         fontWeight: 500,
