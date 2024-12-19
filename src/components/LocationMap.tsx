@@ -25,7 +25,12 @@ interface LocationMapContainerProps {
   center: [number, number];
   icon: Icon;
   zoom?: number;
-  onMarkerClick: (id: number,lat: number, lng: number) => void;
+  onMarkerClick: (
+    id: number,
+    lat: number,
+    lng: number,
+    isActive: boolean
+  ) => void;
 }
 
 export const LocationMap = ({
@@ -51,7 +56,13 @@ export const LocationMap = ({
           position={location.coordinates}
           icon={icon}
           eventHandlers={{
-            click: () => onMarkerClick(location.id, location.coordinates[0], location.coordinates[1]), // Khi click vào marker, gọi hàm handleMarkerClick
+            click: () =>
+              onMarkerClick(
+                location.id,
+                location.coordinates[0],
+                location.coordinates[1],
+                location.isActive
+              ),
           }}
         >
           <Popup>{location.name}</Popup>

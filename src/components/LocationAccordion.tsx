@@ -17,7 +17,7 @@ interface LocationAccordionProps {
   name: string;
   id: number;
   coordinates: [number, number];
-  onOpen: (id:number,lat: number, lng: number) => void;
+  onOpen: (id: number, lat: number, lng: number, isActive: boolean) => void;
   isActive: boolean;
   onClose: () => void;
 }
@@ -32,13 +32,13 @@ export const LocationAccordion = ({
     expanded: boolean
   ) => {
     if (expanded && props.isActive) {
-      props.onOpen(1,props.coordinates[0], props.coordinates[1]);
+      props.onOpen(1, props.coordinates[0], props.coordinates[1], props.isActive);
     }
     if (!expanded) {
-      props.onClose(); 
+      props.onClose();
     }
     if (props.isActive) {
-      props.handleChange(props.index); 
+      props.handleChange(props.index);
     }
   };
 
@@ -52,15 +52,15 @@ export const LocationAccordion = ({
 
   return (
     <Accordion
-    
-      expanded={props.expandedIndex === props.index} // Check if the accordion is expanded
+      id={`accordion-${props.id}`} 
+      expanded={props.expandedIndex === props.index} 
       onChange={handleAccordionChange}
       disableGutters
       elevation={0}
       square
       sx={{
         border: "none",
-        "&::before": { display: "none" }, // Hide the default accordion separator
+        "&::before": { display: "none" },
       }}
     >
       <AccordionSummary
@@ -68,15 +68,15 @@ export const LocationAccordion = ({
         aria-controls="panel1a-content"
         id="panel1a-header"
         sx={{
-          borderBottom: "none", // Remove border from summary
+          borderBottom: "none",
         }}
       >
         <Box>
           <Typography fontWeight="bold" fontSize="18px" variant="h6">
-            {props.name} {/* Display location name */}
+            {props.name}
           </Typography>
           {props.isActive ? (
-            <StoreStatus props={{ openHour: 9, closeHour: 22 }} /> // Display store status if active
+            <StoreStatus props={{ openHour: 9, closeHour: 22 }} />
           ) : (
             <Typography
               color="#a9a2a2"
@@ -115,7 +115,7 @@ export const LocationAccordion = ({
               <Typography variant="body2">{hours}</Typography>
             </Box>
           ))}
-          <ButtonLocation props={{ locationId: props.id }} /> {/* Button to interact with the location */}
+          <ButtonLocation props={{ locationId: props.id }} />
         </Box>
       </AccordionDetails>
     </Accordion>

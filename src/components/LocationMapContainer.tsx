@@ -3,7 +3,7 @@ import { Grid2 as Grid } from "@mui/material";
 import images from "../assets/images";
 import { LocationAccordionList } from "./LocationAccordionList";
 import useLocationMap from "../hooks/useLocationMap";
-import { LocationMap } from "./LocationMap";
+import { LocationMap } from "./LocationMap";  
 import { useState } from "react";
 
 export const LocationMapContainer = () => {
@@ -16,15 +16,22 @@ export const LocationMapContainer = () => {
 
   const [expandedIndex, setExpandedIndex] = useState<number | false>(false);
 
-  // Thay đổi trạng thái expandedIndex khi một accordion được mở
   const handleAccordionChange = (index: number) => {
     setExpandedIndex(expandedIndex === index ? false : index);
   };
 
-  // Cập nhật khi click vào marker, mở accordion và di chuyển bản đồ
-  const handleMarkerClick = (id: number,lat: number, lng: number) => {
-    setExpandedIndex(id); // Mở accordion tương ứng
-    changeCenter(lat,lng); // Di chuyển bản đồ đến vị trí của marker
+  const handleMarkerClick = (id: number, lat: number, lng: number, isActive:boolean) => {
+    if(isActive){
+      setExpandedIndex(id); 
+    }
+    changeCenter(lat, lng); 
+    const element = document.getElementById(`accordion-${id}`);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "center", 
+      });
+    }
   };
 
   return (
