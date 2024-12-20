@@ -1,7 +1,7 @@
 import "./App.css";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import theme from "./theme/theme"; // Import theme
+import theme from "./theme/theme";
 import { ChooseBrand } from "./pages/ChooseBrand";
 import { ChooseDevice } from "./pages/ChooseDevice";
 import { ChooseService } from "./pages/ChooseService";
@@ -10,41 +10,27 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import useQueryParams from "./hooks/useQueryParams";
 
 function App() {
-  const { brand, deviceId, serviceId } = useQueryParams();
+  const { brand, deviceId, serviceId, paramCount } = useQueryParams();
 
   let content;
 
-  if (serviceId) {
-    content = (
-      <ErrorBoundary>
-        <ChooseLocation />
-      </ErrorBoundary>
-    );
-  } else if (deviceId) {
-    content = (
-      <ErrorBoundary>
-        <ChooseService />
-      </ErrorBoundary>
-    );
-  } else if (brand) {
-    content = (
-      <ErrorBoundary>
-        <ChooseDevice />
-      </ErrorBoundary>
-    );
+  if (serviceId && paramCount === 3) {
+    content = <ChooseLocation />;
+  } else if (deviceId && paramCount === 2) {
+    content = <ChooseService />;
+  } else if (brand && paramCount === 1) {
+    content = <ChooseDevice />;
   } else {
-    content = (
-      <ErrorBoundary>
-        <ChooseBrand />
-      </ErrorBoundary>
-    );
+    content = <ChooseBrand />;
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {content}
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        {content}
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 }
 

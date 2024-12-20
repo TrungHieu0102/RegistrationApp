@@ -15,6 +15,7 @@ interface LocationAccordionProps {
   expandedIndex: number | false;
   handleChange: (index: number) => void;
   name: string;
+  address?: string;
   id: number;
   coordinates: [number, number];
   onOpen: (id: number, lat: number, lng: number, isActive: boolean) => void;
@@ -28,22 +29,33 @@ export const LocationAccordion = ({
   props: LocationAccordionProps;
 }) => {
   const handleAccordionChange = (
-    _: React.SyntheticEvent,
+    event: React.SyntheticEvent,
     expanded: boolean
   ) => {
-    if (expanded && props.isActive) {
-      props.onOpen(1, props.coordinates[0], props.coordinates[1], props.isActive);
-    }
-    if (!expanded) {
+    const element = event.currentTarget;
+  
+    if (expanded) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
+      props.onOpen(
+        props.index,
+        props.coordinates[0],
+        props.coordinates[1],
+        props.isActive
+      );
+    } else {
       props.onClose();
     }
+  
     if (props.isActive) {
       props.handleChange(props.index);
     }
   };
 
   const openingHours = {
-    Monday: "12:00 - 14:00",
+    Monday: "09:00 - 17:00",
     Tuesday: "09:00 - 17:00",
     Wednesday: "09:00 - 17:00",
     Thursday: "09:00 - 17:00",
@@ -75,8 +87,11 @@ export const LocationAccordion = ({
           <Typography fontWeight="bold" fontSize="18px" variant="h6">
             {props.name}
           </Typography>
+          <Typography  fontSize="14px" variant="h6">
+            {props.address}
+          </Typography>
           {props.isActive ? (
-            <StoreStatus props={{ openHour: 9, closeHour: 22 }} />
+            <StoreStatus props={{ openingHours }} />
           ) : (
             <Typography
               color="#a9a2a2"

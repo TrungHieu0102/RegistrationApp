@@ -1,6 +1,7 @@
 import { Button, Box, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import useQueryParams from "../../hooks/useQueryParams";
+import { motion } from "framer-motion";
 
 interface ButtonProps {
   image: string;
@@ -11,7 +12,24 @@ interface ButtonProps {
 export const ButtonDevice = ({ props }: { props: ButtonProps }) => {
   const { brand } = useQueryParams();
   return (
-    
+    <motion.div
+    whileHover={{ scale: 1.1 }} 
+    whileTap={{ scale: 0.95 }} 
+    initial={{ opacity: 0, y: -20 }} 
+    animate={{ opacity: 1, y: 0 }} 
+    transition={{ duration: 0.3,type: "spring",  stiffness: 100 }} 
+    style={{
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      flexDirection: "column",
+      cursor: "pointer",
+      padding: "10px",
+      borderRadius: "10px",
+      backgroundColor: "#fff",
+      textAlign: "center",
+    }}
+  >  
       <Link
         to={`/?brand=${brand}&deviceId=${props.id}`}
         style={{ textDecoration: "none" }}
@@ -63,5 +81,6 @@ export const ButtonDevice = ({ props }: { props: ButtonProps }) => {
           </Typography>
         </Button>
       </Link>
+      </motion.div>
   );
 };

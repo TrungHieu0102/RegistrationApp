@@ -1,9 +1,8 @@
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
-import "leaflet/dist/leaflet.css";
 import { Icon } from "leaflet";
 import locations from "../Data/Location";
 import { useEffect } from "react";
-
+import { Box, Button, Typography } from "@mui/material";
 const UpdateMapCenter = ({
   center,
   zoom,
@@ -14,17 +13,24 @@ const UpdateMapCenter = ({
   const map = useMap();
 
   useEffect(() => {
-    map.setView(center, 10);
-    map.flyTo(center, zoom, { animate: true, duration: 1 });
-  }, [center, map, zoom]);
+    if (map) {
+      map.flyTo(center, 11, { animate: true, duration: 1.5 });
+      setTimeout(() => {
+        map.flyTo(center, zoom, {
+          animate: true,
+          duration: 1,
+          easeLinearity: 0.25,
+        });
+      }, 100);
+    }
+  }, [center, zoom, map]);
 
   return null;
 };
-
 interface LocationMapContainerProps {
   center: [number, number];
+  zoom: number;
   icon: Icon;
-  zoom?: number;
   onMarkerClick: (
     id: number,
     lat: number,
@@ -36,13 +42,13 @@ interface LocationMapContainerProps {
 export const LocationMap = ({
   center,
   icon,
-  zoom = 11,
+  zoom,
   onMarkerClick,
 }: LocationMapContainerProps) => {
-  const zoomLevel = zoom;
   return (
     <MapContainer
       center={center}
+      zoom={zoom}
       scrollWheelZoom={true}
       style={{ height: "600px", width: "100%" }}
     >
@@ -65,10 +71,44 @@ export const LocationMap = ({
               ),
           }}
         >
-          <Popup>{location.name}</Popup>
+          <Popup>
+            <Box
+              display="flex"
+              flexDirection="column"
+              alignItems="center"
+              justifyContent="center"
+              
+            >
+              <Typography
+                variant="subtitle1"
+                fontSize="8"
+                fontWeight="600"
+                textAlign="center"
+              >
+                {location.name}
+              </Typography>
+              <Button
+                sx={{
+                  paddingX: "8px",
+                  paddingY: "4px",
+                  backgroundColor: "primary.main",
+                  borderRadius: "50px",
+                  cursor: "pointer",
+                  color: "white",
+                  marginTop:"5px"
+                }}
+                onClick={() => {
+                  const googleMapsUrl = `https://www.google.com/maps?q=${location.coordinates[0]},${location.coordinates[1]}`;
+                  window.open(googleMapsUrl, "_blank");
+                }}
+              >
+                Open google map
+              </Button>
+            </Box>
+          </Popup>
         </Marker>
       ))}
-      <UpdateMapCenter center={center} zoom={zoomLevel} />
+      <UpdateMapCenter center={center} zoom={zoom} />
     </MapContainer>
   );
 };

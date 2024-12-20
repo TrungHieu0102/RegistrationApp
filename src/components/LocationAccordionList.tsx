@@ -70,6 +70,7 @@ export const LocationAccordionList = ({
               delay: index * 0.1,
               stiffness: 90,
             }}
+            layout 
           >
             <LocationAccordion
               key={location.id}
@@ -79,6 +80,7 @@ export const LocationAccordionList = ({
                 handleChange: props.handleAccordionChange,
                 id: location.id,
                 name: location.name,
+                address:location.address,
                 coordinates: location.coordinates,
                 onOpen: props.onOpen,
                 isActive: location.isActive,

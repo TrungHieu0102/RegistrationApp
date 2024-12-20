@@ -1,35 +1,36 @@
 import { Typography } from "@mui/material";
-import {
-  format,
-  isAfter,
-  isBefore,
-  addDays,
-  setHours,
-  setMinutes,
-  setSeconds,
-  getDay,
-} from "date-fns";
+import { format, isAfter, isBefore, addDays, setHours, setMinutes, setSeconds, getDay } from "date-fns";
 
 interface StoreStatusProps {
-  openHour: number;
-  closeHour: number;
+  openingHours: { [key: string]: string };  
 }
 
 export const StoreStatus = ({ props }: { props: StoreStatusProps }) => {
   const now = new Date();
-  const todayOpen = setSeconds(setMinutes(setHours(now, props.openHour), 0), 0);
-  const todayClose = setSeconds(setMinutes(setHours(now, props.closeHour), 0), 0);
+  const currentDay = getDay(now);  
 
-  const isClosedToday = [0, 6].includes(getDay(now));
+  const todayOpeningHours = props.openingHours[Object.keys(props.openingHours)[currentDay - 1]]; 
+  const [openTime, closeTime] = todayOpeningHours?.split(" - ") || [];
+
+  if (!openTime || !closeTime) {
+    return (
+      <Typography color="#a9a2a2" fontWeight="bold" fontSize="16px" variant="h6">
+        Closed Today
+      </Typography>
+    );
+  }
+
+  const [openHour, openMinute] = openTime.split(":").map(Number);
+  const [closeHour, closeMinute] = closeTime.split(":").map(Number);
+
+  const todayOpen = setSeconds(setMinutes(setHours(now, openHour), openMinute), 0);
+  const todayClose = setSeconds(setMinutes(setHours(now, closeHour), closeMinute), 0);
+
+  const isClosedToday = currentDay === 0 || currentDay === 6; 
 
   if (!isClosedToday && isAfter(now, todayOpen) && isBefore(now, todayClose)) {
     return (
-      <Typography
-        color="#519B55"
-        fontWeight="bold"
-        fontSize="16px"
-        variant="h6"
-      >
+      <Typography color="#519B55" fontWeight="bold" fontSize="16px" variant="h6">
         Available now
       </Typography>
     );
@@ -45,10 +46,8 @@ export const StoreStatus = ({ props }: { props: StoreStatusProps }) => {
   const formattedTime = format(nextOpen, "EEEE 'at' hh:mm a");
 
   return (
-    <Typography color="#a9a2a2" fontWeight="bold" fontSize="16px" variant="h6">
+    <Typography color="#519B55" fontWeight="bold" fontSize="16px" variant="h6">
       Available at {formattedTime}
     </Typography>
   );
 };
-
-

@@ -7,7 +7,6 @@ import CommonContainer from "../components/UI/CommonContainer";
 import { Navigate } from "../components/UI/Navigate";
 import { PreviousSelections } from "../components/PreviousSelections";
 import useQueryParams from "../hooks/useQueryParams";
-import { motion } from "framer-motion"; // Import Framer Motion
 
 export const ChooseDevice = () => {
   const [filteredDevices, setFilteredDevices] = useState<Devices[]>([]);
@@ -28,11 +27,6 @@ export const ChooseDevice = () => {
   return (
     <CommonContainer>
       <Navigate />
-      <motion.div
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
-      >
         <PreviousSelections />
         <Box marginTop={"20px"}>
           <Typography variant="subtitle1" fontWeight={"bold"}>
@@ -56,7 +50,6 @@ export const ChooseDevice = () => {
             ))}
           </Grid>
         </Box>
-      </motion.div>
     </CommonContainer>
   );
 };

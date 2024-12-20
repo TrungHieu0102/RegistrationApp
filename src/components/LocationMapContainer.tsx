@@ -11,7 +11,7 @@ export const LocationMapContainer = () => {
 
   const icon = new Icon({
     iconUrl: images.iconmap,
-    iconSize: [38, 38],
+    iconSize: [30, 30],
   });
 
   const [expandedIndex, setExpandedIndex] = useState<number | false>(false);

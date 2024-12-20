@@ -1,6 +1,7 @@
 export interface Location {
   id: number;
   name: string;
+  address?: string;
   coordinates: [number, number];
   isActive: boolean;
 }
@@ -8,123 +9,66 @@ export interface Location {
 const locations: Location[] = [
   {
     id: 1,
-    name: "Clickbuy - Tân Bình 1",
-    coordinates: [10.8015, 106.6358], // Quận Tân Bình
+    name: "Clickbuy - Tân Bình",
+    coordinates: [10.7996685, 106.6605822],
+    address:
+      "CLICKBUY Q.Tân Bình, 379 Đ. Hoàng Văn Thụ, Phường 2, Tân Bình, Hồ Chí Minh 76000, Việt Nam",
     isActive: true,
   },
   {
     id: 2,
     name: "Clickbuy - Quận 1",
-    coordinates: [10.7769, 106.7009], // Quận 1
+    address:
+      "Clickbuy Quận 1, 42 Đ. Trần Quang Khải, Phường Tân Định, Quận 1, Hồ Chí Minh",
+    coordinates: [10.7926697, 106.6947428],
     isActive: true,
   },
   {
     id: 3,
-    name: "Clickbuy - Quận 3",
-    coordinates: [10.7760, 106.6924], // Quận 3
-    isActive: false,
+    name: "Clickbuy - Quận 7",
+    coordinates: [10.7390684, 106.7082243],
+    address:
+      "CLICKBUY Q7, 499 Nguyễn Thị Thập, Tân Phong, Quận 7, Hồ Chí Minh ",
+    isActive: true,
   },
   {
     id: 4,
-    name: "Clickbuy - Quận 2",
-    coordinates: [10.7849, 106.6935], // Quận 2 (nay là Thành phố Thủ Đức)
+    name: "Clickbuy - Quận 10",
+    coordinates: [10.770372, 106.6724456],
+    address:
+      "Clickbuy - 255 Đường 3/2, P.10, Quận 10, 255 Đ. 3 Tháng 2, Phường 12, Quận 10, Hồ Chí Minh ",
     isActive: true,
   },
   {
     id: 5,
-    name: "Clickbuy - Tân Bình 2",
-    coordinates: [10.8019, 106.6235], // Quận Tân Bình
-    isActive: false,
+    name: "Clickbuy - Quận Bình Thạnh",
+    coordinates: [10.8023917, 106.7115358],
+    address:
+      "Clickbuy Q. Bình Thạnh, 290A Xô Viết Nghệ Tĩnh, Phường 25, Bình Thạnh, Hồ Chí Minh 70000, Việt Nam",
+    isActive: true,
   },
   {
     id: 6,
-    name: "Clickbuy - Quận 1",
-    coordinates: [10.7765, 106.6942], // Quận 1
+    name: "Clickbuy - Thủ Đức",
+    address: "CLICKBUY Q.Thủ Đức, 98 Đ. Võ Văn Ngân, P, Thủ Đức, Hồ Chí Minh ",
+    coordinates: [10.8504588, 106.7600938],
     isActive: true,
   },
   {
     id: 7,
-    name: "Clickbuy - Quận 3",
-    coordinates: [10.7762, 106.6903], // Quận 3
+    name: "Clickbuy - Gò Vấp",
+    coordinates: [10.8339263, 106.6656701],
+    address:
+      "Clickbuy Gò Vấp, 466 Đ. Quang Trung, Phường 10, Gò Vấp, Hồ Chí Minh 76000, Việt Nam",
     isActive: true,
   },
   {
     id: 8,
-    name: "Clickbuy - Quận 2",
-    coordinates: [10.7768, 106.6950], // Quận 2
+    name: "Clickbuy - Lê Hồng Phong",
+    address:
+      "Clickbuy Lê Hồng Phong, 535 Đ. Lê Hồng Phong, Phường 10, Quận 10, TP. Hồ Chí Minh ",
+    coordinates: [10.7681203, 106.6740178],
     isActive: false,
-  },
-  {
-    id: 9,
-    name: "Clickbuy - Quận 1",
-    coordinates: [10.7731, 106.6956], // Quận 1
-    isActive: true,
-  },
-  {
-    id: 10,
-    name: "Clickbuy - Quận 3",
-    coordinates: [10.7804, 106.6961], // Quận 3
-    isActive: false,
-  },
-  {
-    id: 11,
-    name: "Clickbuy - Quận 4",
-    coordinates: [10.7615, 106.6927], // Quận 4
-    isActive: true,
-  },
-  {
-    id: 12,
-    name: "Clickbuy - Quận 5",
-    coordinates: [10.7622, 106.6762], // Quận 5
-    isActive: true,
-  },
-  {
-    id: 13,
-    name: "Clickbuy - Quận 7",
-    coordinates: [10.7465, 106.7033], // Quận 7
-    isActive: true,
-  },
-  {
-    id: 14,
-    name: "Clickbuy - Quận 10",
-    coordinates: [10.7625, 106.6818], // Quận 10
-    isActive: false,
-  },
-  {
-    id: 15,
-    name: "Clickbuy - Quận Bình Thạnh",
-    coordinates: [10.7861, 106.7051], // Quận Bình Thạnh
-    isActive: true,
-  },
-  {
-    id: 16,
-    name: "Clickbuy - Quận 11",
-    coordinates: [10.7567, 106.6153], // Quận 11
-    isActive: true,
-  },
-  {
-    id: 17,
-    name: "Clickbuy - Quận 12",
-    coordinates: [10.8524, 106.6287], // Quận 12
-    isActive: false,
-  },
-  {
-    id: 18,
-    name: "Clickbuy - Tân Phú",
-    coordinates: [10.7795, 106.6090], // Quận Tân Phú
-    isActive: true,
-  },
-  {
-    id: 19,
-    name: "Clickbuy - Thủ Đức",
-    coordinates: [10.8320, 106.7935], // Thành phố Thủ Đức
-    isActive: false,
-  },
-  {
-    id: 20,
-    name: "Clickbuy - Gò Vấp",
-    coordinates: [10.8230, 106.6903], // Quận Gò Vấp
-    isActive: true,
   },
 ];
 
