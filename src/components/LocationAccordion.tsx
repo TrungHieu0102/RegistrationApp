@@ -9,7 +9,7 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { StoreStatus } from "./StoreStatus";
 import { ButtonLocation } from "./Button/ButtonLocation";
-
+import {OpeningHours} from "../Data/OpeningHours";
 interface LocationAccordionProps {
   index: number;
   expandedIndex: number | false;
@@ -22,7 +22,6 @@ interface LocationAccordionProps {
   isActive: boolean;
   onClose: () => void;
 }
-
 export const LocationAccordion = ({
   props,
 }: {
@@ -54,13 +53,6 @@ export const LocationAccordion = ({
     }
   };
 
-  const openingHours = {
-    Monday: "09:00 - 17:00",
-    Tuesday: "09:00 - 17:00",
-    Wednesday: "09:00 - 17:00",
-    Thursday: "09:00 - 17:00",
-    Friday: "09:00 - 17:00",
-  };
 
   return (
     <Accordion
@@ -91,7 +83,7 @@ export const LocationAccordion = ({
             {props.address}
           </Typography>
           {props.isActive ? (
-            <StoreStatus props={{ openingHours }} />
+            <StoreStatus props={{ OpeningHours }} />
           ) : (
             <Typography
               color="#a9a2a2"
@@ -116,7 +108,7 @@ export const LocationAccordion = ({
           <Typography variant="body2" fontSize="16px" fontWeight="bold">
             Opening Hours
           </Typography>
-          {Object.entries(openingHours).map(([day, hours]) => (
+          {Object.entries(OpeningHours).map(([day, hours]) => (
             <Box
               key={day}
               display="flex"
@@ -127,7 +119,7 @@ export const LocationAccordion = ({
               paddingRight="10px"
             >
               <Typography variant="body2">{day}:</Typography>
-              <Typography variant="body2">{hours}</Typography>
+              <Typography variant="body2">{hours.start} - {hours.end}</Typography>
             </Box>
           ))}
           <ButtonLocation props={{ locationId: props.id }} />

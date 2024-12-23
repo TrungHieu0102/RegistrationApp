@@ -28,6 +28,18 @@ const theme = createTheme({
       color: "#666",
     },
   },
+  components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          "& .MuiOutlinedInput-root": {
+            borderRadius: "20px",
+          },
+        },
+      },
+    },
+  },
+  
 });
 
 export default theme;

@@ -2,15 +2,17 @@ import { Typography } from "@mui/material";
 import { format, isAfter, isBefore, addDays, setHours, setMinutes, setSeconds, getDay } from "date-fns";
 
 interface StoreStatusProps {
-  openingHours: { [key: string]: string };  
+  OpeningHours: {
+    [key: string]: { start: string; end: string };
+  }; 
 }
 
 export const StoreStatus = ({ props }: { props: StoreStatusProps }) => {
   const now = new Date();
   const currentDay = getDay(now);  
 
-  const todayOpeningHours = props.openingHours[Object.keys(props.openingHours)[currentDay - 1]]; 
-  const [openTime, closeTime] = todayOpeningHours?.split(" - ") || [];
+  const todayOpeningHours = props.OpeningHours[Object.keys(props.OpeningHours)[currentDay - 1]]; 
+  const [openTime, closeTime] = [todayOpeningHours.start, todayOpeningHours.end];
 
   if (!openTime || !closeTime) {
     return (
