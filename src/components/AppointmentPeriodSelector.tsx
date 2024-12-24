@@ -1,25 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Box } from '@mui/material';
 
 interface AppointmentPeriodSelectorProps {
   selectedPeriod: 'morning' | 'afternoon';
   setSelectedPeriod: (period: 'morning' | 'afternoon') => void;
   mockCurrentTime: Date;
+  selectedDate: Date | null;
 }
 
-const AppointmentPeriodSelector: React.FC<AppointmentPeriodSelectorProps> = ({ selectedPeriod, setSelectedPeriod, mockCurrentTime }) => {
+export const AppointmentPeriodSelector = ({
+  selectedPeriod,
+  setSelectedPeriod,
+  mockCurrentTime,
+  selectedDate,
+} : AppointmentPeriodSelectorProps) => {
   const [isAfternoonOnly, setIsAfternoonOnly] = useState(false);
 
   useEffect(() => {
-    const currentHour = mockCurrentTime.getHours();
-    
-    if (currentHour >= 12 && currentHour < 17) {
-      setIsAfternoonOnly(true);
-      setSelectedPeriod('afternoon');
+    if (!selectedDate) return;
+
+    const isToday = selectedDate.toDateString() === mockCurrentTime.toDateString();
+    if (isToday) {
+      const currentHour = mockCurrentTime.getHours();
+
+      if (currentHour >= 12) {
+        setIsAfternoonOnly(true);
+        setSelectedPeriod('afternoon');
+      } else {
+        setIsAfternoonOnly(false);
+      }
     } else {
-      setIsAfternoonOnly(false); 
+      setIsAfternoonOnly(false);
     }
-  }, [mockCurrentTime, setSelectedPeriod]);
+  }, [mockCurrentTime, selectedDate, setSelectedPeriod]);
 
   return (
     <Box mb={3} display="flex" justifyContent="center">
@@ -47,14 +60,10 @@ const AppointmentPeriodSelector: React.FC<AppointmentPeriodSelectorProps> = ({ s
               flex: 1,
               textTransform: 'none',
               borderRadius: '32px',
-              padding: '4px 4px', 
-
+              padding: '4px 4px',
               backgroundColor: selectedPeriod === 'morning' ? '#2196f3' : '#fff',
               color: selectedPeriod === 'morning' ? '#fff' : 'rgb(48,48,48)',
-              transition: 'background-color 0.3s, color 0.3s',
-              '&:hover': {
-                backgroundColor: selectedPeriod === 'morning' ? '#1976d2' : '#f0f0f0',
-              },
+             
             }}
           >
             Morning
@@ -66,13 +75,10 @@ const AppointmentPeriodSelector: React.FC<AppointmentPeriodSelectorProps> = ({ s
             flex: 1,
             textTransform: 'none',
             borderRadius: '30px',
-            padding: '4px 4px',  
+            padding: '4px 4px',
             backgroundColor: selectedPeriod === 'afternoon' ? '#2196f3' : '#fff',
             color: selectedPeriod === 'afternoon' ? '#fff' : 'rgb(48,48,48)',
-            transition: 'background-color 0.3s, color 0.3s',
-            '&:hover': {
-              backgroundColor: selectedPeriod === 'afternoon' ? '#1976d2' : '#f0f0f0',
-            },
+           
           }}
         >
           Afternoon
@@ -81,5 +87,3 @@ const AppointmentPeriodSelector: React.FC<AppointmentPeriodSelectorProps> = ({ s
     </Box>
   );
 };
-
-export default AppointmentPeriodSelector;

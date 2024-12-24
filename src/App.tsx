@@ -7,15 +7,18 @@ import { ChooseDevice } from "./pages/ChooseDevice";
 import { ChooseService } from "./pages/ChooseService";
 import ErrorBoundary from "./components/ErrorBoundary";
 import useQueryParams from "./hooks/useQueryParams";
-import { SubmitInfo } from "./pages/SubmitInfo";
+import { ChooseLocation } from "./pages/ChooseLocation";
+import { ChooseTime } from "./pages/ChooseTime";
 
 function App() {
-  const { brand, deviceId, serviceId, paramCount } = useQueryParams();
+  const { brand, deviceId, serviceId, locationId, paramCount } =
+    useQueryParams();
 
   let content;
-
-  if (serviceId && paramCount === 3) {
-    content = <SubmitInfo />;
+  if (locationId && paramCount === 4) {
+    content = <ChooseTime />;
+  } else if (serviceId && paramCount === 3) {
+    content = <ChooseLocation />;
   } else if (deviceId && paramCount === 2) {
     content = <ChooseService />;
   } else if (brand && paramCount === 1) {

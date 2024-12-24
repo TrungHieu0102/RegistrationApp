@@ -25,7 +25,6 @@ const theme = createTheme({
     },
     subtitle1: {
       fontSize: "1rem",
-      color: "#666",
     },
   },
   components: {

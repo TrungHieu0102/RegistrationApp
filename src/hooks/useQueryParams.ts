@@ -20,6 +20,7 @@ const useQueryParams = () => {
     brand: params.get("brand"),
     deviceId: params.get("deviceId"),
     serviceId: params.get("serviceId"),
+    locationId: params.get("locationId"),
     paramCount,
   };
 };

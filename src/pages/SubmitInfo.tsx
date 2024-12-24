@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { PreviousSelections } from "../components/PreviousSelections";
 import CommonContainer from "../components/UI/CommonContainer";
 import { Navigate } from "../components/UI/Navigate";
-import Appointments from "../components/DatePicker";
+import Appointments from "../components/Appointments";
 import { OpeningHours } from "../Data/OpeningHours";
 export const SubmitInfo = () => {
   return (

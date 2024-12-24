@@ -1,47 +1,44 @@
-import React from 'react';
-import { Box, Button, Stack } from '@mui/material';
+import { Box, Stack } from "@mui/material";
+import { TimeSlotButton } from "../components/Button/TimeSlotButton"; 
+import { format } from "date-fns";
 
 interface AppointmentTimeSlotsProps {
   timeSlots: string[];
   selectedTimeSlot: string | null;
   handleTimeSlotSelect: (timeSlot: string) => void;
+  selectedDate: Date | null; // Thêm selectedDate vào props
 }
 
-const AppointmentTimeSlots: React.FC<AppointmentTimeSlotsProps> = ({ timeSlots, selectedTimeSlot, handleTimeSlotSelect }) => {
+export const AppointmentTimeSlots = ({
+  timeSlots,
+  selectedTimeSlot,
+  handleTimeSlotSelect,
+  selectedDate,
+}: AppointmentTimeSlotsProps) => {
+  const formattedDate = selectedDate ? format(selectedDate, "yyyy-MM-dd") : ""; 
+
   return (
     <Box marginTop={5}>
       <Stack
         direction="row"
         justifyContent="center"
         sx={{
-          width: '100%',
-          flexWrap: 'wrap',
-          gap: '12px',
+          width: "100%",
+          flexWrap: "wrap",
+          gap: "12px",
         }}
       >
         {timeSlots.map((timeSlot, index) => (
-          <Button
+          <TimeSlotButton
             key={index}
-            onClick={() => handleTimeSlotSelect(timeSlot)}
-            variant={selectedTimeSlot === timeSlot ? 'contained' : 'outlined'}
-            sx={{
-              borderRadius: '24px',
-              border: 'none',
-              textTransform: 'none',
-              fontSize: '14px',
-              padding: '12px 20px',
-              flex: '1 0 150px',
-              minWidth: '150px',
-              backgroundColor: '#f4f4f4',
-              color: 'black',
-            }}
-          >
-            {timeSlot}
-          </Button>
+            timeSlot={timeSlot}
+            selectedTimeSlot={selectedTimeSlot}
+            handleTimeSlotSelect={handleTimeSlotSelect}
+            time={timeSlot} // Truyền thời gian vào
+            date={formattedDate} // Truyền ngày đã được định dạng vào
+          />
         ))}
       </Stack>
     </Box>
   );
 };
-
-export default AppointmentTimeSlots;

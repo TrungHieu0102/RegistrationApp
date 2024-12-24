@@ -20,7 +20,19 @@ export const Navigate = ({ route }: BackButtonProps) => {
     >
       <BackButton route={route} />
       <div>
-        <Typography variant="h5" component="h1" fontWeight="bold">
+        <Typography
+          sx={{
+            fontSize: {
+              xs: "16px", 
+              sm: "18px",
+              md: "20px", 
+              lg: "24px", 
+            },
+          }}
+          variant="h5"
+          component="h1"
+          fontWeight="bold"
+        >
           {t("title")}
         </Typography>
       </div>

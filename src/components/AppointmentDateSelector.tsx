@@ -1,9 +1,7 @@
-import React from 'react';
 import { Box, Stack, Typography, IconButton } from '@mui/material';
 import { format } from 'date-fns';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 interface AppointmentDateSelectorProps {
   currentStartDate: Date;
   weekDays: Date[];
@@ -16,7 +14,7 @@ interface AppointmentDateSelectorProps {
   isTodayAndEvening: (date: Date) => boolean;
 }
 
-const AppointmentDateSelector: React.FC<AppointmentDateSelectorProps> = ({
+export const AppointmentDateSelector = ({
   weekDays,
   selectedDate,
   handleDateSelect,
@@ -24,7 +22,7 @@ const AppointmentDateSelector: React.FC<AppointmentDateSelectorProps> = ({
   handleNextWeek,
   isWeekend,
   isTodayAndEvening,
-}) => {
+}: AppointmentDateSelectorProps) => {
   return (
     <Box
       mb={3}
@@ -41,7 +39,7 @@ const AppointmentDateSelector: React.FC<AppointmentDateSelectorProps> = ({
       }}
     >
       <IconButton onClick={handlePreviousWeek} sx={{ flexShrink: 0, width: '30px', height: '30px' }}>
-        <ArrowBackIcon />
+        <ArrowBackIosIcon />
       </IconButton>
 
       <Stack
@@ -94,10 +92,9 @@ const AppointmentDateSelector: React.FC<AppointmentDateSelectorProps> = ({
       </Stack>
 
       <IconButton onClick={handleNextWeek} sx={{ flexShrink: 0, width: '30px', height: '30px' }}>
-        <ArrowForwardIcon />
+        <ArrowForwardIosIcon />
       </IconButton>
     </Box>
   );
 };
 
-export default AppointmentDateSelector;
