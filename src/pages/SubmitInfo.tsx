@@ -2,8 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { PreviousSelections } from "../components/PreviousSelections";
 import CommonContainer from "../components/UI/CommonContainer";
 import { Navigate } from "../components/UI/Navigate";
-import Appointments from "../components/Appointments";
-import { OpeningHours } from "../Data/OpeningHours";
+import { UserForm } from "../components/UserForm";
 export const SubmitInfo = () => {
   return (
     <CommonContainer>
@@ -13,7 +12,9 @@ export const SubmitInfo = () => {
         <Typography variant="subtitle1" fontWeight={"bold"}>
           Contact information
         </Typography>
-        <Appointments OpeningHours={OpeningHours} />
+      </Box>
+      <Box marginTop={"20px"}>
+        <UserForm />
       </Box>
     </CommonContainer>
   );

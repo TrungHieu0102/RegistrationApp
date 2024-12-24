@@ -7,7 +7,12 @@ import {
   Typography,
   Stack,
   Grid2 as Grid,
+  InputAdornment,
+  Select,
+  MenuItem,
+  SelectChangeEvent,
 } from "@mui/material";
+import { useState } from "react";
 
 interface FormValues {
   serialNumber: string;
@@ -43,6 +48,10 @@ const validationSchema = Yup.object({
 });
 
 export const UserForm = () => {
+  const [countryCode, setCountryCode] = useState("+1");
+  const handleCountryCodeChange = (event: SelectChangeEvent<string>) => {
+    setCountryCode(event.target.value);
+  };
   const formik = useFormik<FormValues>({
     initialValues: {
       serialNumber: "",
@@ -57,7 +66,11 @@ export const UserForm = () => {
     },
     validationSchema,
     onSubmit: (values) => {
-      console.log("Form submitted:", values);
+      const phoneWithCountryCode = countryCode + values.phone;
+      console.log("Form submitted:", {
+        ...values,
+        phone: phoneWithCountryCode,
+      });
     },
   });
 
@@ -72,7 +85,7 @@ export const UserForm = () => {
       <form onSubmit={formik.handleSubmit}>
         <Grid container spacing={3}>
           <Grid size={{ xs: 12, md: 6 }}>
-            <Typography variant="h6" mb={2} fontWeight="bold">
+            <Typography variant="h6" mb={2} fontSize="14px" fontWeight="bold">
               Device Details
             </Typography>
             <Stack spacing={2}>
@@ -84,11 +97,11 @@ export const UserForm = () => {
                 onBlur={formik.handleBlur}
                 value={formik.values.serialNumber}
                 fullWidth
-                sx={{
-                  "& .MuiOutlinedInput-root": {
-                    borderRadius: "30px",
-                  },
-                }}
+                // sx={{
+                //   "& .MuiOutlinedInput-root": {
+                //     borderRadius: "30px",
+                //   },
+                // }}
               />
               <TextField
                 label="Description"
@@ -105,7 +118,7 @@ export const UserForm = () => {
           </Grid>
 
           <Grid size={{ xs: 12, md: 6 }}>
-            <Typography variant="h6" mb={2} fontWeight="bold">
+            <Typography variant="h6" mb={2} fontSize="14px" fontWeight="bold">
               Contact Details
             </Typography>
             <Stack spacing={2}>
@@ -171,6 +184,7 @@ export const UserForm = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.email}
+                error={Boolean(formik.errors.email && formik.touched.email)}
                 fullWidth
               />
               <TextField
@@ -182,11 +196,38 @@ export const UserForm = () => {
                 value={formik.values.phone}
                 error={Boolean(formik.errors.phone && formik.touched.phone)}
                 helperText={
-                  formik.errors.phone && formik.touched.phone
+                  formik.touched.phone && formik.errors.phone
                     ? formik.errors.phone
                     : ""
                 }
                 fullWidth
+                slotProps={{
+                  input: {
+                    startAdornment: (
+                      <InputAdornment position="start">
+                        <Select
+                          value={countryCode}
+                          onChange={handleCountryCodeChange}
+                          displayEmpty
+                          sx={{
+                            minWidth: 70,
+                            border: "none",
+                            backgroundColor: "transparent",
+                            ".MuiOutlinedInput-notchedOutline": {
+                              border: "none",
+                            },
+                          }}
+                        >
+                          <MenuItem value="+1">USA (+1)</MenuItem>
+                          <MenuItem value="+91">IDN (+91)</MenuItem>
+                          <MenuItem value="+44">UK (+44)</MenuItem>
+                          <MenuItem value="+84">VN (+84)</MenuItem>
+                          <MenuItem value="+81">JP (+81)</MenuItem>
+                        </Select>
+                      </InputAdornment>
+                    ),
+                  },
+                }}
               />
             </Stack>
           </Grid>

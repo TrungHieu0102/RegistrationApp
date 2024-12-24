@@ -19,7 +19,7 @@ export const Selected = ({ name, value, isLast }: SelectedProps) => {
   >
       <Stack
         direction="row"
-        spacing={2}
+        spacing={4}
         sx={{
           justifyContent: "flex-start",
           alignItems: "center",
@@ -37,7 +37,7 @@ export const Selected = ({ name, value, isLast }: SelectedProps) => {
           </Typography>
         </Box>
         <Box sx={{ flexGrow: 1 }}>
-          <Typography variant="body1" marginTop={"8px"}>
+          <Typography variant="h6" fontSize="15px" marginTop={"8px"}>
             {value}
           </Typography>
         </Box>

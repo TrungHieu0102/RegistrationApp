@@ -14,20 +14,20 @@ interface AppointmentsProps {
 }
 
 export const Appointments= ({ OpeningHours } : AppointmentsProps) => {
-  const mockCurrentTime = new Date("2024-12-26T14:00:00");  // Set time "2024-12-26T14:00:00" - DEFAULT TIME TÉST
+  const TIME = new Date();  //new Date("2024-12-26T14:00:00") - new Date() - DEFAULT TIME TEST
 
-  const { selectedDate, selectedPeriod, setSelectedDate, setSelectedPeriod } = useAppointmentDateAndPeriod(mockCurrentTime, OpeningHours);
-  const [currentStartDate, setCurrentStartDate] = useState<Date>(mockCurrentTime);
+  const { selectedDate, selectedPeriod, setSelectedDate, setSelectedPeriod } = useAppointmentDateAndPeriod(TIME, OpeningHours);
+  const [currentStartDate, setCurrentStartDate] = useState<Date>(TIME);
   const { handlePreviousWeek, handleNextWeek } = useWeekNavigation(currentStartDate, setCurrentStartDate);
 
   const [selectedTimeSlot, setSelectedTimeSlot] = useState<string | null>(null);
 
-  const { isWeekend, isPastDate, isTodayAndEvening } = useDateValidation(OpeningHours, selectedDate || mockCurrentTime, mockCurrentTime);
+  const { isWeekend, isPastDate, isTodayAndEvening } = useDateValidation(OpeningHours, selectedDate || TIME, TIME);
   const timeSlots = useTimeSlots(
     selectedPeriod === "morning" ? "09:00" : "13:00",
     selectedPeriod === "morning" ? "12:00" : "18:00",
-    selectedDate || mockCurrentTime,
-    mockCurrentTime
+    selectedDate || TIME,
+    TIME
   );
 
   const handleDateSelect = (date: Date) => {
@@ -60,7 +60,7 @@ export const Appointments= ({ OpeningHours } : AppointmentsProps) => {
       <AppointmentPeriodSelector
         selectedPeriod={selectedPeriod}
         setSelectedPeriod={setSelectedPeriod}
-        mockCurrentTime={mockCurrentTime}
+        mockCurrentTime={TIME}
         selectedDate={selectedDate}
       />
       <AppointmentTimeSlots
