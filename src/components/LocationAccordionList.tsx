@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { LocationAccordion } from "./LocationAccordion";
-import locations, { Location } from "../Data/Location";
+import { Location } from "../Data/Location";
 import { SearchBarLocation } from "./SearchBarLocation";
 import { Box } from "@mui/material";
 import { motion } from "framer-motion";
+import { useLocations } from "../hooks/useLocations";
 
 interface LocationAccordionListProps {
   expandedIndex: number | false;
   handleAccordionChange: (index: number) => void;
-  onOpen: (id: number, lat: number, lng: number, isActive:boolean) => void;
+  onOpen: (id: number, lat: number, lng: number, isActive: boolean) => void;
   onClose: () => void;
 }
 
@@ -22,9 +23,11 @@ export const LocationAccordionList = ({
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };
-
+  
+  const locations = useLocations();
+  
   const filteredLocations = locations.filter((location: Location) =>
-    location.name.toLowerCase().includes(query.toLowerCase())
+    location.name?.toLowerCase().includes(query.toLowerCase())
   );
 
   return (
@@ -74,7 +77,7 @@ export const LocationAccordionList = ({
               delay: index * 0.1,
               stiffness: 90,
             }}
-            layout 
+            layout
           >
             <LocationAccordion
               key={location.id}
@@ -84,7 +87,7 @@ export const LocationAccordionList = ({
                 handleChange: props.handleAccordionChange,
                 id: location.id,
                 name: location.name,
-                address:location.address,
+                address: location.address,
                 coordinates: location.coordinates,
                 onOpen: props.onOpen,
                 isActive: location.isActive,

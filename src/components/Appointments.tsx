@@ -15,7 +15,7 @@ interface AppointmentsProps {
 }
 
 export const Appointments= ({ OpeningHours } : AppointmentsProps) => {
-  const TIME = new Date("2024-12-26T19:00:00");  //new Date("2024-12-26T14:00:00") - new Date() - DEFAULT TIME TEST
+  const TIME = new Date();  //new Date("2024-12-26T14:00:00") - new Date() - DEFAULT TIME TEST
   const { t } = useTranslation();
 
   const { selectedDate, selectedPeriod, setSelectedDate, setSelectedPeriod } = useAppointmentDateAndPeriod(TIME, OpeningHours);

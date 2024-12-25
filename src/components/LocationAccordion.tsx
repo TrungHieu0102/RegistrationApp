@@ -15,7 +15,7 @@ interface LocationAccordionProps {
   index: number;
   expandedIndex: number | false;
   handleChange: (index: number) => void;
-  name: string;
+  name?: string;
   address?: string;
   id: number;
   coordinates: [number, number];

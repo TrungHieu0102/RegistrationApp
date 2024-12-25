@@ -1,16 +1,18 @@
-import { PreviousSelections } from "../components/PreviousSelections";
-import {CommonContainer} from "../components/UI/CommonContainer";
-import { Navigate } from "../components/UI/Navigate";
-import { useEffect, useState } from "react";
-import services, { Services } from "../Data/Services";
-import deviceServices from "../Data/DeviceService";
+import { useState, useEffect } from "react";
 import { Box, Grid2 as Grid, Typography } from "@mui/material";
+import { useServices } from "../hooks/useServices";
+import deviceServices from "../Data/DeviceService";
+import { PreviousSelections } from "../components/PreviousSelections";
+import { CommonContainer } from "../components/UI/CommonContainer";
+import { Navigate } from "../components/UI/Navigate";
 import { ButtonService } from "../components/Button/ButtonService";
 import useQueryParams from "../hooks/useQueryParams";
 import { useTranslation } from "react-i18next";
+import { Services } from "../Data/Services";
 
 export const ChooseService = () => {
-  const [filteredServices, setFilteredServices] = useState<Services[]>([]);
+  const [filteredServices, setFilteredServices] = useState<Services[]>([]); 
+  const services = useServices();
   const { deviceId } = useQueryParams();
   const { t } = useTranslation();
 
@@ -29,15 +31,15 @@ export const ChooseService = () => {
         setFilteredServices([]);
       }
     }
-  }, [deviceId]);
+  }, [deviceId, services]);
 
   return (
     <CommonContainer>
       <Navigate />
       <PreviousSelections />
       <Box marginTop={"20px"}>
-        <Typography variant="subtitle1"  fontSize={"20px"} fontWeight={"bold"}>
-        {t('Choose a service type')}
+        <Typography variant="subtitle1" fontSize={"20px"} fontWeight={"bold"}>
+          {t("Choose a service type")}
         </Typography>
         <Grid
           container
@@ -49,10 +51,10 @@ export const ChooseService = () => {
             <ButtonService
               key={service.id}
               props={{
-                name: t(`services.${service.name}`),
+                name: service.name, 
                 duration: service.duration,
                 id: service.id,
-              }}  
+              }}
             />
           ))}
         </Grid>

@@ -5,45 +5,46 @@
     "at": "lúc",
     "choose a brand": "Chọn thương hiệu",
     "Previous selections": "Lựa chọn trước",
-    "Back":"Trở về",
+    "Back": "Trở về",
     "Choose a device type": "Chọn loại thiết bị",
     "Choose a service type": "Chọn loại dịch vụ",
     "Choose a service location": "Chọn địa điểm sửa chữa",
-    "Search":"Tìm kiếm",
-    "Available now":"Đang hoạt động",
-    "Opening Hours":"Giờ mở cửa",
-    "Select":"Chọn",
-    "Not available":"Chưa hoạt động",
-    "Closed Today":"Đóng cửa hôm nay",
-    "Select appointment":"Chọn lịch sửa chữa",
-    "Date":"Ngày",
-    "Time Slot":"Khoảng thời gian",
-    "Morning":"Buổi sáng",
-    "Afternoon":"Buổi chiều",
-    "Contact information":"Thông tin liên hệ",
-    "Device Details":"Chi tiết thiết bị",
-    "Contact Details":"Chi tiết liên hệ",
-    "Serial Number":"Số serial",
-    "Description":"Mô tả",
-    "Name":"Tên",
-    "Address":"Địa chỉ",
-    "City":"Thành phố",
-    "Zip":"Mã bưu chính",
-    "State":"Tỉnh",
-    "Email":"Email",
-    "Phone Number":"Số điện thoại",
-    "Either email or phone is required":"Cần nhập email hoặc số điện thoại",
-    "Phone number must be 9 digits":"Số điện thoại phải có 9 chữ số",
-    "Invalid email address":"Email không hợp lệ",
-    "Continue":"Tiếp tục",
+    "Search": "Tìm kiếm",
+    "Available now": "Đang hoạt động",
+    "Opening Hours": "Giờ mở cửa",
+    "Select": "Chọn",
+    "Not available": "Chưa hoạt động",
+    "Available at": "Có thể đến vào {{time}}",
+    "Closed Today": "Đóng cửa hôm nay",
+    "Select appointment": "Chọn lịch sửa chữa",
+    "Date": "Ngày",
+    "Time Slot": "Khoảng thời gian",
+    "Morning": "Buổi sáng",
+    "Afternoon": "Buổi chiều",
+    "Contact information": "Thông tin liên hệ",
+    "Device Details": "Chi tiết thiết bị",
+    "Contact Details": "Chi tiết liên hệ",
+    "Serial Number": "Số serial",
+    "Description": "Mô tả",
+    "Name": "Tên",
+    "Address": "Địa chỉ",
+    "City": "Thành phố",
+    "Zip": "Mã bưu chính",
+    "State": "Tỉnh",
+    "Email": "Email",
+    "Phone Number": "Số điện thoại",
+    "Either email or phone is required": "Cần nhập email hoặc số điện thoại",
+    "Phone number must be 9 digits": "Số điện thoại phải có 9 chữ số",
+    "Invalid email address": "Email không hợp lệ",
+    "Continue": "Tiếp tục",
     "fields": {
         "brand": "Thương hiệu",
         "device": "Thiết bị",
         "service": "Dịch vụ",
         "location": "Địa điểm",
         "appointment": "Thời gian"
-      },
-      "services": {
+    },
+    "services": {
         "replaceScreen": "Thay màn hình",
         "replaceBattery": "Thay pin",
         "fixTouchIssue": "Sửa lỗi cảm ứng",
@@ -53,6 +54,40 @@
         "replaceSpeakerMic": "Thay loa/mic",
         "replaceCamera": "Thay camera",
         "replaceProtectiveGlass": "Thay kính bảo vệ"
-      },
-    "":""
+    },
+    "locations": {
+        "clickbuy1": {
+            "name": "Clickbuy - Quận Tân Bình",
+            "address": "CLICKBUY Quận Tân Bình, 379 Hoàng Văn Thụ, Phường 2, Tân Bình, TP.HCM"
+        },
+        "clickbuy2": {
+            "name": "Clickbuy - Quận 1",
+            "address": "Clickbuy Quận 1, 42 Đường Trần Quang Khải, Phường Tân Định, Quận 1, TP.HCM."
+        },
+        "clickbuy3": {
+            "name": "Clickbuy - Quận 7",
+            "address": "CLICKBUY Quận 7, 499 Đường Nguyễn Thị Thập, Phường Tân Phong, Quận 7, TP.HCM."
+        },
+        "clickbuy4": {
+            "name": "Clickbuy - Quận 10",
+            "address": "Clickbuy - 255 Đường 3/2, Phường 10, Quận 10, TP.HCM."
+        },
+        "clickbuy5": {
+            "name": "Clickbuy - Quận Bình Thạnh",
+            "address": "Clickbuy Quận Bình Thạnh, 290A Đường Xô Viết Nghệ Tĩnh, Phường 25, Bình Thạnh, TP.HCM"
+        },
+        "clickbuy6": {
+            "name": "Clickbuy - TP Thủ Đức",
+            "address": "CLICKBUY TP Thủ Đức, 98 Đường Võ Văn Ngân, Thủ Đức"
+        },
+        "clickbuy7": {
+            "name": "Clickbuy - Quận Gò Vấp",
+            "address": "Clickbuy Gò Vấp, 466 Đường Quang Trung, Phường 10, Gò Vấp, TP.HCM."
+        },
+        "clickbuy8": {
+            "name": "Clickbuy - Lê Hồng Phong",
+            "address": "Clickbuy Lê Hồng Phong, 535 Đường Lê Hồng Phong, Phường 10, Quận 10, TP.HCM"
+        }
+    },
+    "": ""
 }
