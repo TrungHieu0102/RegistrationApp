@@ -3,7 +3,7 @@ import { ButtonDevice } from "../components/Button/ButtonDevice";
 import brands from "../Data/Brand";
 import devices, { Devices } from "../Data/Devices";
 import { Box, Grid2 as Grid, Typography } from "@mui/material";
-import CommonContainer from "../components/UI/CommonContainer";
+import {CommonContainer} from "../components/UI/CommonContainer";
 import { Navigate } from "../components/UI/Navigate";
 import { PreviousSelections } from "../components/PreviousSelections";
 import useQueryParams from "../hooks/useQueryParams";
@@ -29,7 +29,7 @@ export const ChooseDevice = () => {
       <Navigate />
         <PreviousSelections />
         <Box marginTop={"20px"}>
-          <Typography variant="subtitle1" fontWeight={"bold"}>
+          <Typography variant="subtitle1"  fontSize={"20px"} fontWeight={"bold"}>
             Choose a device type
           </Typography>
           <Grid

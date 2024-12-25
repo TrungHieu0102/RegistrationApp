@@ -2,7 +2,7 @@ import { Box, Typography, Grid2 as Grid, Stack } from "@mui/material";
 import { ButtonBrand } from "../components/Button/ButtonBrand";
 import { LanguageSwitcher } from "../components/LanguageSwitcher";
 import brands, { Brand } from "../Data/Brand";
-import CommonContainer from "../components/UI/CommonContainer";
+import {CommonContainer} from "../components/UI/CommonContainer";
 import { useTranslation } from 'react-i18next';
 
 const brandButton = brands.map((brand: Brand) => (
@@ -41,11 +41,12 @@ export const ChooseBrand = () => {
             }}
           >
             <Box>
-              <Typography fontWeight={"bold"} variant="h4" component="h1">
+              <Typography fontWeight={"bold"}  variant="h4" component="h1">
               {t('title')}
               </Typography>
               <Typography
                 variant="subtitle1"
+                fontSize={"20px"}
                 sx={{ marginTop: "16px", fontWeight: "bold" }}
               >
                 Choose a brand

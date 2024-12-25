@@ -58,6 +58,10 @@ export const LocationAccordionList = ({
           "&::-webkit-scrollbar-thumb:active": {
             backgroundColor: "#555555",
           },
+          "@media (max-width: 899px)": {
+            overflowY: "visible", 
+            maxHeight: "none", 
+          },
         }}
       >
         {filteredLocations.map((location: Location, index: number) => (

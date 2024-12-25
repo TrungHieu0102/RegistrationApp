@@ -14,7 +14,7 @@ interface AppointmentsProps {
 }
 
 export const Appointments= ({ OpeningHours } : AppointmentsProps) => {
-  const TIME = new Date();  //new Date("2024-12-26T14:00:00") - new Date() - DEFAULT TIME TEST
+  const TIME = new Date("2024-12-26T19:00:00");  //new Date("2024-12-26T14:00:00") - new Date() - DEFAULT TIME TEST
 
   const { selectedDate, selectedPeriod, setSelectedDate, setSelectedPeriod } = useAppointmentDateAndPeriod(TIME, OpeningHours);
   const [currentStartDate, setCurrentStartDate] = useState<Date>(TIME);
@@ -25,7 +25,7 @@ export const Appointments= ({ OpeningHours } : AppointmentsProps) => {
   const { isWeekend, isPastDate, isTodayAndEvening } = useDateValidation(OpeningHours, selectedDate || TIME, TIME);
   const timeSlots = useTimeSlots(
     selectedPeriod === "morning" ? "09:00" : "13:00",
-    selectedPeriod === "morning" ? "12:00" : "18:00",
+    selectedPeriod === "morning" ? "12:00" : "17:15",
     selectedDate || TIME,
     TIME
   );

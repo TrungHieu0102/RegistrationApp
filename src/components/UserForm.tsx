@@ -37,7 +37,7 @@ const validationSchema = Yup.object({
       }
     ),
   phone: Yup.string()
-    .matches(/^\d{10}$/, "Phone number must be 10 digits")
+    .matches(/^\d{9}$/, "Phone number must be 9 digits")
     .test(
       "phone-or-email",
       "Either email or phone is required",
@@ -48,7 +48,7 @@ const validationSchema = Yup.object({
 });
 
 export const UserForm = () => {
-  const [countryCode, setCountryCode] = useState("+1");
+  const [countryCode, setCountryCode] = useState("+84");
   const handleCountryCodeChange = (event: SelectChangeEvent<string>) => {
     setCountryCode(event.target.value);
   };
@@ -194,10 +194,15 @@ export const UserForm = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.phone}
-                error={Boolean(formik.errors.phone && formik.touched.phone)}
+                error={
+                  Boolean((formik.errors.phone && formik.touched.phone) || 
+                          (formik.errors.email && formik.touched.email))
+                }
                 helperText={
                   formik.touched.phone && formik.errors.phone
                     ? formik.errors.phone
+                    : formik.touched.email && formik.errors.email
+                    ? formik.errors.email
                     : ""
                 }
                 fullWidth

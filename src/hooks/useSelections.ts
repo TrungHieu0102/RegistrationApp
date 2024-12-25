@@ -4,6 +4,7 @@ import services, { Services } from "../Data/Services";
 import locations, { Location } from "../Data/Location";
 import { format, parse } from "date-fns";
 export interface Selection {
+  id: number;
   name: string;
   value: string | null;
 }
@@ -42,14 +43,12 @@ export const useSelections = (): Selection[] => {
     const formattedDate = format(parsedTime, "eeee dd 'of' MMMM 'at' HH:mm");
     return formattedDate;
   };
-  console.log(generateFormattedTime());
-
   const selections: Selection[] = [
-    { name: "Brand", value: getParamValue("brand") },
-    { name: "Device", value: deviceName },
-    { name: "Service", value: serviceName },
-    { name: "Location", value: locationName },
-    { name: "Appointment", value: generateFormattedTime() },
+    {id: 1, name: "Brand", value: getParamValue("brand") },
+    {id: 2, name: "Device", value: deviceName },
+    {id:3, name: "Service", value: serviceName },
+    {id:4, name: "Location", value: locationName },
+    {id:5, name: "Appointment", value: generateFormattedTime() },
   ].filter((selection) => selection.value);
 
   return selections;

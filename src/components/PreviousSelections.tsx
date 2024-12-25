@@ -15,13 +15,14 @@ export const PreviousSelections = () => {
       marginLeft={"8px"}
     >
       <Box marginBottom={"10px"}>
-        <Typography variant="subtitle1" fontWeight={"bold"}>
+        <Typography variant="subtitle1" fontSize={"20px"} fontWeight={"bold"}>
           Previous selections
         </Typography>
       </Box>
 
       {selections.map((selection, index) => (
         <Selected
+        id={selection.id}
           key={selection.name}
           name={selection.name}
           value={selection.value || ""}

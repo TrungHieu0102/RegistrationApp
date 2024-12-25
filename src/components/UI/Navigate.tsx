@@ -9,7 +9,7 @@ type BackButtonProps = {
 };
 
 export const Navigate = ({ route }: BackButtonProps) => {
-  const { t } = useTranslation();
+    const { t } = useTranslation();
 
   return (
     <Stack

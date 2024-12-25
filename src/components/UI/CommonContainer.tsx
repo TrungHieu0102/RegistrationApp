@@ -1,5 +1,5 @@
 import { Container } from "@mui/material";
-const CommonContainer = ({ children }: { children: React.ReactNode }) => {
+export const CommonContainer = ({ children }: { children: React.ReactNode }) => {
   return (
     <Container
     sx={{
@@ -16,4 +16,3 @@ const CommonContainer = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default CommonContainer;

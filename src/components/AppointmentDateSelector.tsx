@@ -1,7 +1,9 @@
 import { Box, Stack, Typography, IconButton } from '@mui/material';
 import { format } from 'date-fns';
+import { useDateLocale } from '../hooks/getDateLocale';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+
 interface AppointmentDateSelectorProps {
   currentStartDate: Date;
   weekDays: Date[];
@@ -23,6 +25,7 @@ export const AppointmentDateSelector = ({
   isWeekend,
   isTodayAndEvening,
 }: AppointmentDateSelectorProps) => {
+  const locale = useDateLocale(); 
   return (
     <Box
       mb={3}
@@ -30,7 +33,11 @@ export const AppointmentDateSelector = ({
       alignItems="center"
       justifyContent="center"
       sx={{
-        width: '70%',
+        width: {
+          xs: '100%',
+          sm: '80%',
+          md: '70%',
+        },
         margin: '0 auto',
         overflow: 'hidden',
         whiteSpace: 'nowrap',
@@ -62,14 +69,20 @@ export const AppointmentDateSelector = ({
             }
             sx={{
               textAlign: 'center',
-              padding: '5px',
+              paddingY: '18px',
               cursor:
-                 isWeekend(date) || isTodayAndEvening(date)
+                isWeekend(date) || isTodayAndEvening(date)
                   ? 'not-allowed'
                   : 'pointer',
               borderRadius: '24px',
-              backgroundColor: selectedDate && format(date, 'yyyy-MM-dd') === format(selectedDate, 'yyyy-MM-dd') ? '#2196f3' : '#f0f0f0',
-              color: selectedDate && format(date, 'yyyy-MM-dd') === format(selectedDate, 'yyyy-MM-dd') ? '#fff' : '#000',
+              backgroundColor:
+                selectedDate && format(date, 'yyyy-MM-dd', { locale }) === format(selectedDate, 'yyyy-MM-dd', { locale })
+                  ? '#2196f3'
+                  : '#f0f0f0',
+              color:
+                selectedDate && format(date, 'yyyy-MM-dd', { locale }) === format(selectedDate, 'yyyy-MM-dd', { locale })
+                  ? '#fff'
+                  : '#000',
               opacity: isWeekend(date) || isTodayAndEvening(date) ? 0.5 : 1,
               transition: '0.3s',
               flex: 1,
@@ -81,11 +94,32 @@ export const AppointmentDateSelector = ({
               fontSize: '12px',
             }}
           >
-            <Typography noWrap sx={{ fontSize: '12px' }}>
-              {format(date, 'EEE')}
+            <Typography
+              noWrap
+              sx={{
+                fontSize: {
+                  xs: '12px',
+                  sm: '14px',
+                  md: '14px',
+                  lg: '16px',
+                },
+              }}
+            >
+              {format(date, 'EEE', { locale })}
             </Typography>
-            <Typography fontWeight="bold" noWrap sx={{ fontSize: '14px' }}>
-              {format(date, 'd')}
+            <Typography
+              fontWeight="bold"
+              noWrap
+              sx={{
+                fontSize: {
+                  xs: '14px',
+                  sm: '18px',
+                  md: '20px',
+                  lg: '24px',
+                },
+              }}
+            >
+              {format(date, 'd', { locale })}
             </Typography>
           </Box>
         ))}
@@ -97,4 +131,3 @@ export const AppointmentDateSelector = ({
     </Box>
   );
 };
-

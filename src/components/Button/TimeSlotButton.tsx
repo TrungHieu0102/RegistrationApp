@@ -15,17 +15,11 @@ export const TimeSlotButton = ({
   selectedTimeSlot,
   handleTimeSlotSelect,
   time,
-  date
+  date,
 }: TimeSlotButtonProps) => {
   const { brand, deviceId, serviceId, locationId } = useQueryParams();
-  
-  // Chuyển thời gian thành định dạng HH%3AMM
   const formattedTime = time ? time.replace(":", "%3A") : "";
-  
-  // Đảm bảo rằng ngày được định dạng dưới dạng yyyy-MM-dd
   const formattedDate = date || "";
-
-  // Tạo URL với tham số time đã mã hóa
   const url = `/?brand=${brand}&deviceId=${deviceId}&serviceId=${serviceId}&locationId=${locationId}&time=${formattedTime}&date=${formattedDate}`;
 
   return (

@@ -47,7 +47,7 @@ export const AppointmentPeriodSelector = ({
           height: '48px',
           display: 'flex',
           borderRadius: '34px',
-          border: '0.25px solid rgba(0, 0, 0, 0.5)',
+          border: '0.25px solid rgba(149, 147, 147, 0.5)',
           backgroundColor: '#fff',
           padding: '2px',
           gap: '15px',
