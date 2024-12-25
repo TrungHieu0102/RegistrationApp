@@ -7,10 +7,12 @@ import {CommonContainer} from "../components/UI/CommonContainer";
 import { Navigate } from "../components/UI/Navigate";
 import { PreviousSelections } from "../components/PreviousSelections";
 import useQueryParams from "../hooks/useQueryParams";
+import { useTranslation } from "react-i18next";
 
 export const ChooseDevice = () => {
   const [filteredDevices, setFilteredDevices] = useState<Devices[]>([]);
   const { brand } = useQueryParams();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const brandName = brand;
@@ -30,7 +32,7 @@ export const ChooseDevice = () => {
         <PreviousSelections />
         <Box marginTop={"20px"}>
           <Typography variant="subtitle1"  fontSize={"20px"} fontWeight={"bold"}>
-            Choose a device type
+          {t('Choose a device type')}
           </Typography>
           <Grid
             container

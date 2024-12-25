@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Menu, MenuItem, Typography } from "@mui/material";
 import i18n from "i18next";
 
@@ -7,6 +7,16 @@ export const LanguageSwitcher = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
   const open = Boolean(anchorEl);
+
+  useEffect(() => {
+    const savedLanguage = localStorage.getItem("language") as "VN" | "EN" | null;
+    if (savedLanguage) {
+      setLanguage(savedLanguage);
+      i18n.changeLanguage(savedLanguage === "VN" ? "vi" : "en");
+    } else {
+      i18n.changeLanguage("en");
+    }
+  }, []);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -18,7 +28,8 @@ export const LanguageSwitcher = () => {
 
   const toggleLanguage = (lang: "VN" | "EN") => {
     setLanguage(lang);
-    i18n.changeLanguage(lang === "VN" ? "vi" : "en");  
+    i18n.changeLanguage(lang === "VN" ? "vi" : "en");
+    localStorage.setItem("language", lang); 
     handleClose();
   };
 
@@ -28,11 +39,11 @@ export const LanguageSwitcher = () => {
         onClick={handleClick}
         variant="outlined"
         sx={{
-          backgroundColor:"#f4f4f4",
-          color:"#000000",
+          backgroundColor: "#f4f4f4",
+          color: "#000000",
           padding: "8px 16px",
           borderRadius: "30px",
-          border:"none",
+          border: "none",
           display: "flex",
           alignItems: "center",
           gap: "8px",

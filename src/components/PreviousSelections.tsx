@@ -2,9 +2,11 @@ import { Box, Typography } from "@mui/material";
 import { Selected } from "./Selected";
 import { useSelections } from "../hooks/useSelections";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 export const PreviousSelections = () => {
   const selections = useSelections();
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -16,7 +18,7 @@ export const PreviousSelections = () => {
     >
       <Box marginBottom={"10px"}>
         <Typography variant="subtitle1" fontSize={"20px"} fontWeight={"bold"}>
-          Previous selections
+        {t('Previous selections')}
         </Typography>
       </Box>
 

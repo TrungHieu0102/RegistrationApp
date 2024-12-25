@@ -6,7 +6,6 @@ import {CommonContainer} from "../components/UI/CommonContainer";
 import { useTranslation } from 'react-i18next';
 
 const brandButton = brands.map((brand: Brand) => (
-
   <ButtonBrand
   key={brand.id}
     props={{
@@ -49,7 +48,7 @@ export const ChooseBrand = () => {
                 fontSize={"20px"}
                 sx={{ marginTop: "16px", fontWeight: "bold" }}
               >
-                Choose a brand
+                 {t('choose a brand')}
               </Typography>
             </Box>
             <LanguageSwitcher />

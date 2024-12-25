@@ -13,6 +13,7 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 interface FormValues {
   serialNumber: string;
@@ -48,6 +49,8 @@ const validationSchema = Yup.object({
 });
 
 export const UserForm = () => {
+  const { t } = useTranslation();
+
   const [countryCode, setCountryCode] = useState("+84");
   const handleCountryCodeChange = (event: SelectChangeEvent<string>) => {
     setCountryCode(event.target.value);
@@ -86,11 +89,11 @@ export const UserForm = () => {
         <Grid container spacing={3}>
           <Grid size={{ xs: 12, md: 6 }}>
             <Typography variant="h6" mb={2} fontSize="14px" fontWeight="bold">
-              Device Details
+              {t("Device Details")}
             </Typography>
             <Stack spacing={2}>
               <TextField
-                label="Serial Number"
+                label={t('Serial Number')}
                 name="serialNumber"
                 variant="outlined"
                 onChange={formik.handleChange}
@@ -104,7 +107,7 @@ export const UserForm = () => {
                 // }}
               />
               <TextField
-                label="Description"
+                label={t('Description')}
                 name="description"
                 variant="outlined"
                 multiline
@@ -119,11 +122,11 @@ export const UserForm = () => {
 
           <Grid size={{ xs: 12, md: 6 }}>
             <Typography variant="h6" mb={2} fontSize="14px" fontWeight="bold">
-              Contact Details
+              {t("Contact Details")}
             </Typography>
             <Stack spacing={2}>
               <TextField
-                label="Name"
+                label={t('Name')}
                 name="name"
                 variant="outlined"
                 onChange={formik.handleChange}
@@ -133,7 +136,7 @@ export const UserForm = () => {
               />
 
               <TextField
-                label="Address"
+                label={t('Address')}
                 name="address"
                 variant="outlined"
                 onChange={formik.handleChange}
@@ -143,7 +146,7 @@ export const UserForm = () => {
               />
               <Stack direction="row" spacing={1} sx={{ width: "100%" }}>
                 <TextField
-                  label="City"
+                  label={t('City')}
                   name="city"
                   variant="outlined"
                   onChange={formik.handleChange}
@@ -155,7 +158,7 @@ export const UserForm = () => {
                 />
 
                 <TextField
-                  label="Zip"
+                  label={t('Zip')}
                   name="zip"
                   variant="outlined"
                   onChange={formik.handleChange}
@@ -168,7 +171,7 @@ export const UserForm = () => {
               </Stack>
 
               <TextField
-                label="State"
+                label=  {t('State')}
                 name="state"
                 variant="outlined"
                 onChange={formik.handleChange}
@@ -188,7 +191,7 @@ export const UserForm = () => {
                 fullWidth
               />
               <TextField
-                label="Phone Number"
+                label={t('Phone')}
                 name="phone"
                 variant="outlined"
                 onChange={formik.handleChange}
@@ -251,7 +254,7 @@ export const UserForm = () => {
               backgroundColor: "rgb(12, 140, 233)",
             }}
           >
-            Continue
+            {t('Continue')}
           </Button>
         </Box>
       </form>

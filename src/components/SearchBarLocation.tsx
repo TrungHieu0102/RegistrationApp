@@ -1,5 +1,6 @@
 import React from "react";
 import { TextField } from "@mui/material";
+import { t } from "i18next";
 
 interface SearchBarProps {
   query: string;
@@ -9,7 +10,7 @@ interface SearchBarProps {
 export const SearchBarLocation = ({ props }: { props: SearchBarProps }) => {
   return (
     <TextField
-      label="Search"
+      label={t('Search')} 
       fullWidth
       variant="outlined"
       value={props.query}

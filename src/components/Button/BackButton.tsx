@@ -1,6 +1,7 @@
 import { Button } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { useNavigate } from "react-router-dom";
+import { t } from "i18next";
 
 type BackButtonProps = {
   label?: string;
@@ -8,9 +9,8 @@ type BackButtonProps = {
   route?: string; 
 };
 
-export const BackButton = ({ label = "Back", route }: BackButtonProps) => {
+export const BackButton = ({  route }: BackButtonProps) => {
   const navigate = useNavigate();
-
   const handleClick = () => {
     if (route) {
       navigate(route);
@@ -34,7 +34,7 @@ export const BackButton = ({ label = "Back", route }: BackButtonProps) => {
         },
       }}
     >
-      {label}
+       {t('Back')}
     </Button>
   );
 };

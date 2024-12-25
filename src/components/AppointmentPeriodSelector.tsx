@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Button, Box } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 interface AppointmentPeriodSelectorProps {
   selectedPeriod: 'morning' | 'afternoon';
@@ -15,6 +16,7 @@ export const AppointmentPeriodSelector = ({
   selectedDate,
 } : AppointmentPeriodSelectorProps) => {
   const [isAfternoonOnly, setIsAfternoonOnly] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!selectedDate) return;
@@ -66,7 +68,7 @@ export const AppointmentPeriodSelector = ({
              
             }}
           >
-            Morning
+            {t('Morning')} 
           </Button>
         )}
         <Button
@@ -81,7 +83,7 @@ export const AppointmentPeriodSelector = ({
            
           }}
         >
-          Afternoon
+          {t('Afternoon')} 
         </Button>
       </Box>
     </Box>

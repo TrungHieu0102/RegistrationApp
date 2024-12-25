@@ -1,6 +1,7 @@
 import { Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import useQueryParams from "../../hooks/useQueryParams";
+import { t } from "i18next";
 interface ButtonProps {
   locationId: number;
 }
@@ -45,7 +46,7 @@ export const ButtonLocation = ({ props }: { props: ButtonProps }) => {
             textTransform: "none",
           }}
         >
-          Select
+          {t('Select')} 
         </Typography>
       </Button>
     </Link>

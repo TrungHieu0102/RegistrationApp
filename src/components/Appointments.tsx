@@ -8,6 +8,7 @@ import { useDateValidation } from "../hooks/useDateValidation";
 import { useTimeSlots } from "../hooks/useTimeSlots";
 import useAppointmentDateAndPeriod from "../hooks/useAppointmentDateAndPeriod";
 import useWeekNavigation from "../hooks/useWeekNavigation";
+import { useTranslation } from "react-i18next";
 
 interface AppointmentsProps {
   OpeningHours: { [key: string]: { start: string; end: string } };
@@ -15,6 +16,7 @@ interface AppointmentsProps {
 
 export const Appointments= ({ OpeningHours } : AppointmentsProps) => {
   const TIME = new Date("2024-12-26T19:00:00");  //new Date("2024-12-26T14:00:00") - new Date() - DEFAULT TIME TEST
+  const { t } = useTranslation();
 
   const { selectedDate, selectedPeriod, setSelectedDate, setSelectedPeriod } = useAppointmentDateAndPeriod(TIME, OpeningHours);
   const [currentStartDate, setCurrentStartDate] = useState<Date>(TIME);
@@ -41,7 +43,7 @@ export const Appointments= ({ OpeningHours } : AppointmentsProps) => {
   return (
     <Box sx={{ width: "95%", margin: "0 auto", textAlign: "left", marginTop: 3 }}>
       <Typography variant="h6" fontSize="14px" mb={3} fontWeight="bold">
-        Date
+      {t('Date')} 
       </Typography>
       <AppointmentDateSelector
         currentStartDate={currentStartDate}
@@ -55,7 +57,7 @@ export const Appointments= ({ OpeningHours } : AppointmentsProps) => {
         isTodayAndEvening={isTodayAndEvening}
       />
       <Typography marginTop="20px" variant="h6" fontSize="14px" mb={2} fontWeight="bold">
-        Time Slot
+      {t('Time Slot')} 
       </Typography>
       <AppointmentPeriodSelector
         selectedPeriod={selectedPeriod}

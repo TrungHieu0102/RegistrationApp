@@ -34,8 +34,8 @@ export const AppointmentTimeSlots = ({
             timeSlot={timeSlot}
             selectedTimeSlot={selectedTimeSlot}
             handleTimeSlotSelect={handleTimeSlotSelect}
-            time={timeSlot} // Truyền thời gian vào
-            date={formattedDate} // Truyền ngày đã được định dạng vào
+            time={timeSlot}
+            date={formattedDate} 
           />
         ))}
       </Stack>

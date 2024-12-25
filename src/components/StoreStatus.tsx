@@ -1,5 +1,6 @@
 import { Typography } from "@mui/material";
 import { format, isAfter, isBefore, addDays, setHours, setMinutes, setSeconds, getDay } from "date-fns";
+import { t } from "i18next";
 
 interface StoreStatusProps {
   OpeningHours: {
@@ -33,7 +34,7 @@ export const StoreStatus = ({ props }: { props: StoreStatusProps }) => {
   if (!isClosedToday && isAfter(now, todayOpen) && isBefore(now, todayClose)) {
     return (
       <Typography color="#519B55" fontWeight="bold" fontSize="16px" variant="h6">
-        Available now
+         {t('Available now')}
       </Typography>
     );
   }

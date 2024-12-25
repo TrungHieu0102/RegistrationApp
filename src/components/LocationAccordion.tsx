@@ -10,6 +10,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { StoreStatus } from "./StoreStatus";
 import { ButtonLocation } from "./Button/ButtonLocation";
 import {OpeningHours} from "../Data/OpeningHours";
+import { useTranslation } from "react-i18next";
 interface LocationAccordionProps {
   index: number;
   expandedIndex: number | false;
@@ -52,6 +53,7 @@ export const LocationAccordion = ({
       props.handleChange(props.index);
     }
   };
+  const { t } = useTranslation();
 
 
   return (
@@ -91,7 +93,7 @@ export const LocationAccordion = ({
               fontSize="16px"
               variant="h6"
             >
-              Not available
+              {t('Not available')} 
             </Typography>
           )}
         </Box>
@@ -106,7 +108,7 @@ export const LocationAccordion = ({
       >
         <Box marginLeft="10px">
           <Typography variant="body2" fontSize="16px" fontWeight="bold">
-            Opening Hours
+          {t('Opening Hours')} 
           </Typography>
           {Object.entries(OpeningHours).map(([day, hours]) => (
             <Box

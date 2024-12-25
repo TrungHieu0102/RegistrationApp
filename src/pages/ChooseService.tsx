@@ -7,10 +7,13 @@ import deviceServices from "../Data/DeviceService";
 import { Box, Grid2 as Grid, Typography } from "@mui/material";
 import { ButtonService } from "../components/Button/ButtonService";
 import useQueryParams from "../hooks/useQueryParams";
+import { useTranslation } from "react-i18next";
 
 export const ChooseService = () => {
   const [filteredServices, setFilteredServices] = useState<Services[]>([]);
   const { deviceId } = useQueryParams();
+  const { t } = useTranslation();
+
   useEffect(() => {
     if (deviceId) {
       const deviceService = deviceServices.find(
@@ -31,11 +34,10 @@ export const ChooseService = () => {
   return (
     <CommonContainer>
       <Navigate />
-
       <PreviousSelections />
       <Box marginTop={"20px"}>
         <Typography variant="subtitle1"  fontSize={"20px"} fontWeight={"bold"}>
-          Choose a service type
+        {t('Choose a service type')}
         </Typography>
         <Grid
           container
@@ -47,7 +49,7 @@ export const ChooseService = () => {
             <ButtonService
               key={service.id}
               props={{
-                name: service.name,
+                name: t(`services.${service.name}`),
                 duration: service.duration,
                 id: service.id,
               }}  

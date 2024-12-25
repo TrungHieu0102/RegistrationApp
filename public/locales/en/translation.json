@@ -1,5 +1,59 @@
 {
     "Welcome to React": "Welcome to React and react-i18next",
-    "title": "Appointment booking"
-  }
-  
+    "title": "Appointment booking",
+    "of": "of",
+    "at": "at",
+    "choose a brand": "Choose a brand",
+    "Previous selections": "Previous selections",
+    "Back":"Back",
+    "Choose a device type": "Choose a device type",
+    "Choose a service type": "Choose a service type",
+    "Choose a service location": "Choose a service location",
+    "Search":"Search",
+    "Available now":"Available now",
+    "Opening Hours":"Opening Hours",
+    "Select":"Select",
+    "Not available":"Not available",
+    "Closed Today":"Closed Today",
+    "Select appointment":"Select appointment",
+    "Date":"Date",
+    "Time Slot":"Time Slot",
+    "Morning":"Morning",
+    "Affternoon":"Affternoon",
+    "Contact information":"Contact information",
+    "Device Details":"Device Details",
+    "Contact Details":"Contact Details",
+    "Serial Number":"Serial Number",
+    "Description":"Description",
+    "Name":"Name",
+    "Address":"Address",
+    "City":"City",
+    "Zip":"Zip",
+    "State":"State",
+    "Email":"Email",
+    "Phone Number":"Phone Number",
+    "Continue":"Continue",
+    "Either email or phone is required":"Either email or phone is required",
+    "Phone number must be 9 digits":"Phone number must be 9 digits",
+    "Invalid email address":"Invalid email address",
+    "fields": {
+        "brand": "Brand",
+        "device": "Device",
+        "service": "Service",
+        "location": "Location",
+        "appointment": "Appointment"
+      },
+      "services": {
+        "replaceScreen": "Replace screen",
+        "replaceBattery": "Replace battery",
+        "fixTouchIssue": "Fix touch issue",
+        "equipmentCleaning": "Equipment cleaning",
+        "hardwareUpgrade": "Hardware upgrade",
+        "fixSoftwareErrors": "Fix software errors",
+        "replaceSpeakerMic": "Replace speaker/mic",
+        "replaceCamera": "Replace camera",
+        "replaceProtectiveGlass": "Replace protective glass"
+      },
+    "":""
+
+}
