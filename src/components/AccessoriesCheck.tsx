@@ -19,10 +19,11 @@ export const AccessoriesCheck = () => {
     setRecaptchaToken(token);
     setIsButtonDisabled(!token);
   };
-  useStoreData(queryParams);
+  const storeData = useStoreData(queryParams);
   const handleSubmit = () => {
     if (recaptchaToken) {
-      sessionStorage.setItem("accessories", accessories);
+      sessionStorage.setItem("accessoriesAppointment", accessories);
+      storeData();
       navigate("/confirm");
     }
   };

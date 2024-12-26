@@ -15,6 +15,8 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import FormValues from "../Data/FormValues";
 import { ButtonSubmitInfo } from "./Button/ButtonSubmitInfo";
+import { useNavigate } from "react-router-dom";
+import useQueryParams from "../hooks/useQueryParams";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -39,6 +41,11 @@ const validationSchema = Yup.object({
 
 export const UserForm = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { brand, deviceId, serviceId, locationId, time, date } =
+    useQueryParams();
+    const formattedTime = time ? time.replace(":", "%3A") : "";
+    const formattedDate = date || "";
   const [countryCode, setCountryCode] = useState("+84");
   const handleCountryCodeChange = (event: SelectChangeEvent<string>) => {
     setCountryCode(event.target.value);
@@ -63,8 +70,11 @@ export const UserForm = () => {
         ...values,
         phone: phoneWithCountryCode,
       };
-      sessionStorage.setItem("todoApp-formData", JSON.stringify(formData));
+      sessionStorage.setItem("formDataAppointment", JSON.stringify(formData));
       console.log("Data:", formData);
+      const formatEmail = values.email ? values.email.replace("@", "%40") : "";
+      const url = `/?brand=${brand}&deviceId=${deviceId}&serviceId=${serviceId}&locationId=${locationId}&time=${formattedTime}&date=${formattedDate}&email=${formatEmail}&phone=${values.phone}`;
+      navigate(url);
     },
   });
 

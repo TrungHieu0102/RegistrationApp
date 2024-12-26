@@ -1,0 +1,65 @@
+import { useSessionData } from "../hooks/useSessionData";
+
+const Confirm = () => {
+  const { formDataAppointment, serviceDataAppointment, accessoriesAppointment } =
+    useSessionData();
+
+  return (
+    <div>
+      <h3>Session Data:</h3>
+
+      {/* Hiển thị dữ liệu formDataAppointment */}
+      <div>
+        <h4>Form Data:</h4>
+        {formDataAppointment ? (
+          <div>
+            <p><strong>Serial Number:</strong> {formDataAppointment.serialNumber}</p>
+            <p><strong>Description:</strong> {formDataAppointment.description}</p>
+            <p><strong>Name:</strong> {formDataAppointment.name}</p>
+            <p><strong>Address:</strong> {formDataAppointment.address}</p>
+            <p><strong>City:</strong> {formDataAppointment.city}</p>
+            <p><strong>Zip:</strong> {formDataAppointment.zip}</p>
+            <p><strong>State:</strong> {formDataAppointment.state}</p>
+            <p><strong>Email:</strong> {formDataAppointment.email}</p>
+            <p><strong>Phone:</strong> {formDataAppointment.phone}</p>
+          </div>
+        ) : (
+          <p>No form data available.</p>
+        )}
+      </div>
+
+      {/* Hiển thị dữ liệu serviceDataAppointment */}
+      <div>
+        <h4>Service Data:</h4>
+        {serviceDataAppointment ? (
+          <div>
+            <p><strong>Order ID:</strong> {serviceDataAppointment.orderId}</p>
+            <p><strong>Brand:</strong> {serviceDataAppointment.brand}</p>
+            <p><strong>Device Name:</strong> {serviceDataAppointment.device?.name}</p>
+            <p><strong>Device Image:</strong> <img src={serviceDataAppointment.device?.image} alt={serviceDataAppointment.device?.name} /></p>
+            <p><strong>Service Name:</strong> {serviceDataAppointment.service?.name}</p>
+            <p><strong>Service Duration:</strong> {serviceDataAppointment.service?.duration}</p>
+            <p><strong>Location Name:</strong> {serviceDataAppointment.location?.name}</p>
+            <p><strong>Location Coordinates:</strong> {serviceDataAppointment.location?.coordinates.join(", ")}</p>
+            <p><strong>Time:</strong> {serviceDataAppointment.time}</p>
+            <p><strong>Date:</strong> {serviceDataAppointment.date}</p>
+          </div>
+        ) : (
+          <p>No service data available.</p>
+        )}
+      </div>
+
+      {/* Hiển thị dữ liệu accessoriesAppointment */}
+      <div>
+        <h4>Accessories Appointment:</h4>
+        {accessoriesAppointment ? (
+          <p>{accessoriesAppointment}</p>
+        ) : (
+          <p>No accessories data available.</p>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default Confirm;

@@ -6,7 +6,6 @@ const useQueryParams = () => {
   const [params, setParams] = useState<URLSearchParams>(
     new URLSearchParams(location.search)
   );
-
   useEffect(() => {
     const handlePopState = () => {
       setParams(new URLSearchParams(location.search));
@@ -15,7 +14,6 @@ const useQueryParams = () => {
     return () => {};
   }, [location.search]);
   const paramCount = params ? params.toString().split("&").length : 0;
-  console.log(params.get("phone"), params.get("email"));
   return {
     brand: params.get("brand"),
     deviceId: params.get("deviceId"),
