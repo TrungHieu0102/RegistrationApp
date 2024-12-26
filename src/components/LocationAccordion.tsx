@@ -56,7 +56,6 @@ export const LocationAccordion = ({
   const { t } = useTranslation();
   const translatedOpeningHours = Object.keys(OpeningHours).map((day) => {
     const key = day as keyof typeof OpeningHours;
-    console.log(t(`days.${day}`))
     return {
       day: t(`days.${day}`),
       start: OpeningHours[key].start,

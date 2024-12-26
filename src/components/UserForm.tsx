@@ -39,7 +39,6 @@ const validationSchema = Yup.object({
 
 export const UserForm = () => {
   const { t } = useTranslation();
-
   const [countryCode, setCountryCode] = useState("+84");
   const handleCountryCodeChange = (event: SelectChangeEvent<string>) => {
     setCountryCode(event.target.value);
@@ -56,6 +55,7 @@ export const UserForm = () => {
       email: "",
       phone: "",
     },
+    
     validationSchema,
     onSubmit: (values) => {
       const phoneWithCountryCode = countryCode + values.phone;

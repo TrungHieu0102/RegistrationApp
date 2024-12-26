@@ -73,7 +73,6 @@ export const Appointments= ({ OpeningHours } : AppointmentsProps) => {
 
       />
       {selectedDate && selectedTimeSlot && (
-        console.log(selectedDate, selectedTimeSlot),
         <Box mt={3}>
           <Typography>
             You selected: <strong>{format(selectedDate, "MMMM d, yyyy")}</strong> at <strong>{selectedTimeSlot}</strong>

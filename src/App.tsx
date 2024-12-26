@@ -10,13 +10,25 @@ import useQueryParams from "./hooks/useQueryParams";
 import { ChooseLocation } from "./pages/ChooseLocation";
 import { ChooseTime } from "./pages/ChooseTime";
 import { SubmitInfo } from "./pages/SubmitInfo";
+import { AdditionInfo } from "./pages/AdditionInfo";
 
 function App() {
-  const { brand, deviceId, serviceId, locationId, time, date, paramCount } =
-    useQueryParams();
+  const {
+    brand,
+    deviceId,
+    serviceId,
+    locationId,
+    time,
+    date,
+    phone,
+    email,
+    paramCount,
+  } = useQueryParams();
 
   let content;
-  if (time && date && paramCount === 6) {
+  if (email && phone && paramCount === 8) {
+    content = <AdditionInfo />;
+  } else if (time && date && paramCount === 6) {
     content = <SubmitInfo />;
   } else if (locationId && paramCount === 4) {
     content = <ChooseTime />;
