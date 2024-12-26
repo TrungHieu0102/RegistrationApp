@@ -10,7 +10,7 @@ import {
   getDay,
 } from "date-fns";
 import {  t } from "i18next";
-import {enGB, vi } from "date-fns/locale"; // Import locale tiếng Việt
+import {enGB, vi } from "date-fns/locale"; 
 import i18n from "../i18n/i18n";
 
 interface StoreStatusProps {

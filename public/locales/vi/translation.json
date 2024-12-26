@@ -89,5 +89,14 @@
             "address": "Clickbuy Lê Hồng Phong, 535 Đường Lê Hồng Phong, Phường 10, Quận 10, TP.HCM"
         }
     },
+    "days": {
+        "Monday": "Thứ Hai",
+        "Tuesday": "Thứ Ba",
+        "Wednesday": "Thứ Tư",
+        "Thursday": "Thứ Năm",
+        "Friday": "Thứ Sáu",
+        "Saturday": "Thứ Bảy",
+        "Sunday": "Chủ Nhật"
+    },
     "": ""
 }

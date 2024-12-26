@@ -54,8 +54,15 @@ export const LocationAccordion = ({
     }
   };
   const { t } = useTranslation();
-
-
+  const translatedOpeningHours = Object.keys(OpeningHours).map((day) => {
+    const key = day as keyof typeof OpeningHours;
+    console.log(t(`days.${day}`))
+    return {
+      day: t(`days.${day}`),
+      start: OpeningHours[key].start,
+      end: OpeningHours[key].end,
+    };
+  });
   return (
     <Accordion
       id={`accordion-${props.id}`} 
@@ -110,7 +117,7 @@ export const LocationAccordion = ({
           <Typography variant="body2" fontSize="16px" fontWeight="bold">
           {t('Opening Hours')} 
           </Typography>
-          {Object.entries(OpeningHours).map(([day, hours]) => (
+          {translatedOpeningHours.map(({ day, start, end }) => (
             <Box
               key={day}
               display="flex"
@@ -120,8 +127,8 @@ export const LocationAccordion = ({
               paddingLeft="10px"
               paddingRight="10px"
             >
-              <Typography variant="body2">{day}:</Typography>
-              <Typography variant="body2">{hours.start} - {hours.end}</Typography>
+              <Typography variant="body2">{t(`${day}`)}:</Typography>
+              <Typography variant="body2">{start} - {end}</Typography>
             </Box>
           ))}
           <ButtonLocation props={{ locationId: props.id }} />

@@ -23,6 +23,8 @@ const useQueryParams = () => {
     locationId: params.get("locationId"),
     time : params.get("time"),
     date  : params.get("date"),
+    email: params.get("email"),
+    phone: params.get("phone"),
     paramCount,
   };
 };

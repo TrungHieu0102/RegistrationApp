@@ -89,5 +89,14 @@
             "address": "Clickbuy Le Hong Phong, 535 Le Hong Phong Street, Ward 10, District 10, Ho Chi Minh City"
         }
     },
+    "days": {
+        "Monday": "Monday",
+        "Tuesday": "Tuesday",
+        "Wednesday": "Wednesday",
+        "Thursday": "Thursday",
+        "Friday": "Friday",
+        "Saturday": "Saturday",
+        "Sunday": "Sunday"
+    },
     "": ""
 }

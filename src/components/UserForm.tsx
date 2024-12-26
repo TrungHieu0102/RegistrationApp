@@ -2,7 +2,6 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import {
   Box,
-  Button,
   TextField,
   Typography,
   Stack,
@@ -14,18 +13,8 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-
-interface FormValues {
-  serialNumber: string;
-  description: string;
-  name: string;
-  address: string;
-  city: string;
-  zip: string;
-  state: string;
-  email: string;
-  phone: string;
-}
+import FormValues from "../Data/FormValues";
+import { ButtonSubmitInfo } from "./Button/ButtonSubmitInfo";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -70,10 +59,12 @@ export const UserForm = () => {
     validationSchema,
     onSubmit: (values) => {
       const phoneWithCountryCode = countryCode + values.phone;
-      console.log("Form submitted:", {
+      const formData = {
         ...values,
         phone: phoneWithCountryCode,
-      });
+      };
+      sessionStorage.setItem("todoApp-formData", JSON.stringify(formData));
+      console.log("Data:", formData);
     },
   });
 
@@ -93,7 +84,7 @@ export const UserForm = () => {
             </Typography>
             <Stack spacing={2}>
               <TextField
-                label={t('Serial Number')}
+                label={t("Serial Number")}
                 name="serialNumber"
                 variant="outlined"
                 onChange={formik.handleChange}
@@ -107,7 +98,7 @@ export const UserForm = () => {
                 // }}
               />
               <TextField
-                label={t('Description')}
+                label={t("Description")}
                 name="description"
                 variant="outlined"
                 multiline
@@ -126,7 +117,7 @@ export const UserForm = () => {
             </Typography>
             <Stack spacing={2}>
               <TextField
-                label={t('Name')}
+                label={t("Name")}
                 name="name"
                 variant="outlined"
                 onChange={formik.handleChange}
@@ -136,7 +127,7 @@ export const UserForm = () => {
               />
 
               <TextField
-                label={t('Address')}
+                label={t("Address")}
                 name="address"
                 variant="outlined"
                 onChange={formik.handleChange}
@@ -146,7 +137,7 @@ export const UserForm = () => {
               />
               <Stack direction="row" spacing={1} sx={{ width: "100%" }}>
                 <TextField
-                  label={t('City')}
+                  label={t("City")}
                   name="city"
                   variant="outlined"
                   onChange={formik.handleChange}
@@ -158,7 +149,7 @@ export const UserForm = () => {
                 />
 
                 <TextField
-                  label={t('Zip')}
+                  label={t("Zip")}
                   name="zip"
                   variant="outlined"
                   onChange={formik.handleChange}
@@ -171,7 +162,7 @@ export const UserForm = () => {
               </Stack>
 
               <TextField
-                label=  {t('State')}
+                label={t("State")}
                 name="state"
                 variant="outlined"
                 onChange={formik.handleChange}
@@ -191,16 +182,16 @@ export const UserForm = () => {
                 fullWidth
               />
               <TextField
-                label={t('Phone')}
+                label={t("Phone")}
                 name="phone"
                 variant="outlined"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.phone}
-                error={
-                  Boolean((formik.errors.phone && formik.touched.phone) || 
-                          (formik.errors.email && formik.touched.email))
-                }
+                error={Boolean(
+                  (formik.errors.phone && formik.touched.phone) ||
+                    (formik.errors.email && formik.touched.email)
+                )}
                 helperText={
                   formik.touched.phone && formik.errors.phone
                     ? formik.errors.phone
@@ -242,20 +233,13 @@ export const UserForm = () => {
         </Grid>
 
         <Box mt={3} display="flex" justifyContent="center">
-          <Button
-            type="submit"
-            variant="contained"
-            sx={{
-              padding: "8px 80px",
-              fontSize: "14px",
-              textTransform: "none",
-              color: "white",
-              borderRadius: "30px",
-              backgroundColor: "rgb(12, 140, 233)",
+          <ButtonSubmitInfo
+            props={{
+              email: formik.values.email,
+              phone: formik.values.phone,
+              onClick: formik.handleSubmit,  
             }}
-          >
-            {t('Continue')}
-          </Button>
+          />
         </Box>
       </form>
     </Box>
