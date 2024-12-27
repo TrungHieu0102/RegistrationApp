@@ -11,7 +11,7 @@ export const useServices = (): Services[] => {
     };
     i18n.on("languageChanged", handleLanguageChange);
     return () => {
-      i18n.off("languageChanged", handleLanguageChange); // Dọn dẹp listener
+      i18n.off("languageChanged", handleLanguageChange); 
     };
   }, []);
   return translatedServices;

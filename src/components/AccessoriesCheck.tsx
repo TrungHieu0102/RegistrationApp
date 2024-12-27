@@ -31,7 +31,7 @@ export const AccessoriesCheck = () => {
     <Box display={"flex"} flexDirection={"column"} sx={{ padding: "20px" }}>
       <Box>
         <Typography variant="subtitle1" fontSize="15px" fontWeight="bold">
-          {t("What accessories are included ?")}
+          {t("accessories-included")}
         </Typography>
         <TextField
           label={t("Accessories")}

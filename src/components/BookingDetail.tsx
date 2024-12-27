@@ -8,7 +8,7 @@ interface BookingDetailProps {
 
 export const BookingDetail = ({ form, orderId }: BookingDetailProps) => {
   if (!form) {
-    return <Typography>No booking details available.</Typography>; // Xử lý khi không có dữ liệu
+    return <Typography>No booking details available.</Typography>; 
   }
 
   return (

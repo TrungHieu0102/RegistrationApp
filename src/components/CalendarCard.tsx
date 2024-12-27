@@ -2,10 +2,10 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 
 interface CalendarCardProps {
-  month: string; // Ví dụ: "Dec"
-  date: string; // Ví dụ: "27"
-  time: string; // Ví dụ: "09:30"
-  duration: string; // Ví dụ: "4 Hours 30 Minutes"
+  month: string;
+  date: string;
+  time: string; 
+  duration: string; 
 }
 
 export const CalendarCard: React.FC<CalendarCardProps> = ({
@@ -51,7 +51,7 @@ export const CalendarCard: React.FC<CalendarCardProps> = ({
           border: "2px solid black",
           borderRadius: "14px",
           backgroundColor: "#ffffff",
-          overflow: "hidden", // Đảm bảo không có khoảng trống thừa
+          overflow: "hidden", 
         }}
       >
         {/* Month */}
@@ -85,7 +85,6 @@ export const CalendarCard: React.FC<CalendarCardProps> = ({
           {date}
         </Typography>
       </Box>
-      {/* Time and Duration */}
       <Box ml={2}>
         <Typography variant="h6" sx={{ fontWeight: "bold", fontSize: "18px" }}>
           {time}

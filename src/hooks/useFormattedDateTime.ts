@@ -18,7 +18,5 @@ export const useFormattedDateTime = (date: string | null, time: string | null): 
   if (locale === vi) {
     return format(parsedTime, `eeee dd 'ngày' MMMM 'tháng' yyyy 'lúc' HH:mm`, { locale: vi });
   }
-
-  // Định dạng cho ngôn ngữ khác
   return format(parsedTime, `eeee dd '${t('of')}' MMMM '${t('at')}' HH:mm`, { locale });
 };

@@ -6,7 +6,7 @@ interface AppointmentTimeSlotsProps {
   timeSlots: string[];
   selectedTimeSlot: string | null;
   handleTimeSlotSelect: (timeSlot: string) => void;
-  selectedDate: Date | null; // Thêm selectedDate vào props
+  selectedDate: Date | null; 
 }
 
 export const AppointmentTimeSlots = ({

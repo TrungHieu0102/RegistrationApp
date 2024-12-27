@@ -10,9 +10,8 @@ export const useTimeSlots = (start: string, end: string, selectedDate: Date, cur
 
     const timeSlots: string[] = [];
     const isToday = selectedDate.toDateString() === currentTime.toDateString();
-    const dayOfWeek = selectedDate.getDay(); // 0 = Sunday, 6 = Saturday
+    const dayOfWeek = selectedDate.getDay();
 
-    // Kiểm tra nếu là thứ 7 hoặc chủ nhật
     const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
 
     while (startTime < endTime) {

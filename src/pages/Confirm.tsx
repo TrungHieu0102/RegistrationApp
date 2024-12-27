@@ -3,6 +3,7 @@ import { TimeConfirm } from "../components/TimeConfirm";
 import { Box, Typography } from "@mui/material";
 import { BookingDetail } from "../components/BookingDetail";
 import { useSessionData } from "../hooks/useSessionData";
+import { LocationConfirm } from "../components/LocationConfirm";
 
 export const Confirm = () => {
     const { formDataAppointment, serviceDataAppointment } = useSessionData(); 
@@ -25,6 +26,7 @@ export const Confirm = () => {
         ) : (
           <Typography>No booking details available.</Typography>
         )}
+        <LocationConfirm/>
       </Box>
     </CommonContainer>
   );

@@ -43,8 +43,6 @@ export const useSessionData = () => {
     const formData = sessionStorage.getItem("formDataAppointment");
     const serviceData = sessionStorage.getItem("serviceDataAppointment");
     const accessoriesData = sessionStorage.getItem("accessoriesAppointment");
-
-    // Parse the data from sessionStorage, or set it to null if no data
     setFormDataAppointment(formData ? JSON.parse(formData) : null);
     setServiceDataAppointment(serviceData ? JSON.parse(serviceData) : null);
     setAccessoriesAppointment(accessoriesData || null);
