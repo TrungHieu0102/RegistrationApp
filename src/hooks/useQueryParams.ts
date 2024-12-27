@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 const useQueryParams = () => {
@@ -6,6 +6,7 @@ const useQueryParams = () => {
   const [params, setParams] = useState<URLSearchParams>(
     new URLSearchParams(location.search)
   );
+
   useEffect(() => {
     const handlePopState = () => {
       setParams(new URLSearchParams(location.search));
@@ -13,7 +14,9 @@ const useQueryParams = () => {
     handlePopState();
     return () => {};
   }, [location.search]);
-  const paramCount = params ? params.toString().split("&").length : 0;
+
+  const paramCount = params ? Array.from(params.entries()).length : 0;
+
   return {
     brand: params.get("brand"),
     deviceId: params.get("deviceId"),
@@ -26,5 +29,4 @@ const useQueryParams = () => {
     paramCount,
   };
 };
-
 export default useQueryParams;

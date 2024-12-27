@@ -2,9 +2,7 @@ import { useState, useEffect } from "react";
 import { Box, Grid2 as Grid, Typography } from "@mui/material";
 import { useServices } from "../hooks/useServices";
 import deviceServices from "../Data/DeviceService";
-import { PreviousSelections } from "../components/PreviousSelections";
 import { CommonContainer } from "../components/UI/CommonContainer";
-import { Navigate } from "../components/UI/Navigate";
 import { ButtonService } from "../components/ChooseService/ButtonService";
 import useQueryParams from "../hooks/useQueryParams";
 import { useTranslation } from "react-i18next";
@@ -35,8 +33,7 @@ export const ChooseService = () => {
 
   return (
     <CommonContainer>
-      <Navigate />
-      <PreviousSelections />
+     
       <Box marginTop={"20px"}>
         <Typography variant="subtitle1" fontSize={"20px"} fontWeight={"bold"}>
           {t("Choose a service type")}

@@ -4,8 +4,6 @@ import brands from "../Data/Brand";
 import devices, { Devices } from "../Data/Devices";
 import { Box, Grid2 as Grid, Typography } from "@mui/material";
 import {CommonContainer} from "../components/UI/CommonContainer";
-import { Navigate } from "../components/UI/Navigate";
-import { PreviousSelections } from "../components/PreviousSelections";
 import useQueryParams from "../hooks/useQueryParams";
 import { useTranslation } from "react-i18next";
 
@@ -28,8 +26,7 @@ export const ChooseDevice = () => {
 
   return (
     <CommonContainer>
-      <Navigate />
-        <PreviousSelections />
+    
         <Box marginTop={"20px"}>
           <Typography variant="subtitle1"  fontSize={"20px"} fontWeight={"bold"}>
           {t('Choose a device type')}
