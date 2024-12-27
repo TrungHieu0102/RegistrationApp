@@ -1,17 +1,9 @@
 import { t } from "i18next";
 import { Button } from "@mui/material";
-interface ButtonProps {
-  email: string;
-  phone: string;
-  onClick: () => void;
-}
-export const ButtonSubmitInfo = ({ props }: { props: ButtonProps }) => {
-  const handleClick = () => {
-    props.onClick();
-  };
+
+export const ButtonSubmitInfo = () => {
   return (
     <Button
-      onClick={handleClick}
       type="submit"
       variant="contained"
       sx={{

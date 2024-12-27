@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import { FormDataAppointment } from "../hooks/useSessionData";
+import { FormDataAppointment } from "../../hooks/useSessionData";
 
 interface BookingDetailProps {
   form: FormDataAppointment | null;

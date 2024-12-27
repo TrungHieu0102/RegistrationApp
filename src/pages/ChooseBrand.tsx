@@ -1,5 +1,5 @@
 import { Box, Typography, Grid2 as Grid, Stack } from "@mui/material";
-import { ButtonBrand } from "../components/Button/ButtonBrand";
+import { ButtonBrand } from "../components/ChooseBrand/ButtonBrand";
 import { LanguageSwitcher } from "../components/LanguageSwitcher";
 import brands, { Brand } from "../Data/Brand";
 import {CommonContainer} from "../components/UI/CommonContainer";

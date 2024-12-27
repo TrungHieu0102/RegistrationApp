@@ -2,7 +2,7 @@ import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { Icon } from "leaflet";
 import { useEffect } from "react";
 import { Box, Button, Typography } from "@mui/material";
-import { useLocations } from "../hooks/useLocations";
+import { useLocations } from "../../hooks/useLocations";
 const UpdateMapCenter = ({
   center,
   zoom,

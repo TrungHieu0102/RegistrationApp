@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Box, TextField, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import RecaptchaWithButton from "./Button/RecaptchaWithButton";
+import RecaptchaWithButton from "./RecaptchaWithButton";
 import { useLocation, useNavigate } from "react-router-dom"; 
-import { useStoreData } from "../hooks/useStoreData";
+import { useStoreData } from "../../hooks/useStoreData";
 
 const SITE_KEY = "6LcwUKYqAAAAAC1Q6hGdFwMcGs-xFRyMItEyRtjw";
 

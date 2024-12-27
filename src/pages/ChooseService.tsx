@@ -5,7 +5,7 @@ import deviceServices from "../Data/DeviceService";
 import { PreviousSelections } from "../components/PreviousSelections";
 import { CommonContainer } from "../components/UI/CommonContainer";
 import { Navigate } from "../components/UI/Navigate";
-import { ButtonService } from "../components/Button/ButtonService";
+import { ButtonService } from "../components/ChooseService/ButtonService";
 import useQueryParams from "../hooks/useQueryParams";
 import { useTranslation } from "react-i18next";
 import { Services } from "../Data/Services";

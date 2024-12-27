@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { PreviousSelections } from "../components/PreviousSelections";
 import { CommonContainer } from "../components/UI/CommonContainer";
 import { Navigate } from "../components/UI/Navigate";
-import { UserForm } from "../components/UserForm";
+import { UserForm } from "../components/SubmitInfo/UserForm";
 import { useTranslation } from "react-i18next";
 export const SubmitInfo = () => {
   const { t } = useTranslation();

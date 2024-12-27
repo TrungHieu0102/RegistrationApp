@@ -3,12 +3,12 @@ import { Box, Typography } from "@mui/material";
 import { format, addDays } from "date-fns";
 import {AppointmentDateSelector} from "./AppointmentDateSelector";
 import {AppointmentPeriodSelector} from "./AppointmentPeriodSelector";
-import {AppointmentTimeSlots} from "./AppointmentTimeSlots";
-import { useDateValidation } from "../hooks/useDateValidation";
-import { useTimeSlots } from "../hooks/useTimeSlots";
-import useAppointmentDateAndPeriod from "../hooks/useAppointmentDateAndPeriod";
-import useWeekNavigation from "../hooks/useWeekNavigation";
+import { useDateValidation } from "../../hooks/useDateValidation";
+import { useTimeSlots } from "../../hooks/useTimeSlots";
+import useAppointmentDateAndPeriod from "../../hooks/useAppointmentDateAndPeriod";
+import useWeekNavigation from "../../hooks/useWeekNavigation";
 import { useTranslation } from "react-i18next";
+import { AppointmentTimeSlots } from "./AppointmentTimeSlots";
 
 interface AppointmentsProps {
   OpeningHours: { [key: string]: { start: string; end: string } };

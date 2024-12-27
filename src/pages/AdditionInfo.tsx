@@ -3,7 +3,7 @@ import { PreviousSelections } from "../components/PreviousSelections";
 import { CommonContainer } from "../components/UI/CommonContainer";
 import { Navigate } from "../components/UI/Navigate";
 import { useTranslation } from "react-i18next";
-import { AccessoriesCheck } from "../components/AccessoriesCheck";
+import { AccessoriesCheck } from "../components/AdditionInfo/AccessoriesCheck";
 
 export const AdditionInfo = () => {
   const { t } = useTranslation();

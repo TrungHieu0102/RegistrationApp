@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { LocationAccordion } from "./LocationAccordion";
-import { Location } from "../Data/Location";
+import { Location } from "../../Data/Location";
 import { SearchBarLocation } from "./SearchBarLocation";
 import { Box } from "@mui/material";
 import { motion } from "framer-motion";
-import { useLocations } from "../hooks/useLocations";
+import { useLocations } from "../../hooks/useLocations";
 
 interface LocationAccordionListProps {
   expandedIndex: number | false;

@@ -2,8 +2,8 @@ import { Box, Typography } from "@mui/material";
 import { PreviousSelections } from "../components/PreviousSelections";
 import {CommonContainer} from "../components/UI/CommonContainer";
 import { Navigate } from "../components/UI/Navigate";
-import { LocationMapContainer } from "../components/LocationMapContainer";
 import { useTranslation } from "react-i18next";
+import { LocationMapContainer } from "../components/ChooseLocation/LocationMapContainer";
 
 export const ChooseLocation = () => {
   const { t } = useTranslation();

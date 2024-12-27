@@ -8,9 +8,9 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { StoreStatus } from "./StoreStatus";
-import { ButtonLocation } from "./Button/ButtonLocation";
-import {OpeningHours} from "../Data/OpeningHours";
+import { ButtonLocation } from "./ButtonLocation";
 import { useTranslation } from "react-i18next";
+import { OpeningHours } from "../../Data/OpeningHours";
 interface LocationAccordionProps {
   index: number;
   expandedIndex: number | false;

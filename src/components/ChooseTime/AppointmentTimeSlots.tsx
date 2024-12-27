@@ -1,6 +1,6 @@
 import { Box, Stack } from "@mui/material";
-import { TimeSlotButton } from "../components/Button/TimeSlotButton"; 
 import { format } from "date-fns";
+import { TimeSlotButton } from "./TimeSlotButton";
 
 interface AppointmentTimeSlotsProps {
   timeSlots: string[];

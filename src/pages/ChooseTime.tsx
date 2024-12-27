@@ -2,7 +2,7 @@ import { CommonContainer } from "../components/UI/CommonContainer";
 import { PreviousSelections } from "../components/PreviousSelections";
 import { Navigate } from "../components/UI/Navigate";
 import { Box, Typography } from "@mui/material";
-import { Appointments } from "../components/Appointments";
+import { Appointments } from "../components/ChooseTime/Appointments";
 import { OpeningHours } from "../Data/OpeningHours";
 import { useTranslation } from "react-i18next";
 export const ChooseTime = () => {

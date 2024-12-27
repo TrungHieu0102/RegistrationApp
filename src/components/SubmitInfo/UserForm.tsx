@@ -13,10 +13,10 @@ import {
 } from "@mui/material";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import FormValues from "../Data/FormValues";
-import { ButtonSubmitInfo } from "./Button/ButtonSubmitInfo";
+import FormValues from "../../Data/FormValues";
+import { ButtonSubmitInfo } from "./ButtonSubmitInfo";
 import { useNavigate } from "react-router-dom";
-import useQueryParams from "../hooks/useQueryParams";
+import useQueryParams from "../../hooks/useQueryParams";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -244,11 +244,7 @@ export const UserForm = () => {
 
         <Box mt={3} display="flex" justifyContent="center">
           <ButtonSubmitInfo
-            props={{
-              email: formik.values.email,
-              phone: formik.values.phone,
-              onClick: formik.handleSubmit,  
-            }}
+          
           />
         </Box>
       </form>
