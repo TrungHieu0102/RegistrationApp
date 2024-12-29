@@ -3,7 +3,7 @@ import { TimeConfirm } from "../components/Confirm/TimeConfirm";
 import { Box, Typography } from "@mui/material";
 import { BookingDetail } from "../components/Confirm/BookingDetail";
 import { useSessionData } from "../hooks/useSessionData";
-import { LocationConfirm } from "../components/LocationConfirm";
+import { LocationConfirm } from "../components/Confirm/LocationConfirm";
 
 export const Confirm = () => {
     const { formDataAppointment, serviceDataAppointment } = useSessionData(); 

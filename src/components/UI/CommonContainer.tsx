@@ -8,8 +8,8 @@ export const CommonContainer = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const { paramCount } = useQueryParams(); 
-  const hasQueryParams = paramCount > 0; 
+  const { paramCount } = useQueryParams();
+  const hasQueryParams = paramCount > 0;
 
   return (
     <Container

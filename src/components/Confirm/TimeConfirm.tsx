@@ -1,4 +1,4 @@
-import { Box, Link, Typography } from "@mui/material";
+import { Box, Link, Typography, Grid2 as Grid } from "@mui/material";
 import { CalendarCard } from "./CalendarCard";
 import { AddToCalendarButton } from "add-to-calendar-button-react";
 export const TimeConfirm = () => {
@@ -54,55 +54,37 @@ export const TimeConfirm = () => {
           </Typography>
         </Link>
       </Box>
-      <Box
-        sx={{
-          display: "flex",
-          gap: {
-            xs: "10%",
-            sm: "20%",
-            md: "10%",
-            lg: "10%",
-          },
-          marginTop: "20px",
-          alignItems: "center",
-          justifyContent: "flex-start",
-        }}
-      >
-        <Box
-          sx={{
-            position: "relative",
-            width: {
-              xs: "100%",
-              sm: "100%",
-              md: "50%",
-              lg: "30%",
-            },
-          }}
-        >
-          <Typography
-            variant="body1"
-            sx={{ fontSize: "18px", fontWeight: "bold" }}
-          >
-            Upgrade Memory
-          </Typography>
+      <Box sx={{ flexGrow: 1, marginTop: "20px" }}>
+        <Grid container columnSpacing={{ xs: 1, sm: 3, md: 4, lg: 4 }}>
+          <Grid size={{ xs: 6, sm: 6, md: 3, lg: 3 }}>
+            <Typography
+              variant="body1"
+              sx={{ fontSize: "18px", fontWeight: "bold" }}
+            >
+              Upgrade Memory
+            </Typography>
 
-          <AddToCalendarButton
-            name="Title"
-            options={["Apple", "Google", "Outlook.com"]}
-            location="World Wide Web"
-            startDate="2024-12-31"
-            endDate="2024-12-31"
-            startTime="10:15"
-            endTime="23:30"
-            timeZone="America/Los_Angeles"
-          ></AddToCalendarButton>
-        </Box>
-        <CalendarCard
-          month="Dec"
-          date="27"
-          time="09:30"
-          duration="4 Hours 30 Minutes"
-        />
+            <AddToCalendarButton
+              name="Title"
+              options={["Apple", "Google", "Outlook.com"]}
+              location="World Wide Web"
+              startDate="2024-12-31"
+              endDate="2024-12-31"
+              startTime="10:15"
+              endTime="23:30"
+              timeZone="America/Los_Angeles"
+              size="6|6|3|1"
+            />
+          </Grid>
+          <Grid size={{ xs: 6, sm: 6, md: 9, lg: 9 }}>
+            <CalendarCard
+              month="Dec"
+              date="27"
+              time="09:30"
+              duration="4 Hours 30 Minutes"
+            />
+          </Grid>
+        </Grid>
       </Box>
     </Box>
   );
