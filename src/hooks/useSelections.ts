@@ -1,9 +1,9 @@
 import { useLocations } from "./useLocations";
 import devices, { Devices } from "../Data/Devices";
 import { Services } from "../Data/Services";
-import  { Location } from "../Data/Location";
+import { Location } from "../Data/Location";
 import { format, parse } from "date-fns";
-import { useDateLocale } from "../hooks/getDateLocale"; 
+import { useDateLocale } from "./useDateLocale";
 import { useTranslation } from "react-i18next";
 import { useServices } from "./useServices";
 
@@ -16,8 +16,8 @@ export interface Selection {
 export const useSelections = (): Selection[] => {
   const locations = useLocations();
   const params = new URLSearchParams(location.search);
-  const locale = useDateLocale(); 
-  const { t } = useTranslation();  
+  const locale = useDateLocale();
+  const { t } = useTranslation();
   const services = useServices();
   const getParamValue = (key: string): string | null => params.get(key);
 
@@ -49,16 +49,24 @@ export const useSelections = (): Selection[] => {
     const parsedDate = parse(date, "yyyy-MM-dd", new Date());
     const [hours, minutes] = time.split(":").map(Number);
     const parsedTime = new Date(parsedDate.setHours(hours, minutes));
-    const formattedDate = format(parsedTime, `eeee dd '${t('of')}' MMMM '${t('at')}' HH:mm`, { locale });
+    const formattedDate = format(
+      parsedTime,
+      `eeee dd '${t("of")}' MMMM '${t("at")}' HH:mm`,
+      { locale }
+    );
     return formattedDate;
   };
 
   const selections: Selection[] = [
-    { id: 1, name: t('fields.brand'), value: getParamValue("brand") },
-    { id: 2, name:  t("fields.device"), value: deviceName },
-    { id: 3, name: t("fields.service"),  value: serviceName ?  serviceName : null},
+    { id: 1, name: t("fields.brand"), value: getParamValue("brand") },
+    { id: 2, name: t("fields.device"), value: deviceName },
+    {
+      id: 3,
+      name: t("fields.service"),
+      value: serviceName ? serviceName : null,
+    },
     { id: 4, name: t("fields.location"), value: locationName },
-    { id: 5, name:  t("fields.appointment"), value: generateFormattedTime() },
+    { id: 5, name: t("fields.appointment"), value: generateFormattedTime() },
   ].filter((selection) => selection.value);
   return selections;
 };

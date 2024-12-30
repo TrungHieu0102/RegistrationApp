@@ -7,8 +7,7 @@ export const AdditionInfo = () => {
   const { t } = useTranslation();
 
   return (
-    <CommonContainer>
-     
+    <CommonContainer>    
       <Box marginTop={"20px"}>
         <Typography variant="subtitle1" fontSize={"20px"} fontWeight={"bold"}>
           {t("Additional details")}

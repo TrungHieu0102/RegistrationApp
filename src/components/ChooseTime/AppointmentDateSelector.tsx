@@ -1,6 +1,6 @@
 import { Box, Stack, Typography, IconButton } from '@mui/material';
 import { format } from 'date-fns';
-import { useDateLocale } from '../../hooks/getDateLocale';
+import { useDateLocale } from '../../hooks/useDateLocale';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
