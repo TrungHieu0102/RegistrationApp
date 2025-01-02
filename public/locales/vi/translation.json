@@ -42,7 +42,11 @@
         "device": "Thiết bị",
         "service": "Dịch vụ",
         "location": "Địa điểm",
-        "appointment": "Thời gian"
+        "appointment": "Thời gian",
+        "name": "Tên",
+        "phone": "Số điện thoại",
+        "email": "Email",
+        "serialNumber": "Số serial"
     },
     "services": {
         "replaceScreen": "Thay màn hình",

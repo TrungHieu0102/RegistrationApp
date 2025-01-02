@@ -31,7 +31,7 @@ export const ButtonDevice = ({ props }: { props: ButtonProps }) => {
     }}
   >  
       <Link
-        to={`/?brand=${brand}&deviceId=${props.id}`}
+        to={`?brand=${brand}&deviceId=${props.id}`}
         style={{ textDecoration: "none" }}
       >
         <Button

@@ -65,7 +65,7 @@ export const UserForm = () => {
     
     validationSchema,
     onSubmit: (values) => {
-      const phoneWithCountryCode = countryCode + values.phone;
+      const phoneWithCountryCode = values.phone ? countryCode + values.phone : "";
       const formData = {
         ...values,
         phone: phoneWithCountryCode,
@@ -73,7 +73,7 @@ export const UserForm = () => {
       sessionStorage.setItem("formDataAppointment", JSON.stringify(formData));
       console.log("Data:", formData);
       const formatEmail = values.email ? values.email.replace("@", "%40") : "";
-      const url = `/?brand=${brand}&deviceId=${deviceId}&serviceId=${serviceId}&locationId=${locationId}&time=${formattedTime}&date=${formattedDate}&email=${formatEmail}&phone=${values.phone}`;
+      const url = `?brand=${brand}&deviceId=${deviceId}&serviceId=${serviceId}&locationId=${locationId}&time=${formattedTime}&date=${formattedDate}&email=${formatEmail}&phone=${values.phone}`;
       navigate(url);
     },
   });

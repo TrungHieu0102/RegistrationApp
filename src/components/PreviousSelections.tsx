@@ -24,8 +24,9 @@ export const PreviousSelections = () => {
 
       {selections.map((selection, index) => (
         <Selected
-        id={selection.id}
+          id={selection.id}
           key={selection.name}
+          link={selection.link}
           name={selection.name}
           value={selection.value || ""}
           isLast={index === selections.length - 1}

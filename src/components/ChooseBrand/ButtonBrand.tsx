@@ -26,7 +26,7 @@ export const ButtonBrand = ({ props }: { props: ButtonProps }) => {
         backgroundColor: "#fff",
         textAlign: "center",
       }}
-    >  <Link to={`/?brand=${props.name}`} style={{ textDecoration: "none" }}>
+    >  <Link to={`?brand=${props.name}`} style={{ textDecoration: "none" }}>
     <Button
       variant="outlined"
       sx={{

@@ -42,7 +42,11 @@
         "device": "Device",
         "service": "Service",
         "location": "Location",
-        "appointment": "Appointment"
+        "appointment": "Appointment",
+        "name": "Name",
+        "phone": "Phone Number",
+        "email": "Email",
+        "serialNumber": "Serial / IMEI"
     },
     "services": {
         "replaceScreen": "Replace screen",

@@ -30,7 +30,7 @@ export const ButtonService = ({ props }: { props: ButtonProps }) => {
       }}
     >
       <Link
-        to={`/?brand=${brand}&deviceId=${deviceId}&serviceId=${props.id}`}
+        to={`?brand=${brand}&deviceId=${deviceId}&serviceId=${props.id}`}
         style={{ textDecoration: "none" }}
       >
         <Button

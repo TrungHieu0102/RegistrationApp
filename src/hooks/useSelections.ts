@@ -11,6 +11,7 @@ export interface Selection {
   id: number;
   name: string;
   value: string | null;
+  link: string;
 }
 
 export const useSelections = (): Selection[] => {
@@ -20,7 +21,7 @@ export const useSelections = (): Selection[] => {
   const { t } = useTranslation();
   const services = useServices();
   const getParamValue = (key: string): string | null => params.get(key);
-
+  const brand = getParamValue("brand");
   const deviceId = getParamValue("deviceId");
   const deviceName = deviceId
     ? devices.find((device: Devices) => device.id === parseInt(deviceId))
@@ -39,10 +40,10 @@ export const useSelections = (): Selection[] => {
         (location: Location) => location.id === parseInt(locationId)
       )?.name || null
     : null;
-
+  const time = getParamValue("time");
+  const timeParam = time ? `${encodeURIComponent(time)}` : "";
+  const date = getParamValue("date");
   const generateFormattedTime = () => {
-    const time = getParamValue("time");
-    const date = getParamValue("date");
     if (!date || !time) {
       return null;
     }
@@ -56,17 +57,94 @@ export const useSelections = (): Selection[] => {
     );
     return formattedDate;
   };
+  const formDataAppointment = sessionStorage.getItem("formDataAppointment");
+  const formData = formDataAppointment ? JSON.parse(formDataAppointment) : {};
+  const serialNumber = formData.serialNumber || null;
+  const name = formData.name || null;
+  const phone = formData.phone || null;
+  const email = formData.email || null;
 
-  const selections: Selection[] = [
-    { id: 1, name: t("fields.brand"), value: getParamValue("brand") },
-    { id: 2, name: t("fields.device"), value: deviceName },
-    {
-      id: 3,
+  let id = 1;
+  const selections: Selection[] = [];
+
+  if (brand) {
+    selections.push({
+      id: id++,
+      name: t("fields.brand"),
+      value: getParamValue("brand"),
+      link: "",
+    });
+  }
+
+  if (deviceName) {
+    selections.push({
+      id: id++,
+      name: t("fields.device"),
+      value: deviceName,
+      link: `/?brand=${brand}`,
+    });
+  }
+
+  if (serviceName) {
+    selections.push({
+      id: id++,
       name: t("fields.service"),
-      value: serviceName ? serviceName : null,
-    },
-    { id: 4, name: t("fields.location"), value: locationName },
-    { id: 5, name: t("fields.appointment"), value: generateFormattedTime() },
-  ].filter((selection) => selection.value);
+      value: serviceName,
+      link: `/?brand=${brand}&deviceId=${deviceId}`,
+    });
+  }
+
+  if (locationName) {
+    selections.push({
+      id: id++,
+      name: t("fields.location"),
+      value: locationName,
+      link: `/?brand=${brand}&deviceId=${deviceId}&serviceId=${serviceId}`,
+    });
+  }
+
+  const appointment = generateFormattedTime();
+  if (appointment) {
+    selections.push({
+      id: id++,
+      name: t("fields.appointment"),
+      value: appointment,
+      link: `/?brand=${brand}&deviceId=${deviceId}&serviceId=${serviceId}&locationId=${locationId}`,
+    });
+
+    if (serialNumber) {
+      selections.push({
+        id: id++,
+        name: t("fields.serialNumber"),
+        value: serialNumber,
+        link: `/?brand=${brand}&deviceId=${deviceId}&serviceId=${serviceId}&locationId=${locationId}&time=${timeParam}&date=${date}`,
+      });
+    }
+    if (name) {
+      selections.push({
+        id: id++,
+        name: t("fields.name"),
+        value: name,
+        link: `/?brand=${brand}&deviceId=${deviceId}&serviceId=${serviceId}&locationId=${locationId}&time=${timeParam}&date=${date}`,
+      });
+    }
+    if (phone) {
+      selections.push({
+        id: id++,
+        name: t("fields.phone"),
+        value: phone,
+        link: `/?brand=${brand}&deviceId=${deviceId}&serviceId=${serviceId}&locationId=${locationId}&time=${timeParam}&date=${date}`,
+      });
+    }
+    if (email) {
+      selections.push({
+        id: id++,
+        name: t("fields.email"),
+        value: email,
+        link: `/?brand=${brand}&deviceId=${deviceId}&serviceId=${serviceId}&locationId=${locationId}&time=${timeParam}&date=${date}`,
+      });
+    }
+  }
+
   return selections;
 };

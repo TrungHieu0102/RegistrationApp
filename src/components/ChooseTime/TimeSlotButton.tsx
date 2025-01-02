@@ -20,7 +20,7 @@ export const TimeSlotButton = ({
   const { brand, deviceId, serviceId, locationId } = useQueryParams();
   const formattedTime = time ? time.replace(":", "%3A") : "";
   const formattedDate = date || "";
-  const url = `/?brand=${brand}&deviceId=${deviceId}&serviceId=${serviceId}&locationId=${locationId}&time=${formattedTime}&date=${formattedDate}`;
+  const url = `?brand=${brand}&deviceId=${deviceId}&serviceId=${serviceId}&locationId=${locationId}&time=${formattedTime}&date=${formattedDate}`;
 
   return (
     <Link to={url} style={{ textDecoration: "none" }}>

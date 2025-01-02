@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { LocationAccordion } from "./LocationAccordion";
 import { Location } from "../../Data/Location";
 import { SearchBarLocation } from "./SearchBarLocation";
@@ -18,16 +18,33 @@ export const LocationAccordionList = ({
 }: {
   props: LocationAccordionListProps;
 }) => {
-  const [query, setQuery] = useState<string>("");
+  const [query, setQuery] = useState<string>(""); 
+  const [debouncedQuery, setDebouncedQuery] = useState<string>("");
+  const debounceTimeout = useRef<number | null>(null);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };
-  
+
+  useEffect(() => {
+    if (debounceTimeout.current) {
+      clearTimeout(debounceTimeout.current);
+    }
+    debounceTimeout.current = setTimeout(() => {
+      setDebouncedQuery(query); 
+    }, 300); 
+
+    return () => {
+      if (debounceTimeout.current) {
+        clearTimeout(debounceTimeout.current);
+      }
+    };
+  }, [query]);
+
   const locations = useLocations();
-  
+
   const filteredLocations = locations.filter((location: Location) =>
-    location.name?.toLowerCase().includes(query.toLowerCase())
+    location.name?.toLowerCase().includes(debouncedQuery.toLowerCase())
   );
 
   return (
@@ -62,8 +79,8 @@ export const LocationAccordionList = ({
             backgroundColor: "#555555",
           },
           "@media (max-width: 899px)": {
-            overflowY: "visible", 
-            maxHeight: "none", 
+            overflowY: "visible",
+            maxHeight: "none",
           },
         }}
       >

@@ -9,7 +9,7 @@ export const ButtonLocation = ({ props }: { props: ButtonProps }) => {
   const { brand, deviceId, serviceId } = useQueryParams();
   return (
     <Link
-      to={`/?brand=${brand}&deviceId=${deviceId}&serviceId=${serviceId}&locationId=${props.locationId}`}
+      to={`?brand=${brand}&deviceId=${deviceId}&serviceId=${serviceId}&locationId=${props.locationId}`}
       style={{ textDecoration: "none" }}
     >
       <Button

@@ -6,8 +6,7 @@ import { LocationMapContainer } from "../components/ChooseLocation/LocationMapCo
 export const ChooseLocation = () => {
   const { t } = useTranslation();
   return (
-    <CommonContainer>
-    
+    <CommonContainer>   
       <Box marginTop={"20px"}>
         <Typography variant="subtitle1"  fontSize={"20px"} fontWeight={"bold"}>
         {t('Choose a service location')}
