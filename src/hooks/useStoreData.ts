@@ -11,7 +11,6 @@ export const useStoreData = (queryParams: URLSearchParams) => {
     return Math.floor(100000 + Math.random() * 900000).toString();
   };
 
-  // Trả về một hàm lưu trữ dữ liệu
   const storeData = useCallback(() => {
     const brand = queryParams.get("brand");
     const deviceId = queryParams.get("deviceId");
@@ -19,7 +18,6 @@ export const useStoreData = (queryParams: URLSearchParams) => {
     const locationId = queryParams.get("locationId");
     const time = queryParams.get("time");
     const date = queryParams.get("date");
-
     const device =
       devices.find(
         (device: Devices) => device.id === parseInt(deviceId || "")
@@ -50,13 +48,17 @@ export const useStoreData = (queryParams: URLSearchParams) => {
         ? {
             coordinates: location.coordinates,
             name: location.name,
+            address: location.address,
           }
         : null,
       time,
       date,
     };
 
-    sessionStorage.setItem("serviceDataAppointment", JSON.stringify(dataToStore));
+    sessionStorage.setItem(
+      "serviceDataAppointment",
+      JSON.stringify(dataToStore)
+    );
   }, [locations, queryParams, services]);
 
   return storeData;

@@ -1,52 +1,29 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { LocationAccordion } from "./LocationAccordion";
 import { Location } from "../../Data/Location";
 import { SearchBarLocation } from "./SearchBarLocation";
 import { Box } from "@mui/material";
 import { motion } from "framer-motion";
-import { useLocations } from "../../hooks/useLocations";
 
 interface LocationAccordionListProps {
   expandedIndex: number | false;
   handleAccordionChange: (index: number) => void;
   onOpen: (id: number, lat: number, lng: number, isActive: boolean) => void;
   onClose: () => void;
+  locations: Location[]; 
+  setQuery: (query: string) => void; 
+  query: string;
 }
-
 export const LocationAccordionList = ({
   props,
 }: {
   props: LocationAccordionListProps;
 }) => {
-  const [query, setQuery] = useState<string>(""); 
-  const [debouncedQuery, setDebouncedQuery] = useState<string>("");
-  const debounceTimeout = useRef<number | null>(null);
+  const { locations, setQuery, query } = props;
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
-  };
-
-  useEffect(() => {
-    if (debounceTimeout.current) {
-      clearTimeout(debounceTimeout.current);
-    }
-    debounceTimeout.current = setTimeout(() => {
-      setDebouncedQuery(query); 
-    }, 300); 
-
-    return () => {
-      if (debounceTimeout.current) {
-        clearTimeout(debounceTimeout.current);
-      }
-    };
-  }, [query]);
-
-  const locations = useLocations();
-
-  const filteredLocations = locations.filter((location: Location) =>
-    location.name?.toLowerCase().includes(debouncedQuery.toLowerCase())
-  );
-
+  }
   return (
     <div style={{ paddingRight: "5px" }}>
       <SearchBarLocation
@@ -84,7 +61,7 @@ export const LocationAccordionList = ({
           },
         }}
       >
-        {filteredLocations.map((location: Location, index: number) => (
+        {locations.map((location: Location, index: number) => (
           <motion.div
             key={location.id}
             initial={{ opacity: 0, y: -100 }}

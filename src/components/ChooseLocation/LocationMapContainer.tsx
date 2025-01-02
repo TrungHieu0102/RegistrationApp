@@ -1,18 +1,36 @@
 import { Icon } from "leaflet";
 import { Grid2 as Grid } from "@mui/material";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import images from "../../assets/images";
 import useLocationMap from "../../hooks/useLocationMap";
 import { LocationAccordionList } from "./LocationAccordionList";
 import { LocationMap } from "./LocationMap";
+import { useLocations } from "../../hooks/useLocations";
 
 export const LocationMapContainer = () => {
   const { center, changeCenter, zoom, defaultZoom } = useLocationMap();
+  const locations = useLocations();
 
-  const icon = new Icon({
-    iconUrl: images.iconmap,
-    iconSize: [30, 30],
-  });
+  const [query, setQuery] = useState<string>("");
+  const [debouncedQuery, setDebouncedQuery] = useState<string>("");
+
+  useEffect(() => {
+    let timeout: number;
+    if (query) {
+      timeout = setTimeout(() => {
+        setDebouncedQuery(query);
+      }, 300);
+    } else {
+      setDebouncedQuery(query);
+    }
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [query]);
+
+  const filteredLocations = locations.filter((location) =>
+    location.name?.toLowerCase().includes(debouncedQuery.toLowerCase())
+  );
 
   const [expandedIndex, setExpandedIndex] = useState<number | false>(false);
 
@@ -20,19 +38,29 @@ export const LocationMapContainer = () => {
     setExpandedIndex(expandedIndex === index ? false : index);
   };
 
-  const handleMarkerClick = (id: number, lat: number, lng: number, isActive:boolean) => {
-    if(isActive){
-      setExpandedIndex(id); 
+  const handleMarkerClick = (
+    id: number,
+    lat: number,
+    lng: number,
+    isActive: boolean
+  ) => {
+    if (isActive) {
+      setExpandedIndex(id);
     }
-    changeCenter(lat, lng); 
+    changeCenter(lat, lng);
     const element = document.getElementById(`accordion-${id}`);
     if (element) {
       element.scrollIntoView({
         behavior: "smooth",
-        block: "center", 
+        block: "center",
       });
     }
   };
+
+  const icon = new Icon({
+    iconUrl: images.iconmap,
+    iconSize: [30, 30],
+  });
 
   return (
     <Grid container spacing={2}>
@@ -51,12 +79,21 @@ export const LocationMapContainer = () => {
             handleAccordionChange: handleAccordionChange,
             onOpen: handleMarkerClick,
             onClose: defaultZoom,
+            locations: filteredLocations,
+            setQuery,
+            query,
           }}
         />
       </Grid>
 
       <Grid size={{ md: 8, lg: 8 }}>
-        <LocationMap center={center} icon={icon} zoom={zoom} onMarkerClick={handleMarkerClick} />
+        <LocationMap
+          center={center}
+          icon={icon}
+          zoom={zoom}
+          filteredLocations={filteredLocations}
+          onMarkerClick={handleMarkerClick}
+        />
       </Grid>
     </Grid>
   );

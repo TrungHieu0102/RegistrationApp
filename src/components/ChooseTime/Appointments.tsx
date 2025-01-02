@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Box, Typography } from "@mui/material";
-import { format, addDays } from "date-fns";
+import {  addDays } from "date-fns";
 import {AppointmentDateSelector} from "./AppointmentDateSelector";
 import {AppointmentPeriodSelector} from "./AppointmentPeriodSelector";
 import { useDateValidation } from "../../hooks/useDateValidation";
@@ -72,13 +72,7 @@ export const Appointments= ({ OpeningHours } : AppointmentsProps) => {
         selectedDate={selectedDate} 
 
       />
-      {selectedDate && selectedTimeSlot && (
-        <Box mt={3}>
-          <Typography>
-            You selected: <strong>{format(selectedDate, "MMMM d, yyyy")}</strong> at <strong>{selectedTimeSlot}</strong>
-          </Typography>
-        </Box>
-      )}
+     
     </Box>
   );
 };

@@ -2,7 +2,7 @@ import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { Icon } from "leaflet";
 import { useEffect } from "react";
 import { Box, Button, Typography } from "@mui/material";
-import { useLocations } from "../../hooks/useLocations";
+import { Location } from "../../Data/Location";
 const UpdateMapCenter = ({
   center,
   zoom,
@@ -27,10 +27,12 @@ const UpdateMapCenter = ({
 
   return null;
 };
+
 interface LocationMapContainerProps {
   center: [number, number];
   zoom: number;
   icon: Icon;
+  filteredLocations: Location[]; 
   onMarkerClick: (
     id: number,
     lat: number,
@@ -43,9 +45,9 @@ export const LocationMap = ({
   center,
   icon,
   zoom,
+  filteredLocations,
   onMarkerClick,
 }: LocationMapContainerProps) => {
-  const locations = useLocations();
   return (
     <MapContainer
       center={center}
@@ -57,7 +59,7 @@ export const LocationMap = ({
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {locations.map((location) => (
+      {filteredLocations.map((location) => (
         <Marker
           key={location.id}
           position={location.coordinates}
@@ -78,7 +80,6 @@ export const LocationMap = ({
               flexDirection="column"
               alignItems="center"
               justifyContent="center"
-              
             >
               <Typography
                 variant="subtitle1"
@@ -96,7 +97,7 @@ export const LocationMap = ({
                   borderRadius: "50px",
                   cursor: "pointer",
                   color: "white",
-                  marginTop:"5px"
+                  marginTop: "5px",
                 }}
                 onClick={() => {
                   const googleMapsUrl = `https://www.google.com/maps?q=${location.coordinates[0]},${location.coordinates[1]}`;

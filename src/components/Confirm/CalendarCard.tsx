@@ -54,7 +54,6 @@ export const CalendarCard: React.FC<CalendarCardProps> = ({
           overflow: "hidden", 
         }}
       >
-        {/* Month */}
         <Typography
           variant="subtitle2"
           sx={{
@@ -72,7 +71,6 @@ export const CalendarCard: React.FC<CalendarCardProps> = ({
         >
           {month.toUpperCase()}
         </Typography>
-        {/* Date */}
         <Typography
           variant="h5"
           sx={{

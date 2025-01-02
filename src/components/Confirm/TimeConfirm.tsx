@@ -1,7 +1,33 @@
 import { Box, Link, Typography, Grid2 as Grid } from "@mui/material";
 import { CalendarCard } from "./CalendarCard";
 import { AddToCalendarButton } from "add-to-calendar-button-react";
+
 export const TimeConfirm = () => {
+  const serviceDataAppointment = JSON.parse(
+    sessionStorage.getItem("serviceDataAppointment") || "{}"
+  );
+
+  const parseDuration = (duration: string): number => {
+    const match = duration.match(/([\d.]+)\s*hour/); 
+    return match ? parseFloat(match[1]) * 60 : 60; 
+  };
+
+  const durationInMinutes = parseDuration(
+    serviceDataAppointment?.service?.duration || "1 hour"
+  );
+
+  const calculateEndTime = (startTime: string, duration: number): string => {
+    const [startHour, startMinute] = startTime.split(":").map(Number);
+    const totalMinutes = startHour * 60 + startMinute + duration;
+    const endHour = Math.floor(totalMinutes / 60) % 24;
+    const endMinute = totalMinutes % 60;
+    return `${endHour.toString().padStart(2, "0")}:${endMinute
+      .toString()
+      .padStart(2, "0")}`;
+  };
+  const startTime = serviceDataAppointment?.time || "09:30";
+  const startDate = serviceDataAppointment?.date || "2025-01-03";
+  const endTime = calculateEndTime(startTime, durationInMinutes);
   return (
     <Box
       sx={{
@@ -61,27 +87,29 @@ export const TimeConfirm = () => {
               variant="body1"
               sx={{ fontSize: "18px", fontWeight: "bold" }}
             >
-              Upgrade Memory
+              {serviceDataAppointment.service.name}
             </Typography>
 
             <AddToCalendarButton
-              name="Title"
+              name={`${serviceDataAppointment.service.name} at ${serviceDataAppointment.location.name}`}
               options={["Apple", "Google", "Outlook.com"]}
-              location="World Wide Web"
-              startDate="2024-12-31"
-              endDate="2024-12-31"
-              startTime="10:15"
-              endTime="23:30"
-              timeZone="America/Los_Angeles"
+              location={serviceDataAppointment.location.address || "World Wide Web"}
+              startDate={startDate}
+              endDate={startDate} 
+              startTime={startTime}
+              endTime={endTime}
+              timeZone="Asia/Ho_Chi_Minh"
               size="6|6|3|1"
             />
           </Grid>
           <Grid size={{ xs: 6, sm: 6, md: 9, lg: 9 }}>
             <CalendarCard
-              month="Dec"
-              date="27"
-              time="09:30"
-              duration="4 Hours 30 Minutes"
+              month={new Date(startDate).toLocaleString("en-US", {
+                month: "short",
+              })}
+              date={new Date(startDate).getDate().toString()}
+              time={startTime}
+              duration={serviceDataAppointment?.service?.duration || "1 hour"}
             />
           </Grid>
         </Grid>
