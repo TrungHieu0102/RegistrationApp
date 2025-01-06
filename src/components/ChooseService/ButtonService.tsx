@@ -8,7 +8,7 @@ interface ButtonProps {
   duration: string;
   id: number;
 }
-export const ButtonService = ({ props }: { props: ButtonProps }) => {
+export const ButtonService = ({ name,duration,id }: ButtonProps ) => {
   const { brand, deviceId } = useQueryParams();
   return (
     <motion.div
@@ -30,7 +30,7 @@ export const ButtonService = ({ props }: { props: ButtonProps }) => {
       }}
     >
       <Link
-        to={`?brand=${brand}&deviceId=${deviceId}&serviceId=${props.id}`}
+        to={`?brand=${brand}&deviceId=${deviceId}&serviceId=${id}`}
         style={{ textDecoration: "none" }}
       >
         <Button
@@ -61,7 +61,7 @@ export const ButtonService = ({ props }: { props: ButtonProps }) => {
               textTransform: "none",
             }}
           >
-            {props.name}
+            {name}
           </Typography>
           <Typography
             variant="body2"
@@ -73,7 +73,7 @@ export const ButtonService = ({ props }: { props: ButtonProps }) => {
               textTransform: "none",
             }}
           >
-            {props.duration}
+            {duration}
           </Typography>
         </Button>
       </Link>

@@ -74,15 +74,13 @@ export const LocationMapContainer = () => {
         }}
       >
         <LocationAccordionList
-          props={{
-            expandedIndex: expandedIndex,
-            handleAccordionChange: handleAccordionChange,
-            onOpen: handleMarkerClick,
-            onClose: defaultZoom,
-            locations: filteredLocations,
-            setQuery,
-            query,
-          }}
+          expandedIndex={expandedIndex}
+          handleAccordionChange={handleAccordionChange}
+          onOpen={handleMarkerClick}
+          onClose={defaultZoom}
+          locations={filteredLocations}
+          setQuery={setQuery}
+          query={query}
         />
       </Grid>
 

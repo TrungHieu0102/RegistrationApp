@@ -7,14 +7,14 @@ interface SearchBarProps {
   onSearchChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const SearchBarLocation = ({ props }: { props: SearchBarProps }) => {
+export const SearchBarLocation = ({ query,onSearchChange }:  SearchBarProps ) => {
   return (
     <TextField
       label={t('Search')} 
       fullWidth
       variant="outlined"
-      value={props.query}
-      onChange={props.onSearchChange}
+      value={query}
+      onChange={onSearchChange}
       sx={{
         marginTop: "6px",
         "& .MuiFormControl-root": {

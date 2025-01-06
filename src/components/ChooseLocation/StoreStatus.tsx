@@ -19,13 +19,13 @@ interface StoreStatusProps {
   };
 }
 
-export const StoreStatus = ({ props }: { props: StoreStatusProps }) => {
+export const StoreStatus = ({ OpeningHours } : StoreStatusProps ) => {
   const now = new Date();
   const currentDay = getDay(now);
   const { t } = useTranslation();
 
   const weekDays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  const todayOpeningHours = props.OpeningHours[weekDays[currentDay]];
+  const todayOpeningHours = OpeningHours[weekDays[currentDay]];
 
   if (!todayOpeningHours || !todayOpeningHours.start || !todayOpeningHours.end) {
     return (
@@ -62,13 +62,13 @@ export const StoreStatus = ({ props }: { props: StoreStatusProps }) => {
   let nextOpen = todayOpen;
   let daysToAdd = 0;
 
-  while (!props.OpeningHours[weekDays[getDay(nextOpen)]] || isAfter(now, nextOpen)) {
+  while (!OpeningHours[weekDays[getDay(nextOpen)]] || isAfter(now, nextOpen)) {
     daysToAdd++;
     nextOpen = addDays(now, daysToAdd);
   }
 
   const nextOpeningDay = weekDays[getDay(nextOpen)];
-  const nextOpeningHours = props.OpeningHours[nextOpeningDay];
+  const nextOpeningHours = OpeningHours[nextOpeningDay];
 
   if (nextOpeningHours) {
     const [nextOpenHour, nextOpenMinute] = nextOpeningHours.start.split(":").map(Number);

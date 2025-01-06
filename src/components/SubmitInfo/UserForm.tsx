@@ -44,8 +44,8 @@ export const UserForm = () => {
   const navigate = useNavigate();
   const { brand, deviceId, serviceId, locationId, time, date } =
     useQueryParams();
-    const formattedTime = time ? time.replace(":", "%3A") : "";
-    const formattedDate = date || "";
+  const formattedTime = time ? time.replace(":", "%3A") : "";
+  const formattedDate = date || "";
   const [countryCode, setCountryCode] = useState("+84");
   const handleCountryCodeChange = (event: SelectChangeEvent<string>) => {
     setCountryCode(event.target.value);
@@ -62,10 +62,12 @@ export const UserForm = () => {
       email: "",
       phone: "",
     },
-    
+
     validationSchema,
     onSubmit: (values) => {
-      const phoneWithCountryCode = values.phone ? countryCode + values.phone : "";
+      const phoneWithCountryCode = values.phone
+        ? countryCode + values.phone
+        : "";
       const formData = {
         ...values,
         phone: phoneWithCountryCode,
@@ -243,9 +245,7 @@ export const UserForm = () => {
         </Grid>
 
         <Box mt={3} display="flex" justifyContent="center">
-          <ButtonSubmitInfo
-          
-          />
+          <ButtonSubmitInfo />
         </Box>
       </form>
     </Box>

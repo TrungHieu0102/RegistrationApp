@@ -24,23 +24,22 @@ interface LocationAccordionProps {
   onClose: () => void;
 }
 export const LocationAccordion = ({
-  props,
-}: {
-  props: LocationAccordionProps;
-}) => {
+  index,
+  ...props
+}: LocationAccordionProps) => {
   const handleAccordionChange = (
     event: React.SyntheticEvent,
     expanded: boolean
   ) => {
     const element = event.currentTarget;
-  
+
     if (expanded) {
       element.scrollIntoView({
         behavior: "smooth",
         block: "nearest",
       });
       props.onOpen(
-        props.index,
+        index,
         props.coordinates[0],
         props.coordinates[1],
         props.isActive
@@ -48,9 +47,9 @@ export const LocationAccordion = ({
     } else {
       props.onClose();
     }
-  
+
     if (props.isActive) {
-      props.handleChange(props.index);
+      props.handleChange(index);
     }
   };
   const { t } = useTranslation();
@@ -64,8 +63,8 @@ export const LocationAccordion = ({
   });
   return (
     <Accordion
-      id={`accordion-${props.id}`} 
-      expanded={props.expandedIndex === props.index} 
+      id={`accordion-${props.id}`}
+      expanded={props.expandedIndex === index}
       onChange={handleAccordionChange}
       disableGutters
       elevation={0}
@@ -87,11 +86,11 @@ export const LocationAccordion = ({
           <Typography fontWeight="bold" fontSize="18px" variant="h6">
             {props.name}
           </Typography>
-          <Typography  fontSize="14px" variant="h6">
+          <Typography fontSize="14px" variant="h6">
             {props.address}
           </Typography>
           {props.isActive ? (
-            <StoreStatus props={{ OpeningHours }} />
+            <StoreStatus OpeningHours={OpeningHours} />
           ) : (
             <Typography
               color="#a9a2a2"
@@ -99,7 +98,7 @@ export const LocationAccordion = ({
               fontSize="16px"
               variant="h6"
             >
-              {t('Not available')} 
+              {t("Not available")}
             </Typography>
           )}
         </Box>
@@ -114,7 +113,7 @@ export const LocationAccordion = ({
       >
         <Box marginLeft="10px">
           <Typography variant="body2" fontSize="16px" fontWeight="bold">
-          {t('Opening Hours')} 
+            {t("Opening Hours")}
           </Typography>
           {translatedOpeningHours.map(({ day, start, end }) => (
             <Box
@@ -127,10 +126,12 @@ export const LocationAccordion = ({
               paddingRight="10px"
             >
               <Typography variant="body2">{t(`${day}`)}:</Typography>
-              <Typography variant="body2">{start} - {end}</Typography>
+              <Typography variant="body2">
+                {start} - {end}
+              </Typography>
             </Box>
           ))}
-          <ButtonLocation props={{ locationId: props.id }} />
+          <ButtonLocation locationId={props.id} />
         </Box>
       </AccordionDetails>
     </Accordion>

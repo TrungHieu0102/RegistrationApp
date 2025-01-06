@@ -7,7 +7,7 @@ interface ButtonProps {
   name: string;
 }
 
-export const ButtonBrand = ({ props }: { props: ButtonProps }) => {
+export const ButtonBrand = ({ image, name }:  ButtonProps ) => {
   return (
     <motion.div
       whileHover={{ scale: 1.1 }} 
@@ -26,7 +26,7 @@ export const ButtonBrand = ({ props }: { props: ButtonProps }) => {
         backgroundColor: "#fff",
         textAlign: "center",
       }}
-    >  <Link to={`?brand=${props.name}`} style={{ textDecoration: "none" }}>
+    >  <Link to={`?brand=${name}`} style={{ textDecoration: "none" }}>
     <Button
       variant="outlined"
       sx={{
@@ -52,8 +52,8 @@ export const ButtonBrand = ({ props }: { props: ButtonProps }) => {
     >
       <Box
         component="img"
-        src={props.image}
-        alt={props.name}
+        src={image}
+        alt={name}
         sx={{
           width: "40px",
           height: "40px",
@@ -71,7 +71,7 @@ export const ButtonBrand = ({ props }: { props: ButtonProps }) => {
           textTransform: "none",
         }}
       >
-        {props.name}
+        {name}
       </Typography>
     </Button>
   </Link></motion.div>

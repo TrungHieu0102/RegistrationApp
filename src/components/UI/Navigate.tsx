@@ -3,14 +3,8 @@ import { Stack, Typography } from "@mui/material";
 import { BackButton } from "../BackButton";
 import { LanguageSwitcher } from "../LanguageSwitcher";
 import { useTranslation } from "react-i18next";
-
-type BackButtonProps = {
-  route?: string;
-};
-
-export const Navigate = ({ route }: BackButtonProps) => {
-    const { t } = useTranslation();
-
+export const Navigate = () => {
+  const { t } = useTranslation();
   return (
     <Stack
       direction={"row"}
@@ -18,15 +12,15 @@ export const Navigate = ({ route }: BackButtonProps) => {
       justifyContent={"space-between"}
       alignItems={"center"}
     >
-      <BackButton route={route} />
+      <BackButton  />
       <div>
         <Typography
           sx={{
             fontSize: {
-              xs: "16px", 
+              xs: "16px",
               sm: "18px",
-              md: "20px", 
-              lg: "24px", 
+              md: "20px",
+              lg: "24px",
             },
           }}
           variant="h5"

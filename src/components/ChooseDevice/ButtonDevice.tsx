@@ -9,7 +9,7 @@ interface ButtonProps {
   id: number;
 }
 
-export const ButtonDevice = ({ props }: { props: ButtonProps }) => {
+export const ButtonDevice =  ({ image,name, id }: ButtonProps) => {
   const { brand } = useQueryParams();
   return (
     <motion.div
@@ -31,7 +31,7 @@ export const ButtonDevice = ({ props }: { props: ButtonProps }) => {
     }}
   >  
       <Link
-        to={`?brand=${brand}&deviceId=${props.id}`}
+        to={`?brand=${brand}&deviceId=${id}`}
         style={{ textDecoration: "none" }}
       >
         <Button
@@ -58,8 +58,8 @@ export const ButtonDevice = ({ props }: { props: ButtonProps }) => {
         >
           <Box
             component="img"
-            src={props.image}
-            alt={props.name}
+            src={image}
+            alt={name}
             sx={{
               width: "40px",
               height: "40px",
@@ -77,7 +77,7 @@ export const ButtonDevice = ({ props }: { props: ButtonProps }) => {
               textTransform: "none",
             }}
           >
-            {props.name}
+            {name}
           </Typography>
         </Button>
       </Link>

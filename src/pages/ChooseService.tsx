@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import { Services } from "../Data/Services";
 
 export const ChooseService = () => {
-  const [filteredServices, setFilteredServices] = useState<Services[]>([]); 
+  const [filteredServices, setFilteredServices] = useState<Services[]>([]);
   const services = useServices();
   const { deviceId } = useQueryParams();
   const { t } = useTranslation();
@@ -33,7 +33,6 @@ export const ChooseService = () => {
 
   return (
     <CommonContainer>
-     
       <Box marginTop={"20px"}>
         <Typography variant="subtitle1" fontSize={"20px"} fontWeight={"bold"}>
           {t("Choose a service type")}
@@ -47,11 +46,9 @@ export const ChooseService = () => {
           {filteredServices.map((service) => (
             <ButtonService
               key={service.id}
-              props={{
-                name: service.name, 
-                duration: service.duration,
-                id: service.id,
-              }}
+              name={service.name}
+              duration={service.duration}
+              id={service.id}
             />
           ))}
         </Grid>

@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Typography } from "@mui/material";
 
 interface CalendarCardProps {
@@ -8,12 +7,12 @@ interface CalendarCardProps {
   duration: string; 
 }
 
-export const CalendarCard: React.FC<CalendarCardProps> = ({
+export const CalendarCard= ({
   month,
   date,
   time,
   duration,
-}) => {
+}:CalendarCardProps ) => {
   return (
     <Box
       display="flex"

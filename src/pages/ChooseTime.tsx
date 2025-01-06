@@ -8,7 +8,6 @@ export const ChooseTime = () => {
 
   return (
     <CommonContainer>
-   
       <Box marginTop={"20px"}>
         <Typography variant="subtitle1" fontSize={"20px"} fontWeight={"bold"}>
           {t("Select appointment")}

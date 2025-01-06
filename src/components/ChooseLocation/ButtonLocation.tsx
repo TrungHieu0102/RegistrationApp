@@ -5,11 +5,11 @@ import { t } from "i18next";
 interface ButtonProps {
   locationId: number;
 }
-export const ButtonLocation = ({ props }: { props: ButtonProps }) => {
+export const ButtonLocation = ({ locationId }: ButtonProps ) => {
   const { brand, deviceId, serviceId } = useQueryParams();
   return (
     <Link
-      to={`?brand=${brand}&deviceId=${deviceId}&serviceId=${serviceId}&locationId=${props.locationId}`}
+      to={`?brand=${brand}&deviceId=${deviceId}&serviceId=${serviceId}&locationId=${locationId}`}
       style={{ textDecoration: "none" }}
     >
       <Button

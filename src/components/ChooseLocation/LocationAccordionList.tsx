@@ -10,25 +10,21 @@ interface LocationAccordionListProps {
   handleAccordionChange: (index: number) => void;
   onOpen: (id: number, lat: number, lng: number, isActive: boolean) => void;
   onClose: () => void;
-  locations: Location[]; 
-  setQuery: (query: string) => void; 
+  locations: Location[];
+  setQuery: (query: string) => void;
   query: string;
 }
 export const LocationAccordionList = ({
-  props,
-}: {
-  props: LocationAccordionListProps;
-}) => {
+  expandedIndex, ...props
+}:  LocationAccordionListProps) => {
   const { locations, setQuery, query } = props;
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
-  }
+  };
   return (
     <div style={{ paddingRight: "5px" }}>
-      <SearchBarLocation
-        props={{ query: query, onSearchChange: handleSearchChange }}
-      />
+      <SearchBarLocation query={query} onSearchChange={handleSearchChange} />
 
       <Box
         sx={{
@@ -75,18 +71,16 @@ export const LocationAccordionList = ({
           >
             <LocationAccordion
               key={location.id}
-              props={{
-                index: location.id,
-                expandedIndex: props.expandedIndex,
-                handleChange: props.handleAccordionChange,
-                id: location.id,
-                name: location.name,
-                address: location.address,
-                coordinates: location.coordinates,
-                onOpen: props.onOpen,
-                isActive: location.isActive,
-                onClose: props.onClose,
-              }}
+              index={location.id}
+              expandedIndex={expandedIndex}
+              handleChange={props.handleAccordionChange}
+              id={location.id}
+              name={location.name}
+              address={location.address}
+              coordinates={location.coordinates}
+              onOpen={props.onOpen}
+              isActive={location.isActive}
+              onClose={props.onClose}
             />
           </motion.div>
         ))}

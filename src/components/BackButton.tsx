@@ -3,20 +3,11 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { useNavigate } from "react-router-dom";
 import { t } from "i18next";
 
-type BackButtonProps = {
-  label?: string;
-  onClick?: () => void;
-  route?: string; 
-};
 
-export const BackButton = ({  route }: BackButtonProps) => {
+export const BackButton = () => {
   const navigate = useNavigate();
-  const handleClick = () => {
-    if (route) {
-      navigate(route);
-    } else {
+  const handleClick = () => { 
       navigate(-1); 
-    }
   };
 
   return (
@@ -34,7 +25,7 @@ export const BackButton = ({  route }: BackButtonProps) => {
         },
       }}
     >
-       {t('Back')}
+      {t("Back")}
     </Button>
   );
 };

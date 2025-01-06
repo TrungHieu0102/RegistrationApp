@@ -1,4 +1,3 @@
-import React from "react";
 import { Button, Box } from "@mui/material";
 import ReCAPTCHA from "react-google-recaptcha";
 
@@ -9,12 +8,12 @@ interface RecaptchaWithButtonProps {
   handleSubmit: () => void;
 }
 
-const RecaptchaWithButton: React.FC<RecaptchaWithButtonProps> = ({
+const RecaptchaWithButton  = ({
   siteKey,
   handleRecaptchaChange,
   isButtonDisabled,
   handleSubmit,
-}) => {
+}:RecaptchaWithButtonProps) => {
   return (
     <Box
       display="flex"
