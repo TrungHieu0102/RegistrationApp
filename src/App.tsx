@@ -12,7 +12,7 @@ import { ChooseTime } from "./pages/ChooseTime";
 import { SubmitInfo } from "./pages/SubmitInfo";
 import { AdditionInfo } from "./pages/AdditionInfo";
 import { useEffect, useState } from "react";
-import {Confirm} from "./pages/Confirm";
+import { Confirm } from "./pages/Confirm";
 
 function App() {
   const {
@@ -29,23 +29,30 @@ function App() {
   const [isConfirmPage, setIsConfirmPage] = useState(false);
   useEffect(() => {
     if (location.pathname === "/confirm") {
-      const accessoriesAppointment = sessionStorage.getItem("accessoriesAppointment");
-      const serviceDataAppointment = sessionStorage.getItem("serviceDataAppointment");
+      const accessoriesAppointment = sessionStorage.getItem(
+        "accessoriesAppointment"
+      );
+      const serviceDataAppointment = sessionStorage.getItem(
+        "serviceDataAppointment"
+      );
       const formDataAppointment = sessionStorage.getItem("formDataAppointment");
 
-      if (accessoriesAppointment && serviceDataAppointment && formDataAppointment) {
+      if (
+        accessoriesAppointment &&
+        serviceDataAppointment &&
+        formDataAppointment
+      ) {
         setIsConfirmPage(true);
       } else {
         setIsConfirmPage(false);
-        window.location.href = "/";  
+        window.location.href = "/";
       }
     }
   }, [location.pathname]);
-
   let content;
   if (isConfirmPage) {
     content = <Confirm />;
-  } else  if (email && phone && paramCount === 8) {
+  } else if (email && phone && paramCount === 8) {
     content = <AdditionInfo />;
   } else if (time && date && paramCount === 6) {
     content = <SubmitInfo />;
@@ -63,7 +70,7 @@ function App() {
 
   return (
     <ErrorBoundary>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>    
         <CssBaseline />
         {content}
       </ThemeProvider>
