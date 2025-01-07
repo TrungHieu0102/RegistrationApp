@@ -14,7 +14,7 @@ export const ChooseTime = () => {
         </Typography>
       </Box>
       <Box marginTop={"20px"}>
-        <Appointments OpeningHours={OpeningHours} />
+        <Appointments openingHours={OpeningHours} />
       </Box>
     </CommonContainer>
   );
