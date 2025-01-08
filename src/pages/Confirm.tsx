@@ -6,27 +6,36 @@ import { useSessionData } from "../hooks/useSessionData";
 import { LocationConfirm } from "../components/Confirm/LocationConfirm";
 
 export const Confirm = () => {
-    const { formDataAppointment, serviceDataAppointment } = useSessionData(); 
+  const { formDataAppointment, serviceDataAppointment } = useSessionData();
 
   return (
     <CommonContainer>
       <Box
         sx={{
-            marginX:{
-                xs:"0px",
-                sm:"0px",
-                md:"0px",
-                lg:"50px",
-            }
+          marginX: {
+            xs: "0px",
+            sm: "0px",
+            md: "0px",
+            lg: "50px",
+          },
         }}
       >
         <TimeConfirm />
         {formDataAppointment && serviceDataAppointment ? (
-          <BookingDetail form={formDataAppointment} orderId={serviceDataAppointment.orderId} />
+          <BookingDetail
+            form={formDataAppointment}
+            orderId={serviceDataAppointment.orderId}
+          />
         ) : (
           <Typography>No booking details available.</Typography>
         )}
-        <LocationConfirm/>
+        <LocationConfirm
+          center={serviceDataAppointment?.location?.coordinates}
+          storeName={serviceDataAppointment?.location?.name}
+          email={serviceDataAppointment?.location?.email}
+          website={serviceDataAppointment?.location?.website}
+          phoneNumber={serviceDataAppointment?.location?.phone}
+        />
       </Box>
     </CommonContainer>
   );

@@ -1,6 +1,6 @@
+import { useEffect } from "react";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { Icon } from "leaflet";
-import { useEffect } from "react";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import {
   AppBar,
@@ -66,9 +66,7 @@ export const LocationMap = ({
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
 
   useEffect(() => {
-    if (isMdUp) {
-      setIsFullWidth(false);
-    }
+    setIsFullWidth(!isMdUp);
   }, [isMdUp, setIsFullWidth]);
 
   return (

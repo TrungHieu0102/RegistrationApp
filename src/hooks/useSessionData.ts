@@ -27,6 +27,9 @@ export interface ServiceDataAppointment {
   location: {
     coordinates: [number, number];
     name: string;
+    email: string ;
+    phone: string ;
+    website: string;
   } | null;
   time: string | null;
   date: string | null;
@@ -35,9 +38,12 @@ export interface ServiceDataAppointment {
 export type AccessoriesAppointment = string;
 
 export const useSessionData = () => {
-  const [formDataAppointment, setFormDataAppointment] = useState<FormDataAppointment | null>(null);
-  const [serviceDataAppointment, setServiceDataAppointment] = useState<ServiceDataAppointment | null>(null);
-  const [accessoriesAppointment, setAccessoriesAppointment] = useState<AccessoriesAppointment | null>(null);
+  const [formDataAppointment, setFormDataAppointment] =
+    useState<FormDataAppointment | null>(null);
+  const [serviceDataAppointment, setServiceDataAppointment] =
+    useState<ServiceDataAppointment | null>(null);
+  const [accessoriesAppointment, setAccessoriesAppointment] =
+    useState<AccessoriesAppointment | null>(null);
 
   useEffect(() => {
     const formData = sessionStorage.getItem("formDataAppointment");

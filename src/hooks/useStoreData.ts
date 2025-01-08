@@ -49,6 +49,9 @@ export const useStoreData = (queryParams: URLSearchParams) => {
             coordinates: location.coordinates,
             name: location.name,
             address: location.address,
+            phoneNumber: location.phoneNumber,
+            email: location.email,
+            website: location.website,
           }
         : null,
       time,

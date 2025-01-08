@@ -15,9 +15,22 @@ import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import useLocationMap from "../../hooks/useLocationMap";
 import { Icon } from "leaflet";
 
-export const LocationConfirm = () => {
+interface LocationConfirmProps {
+  center?: [number, number];
+  storeName?: string;
+  phoneNumber?: string;
+  email?: string;
+  website?: string;
+}
+export const LocationConfirm = ({
+  center = [0, 0],
+  storeName,
+  phoneNumber,
+  email,
+  website,
+}: LocationConfirmProps) => {
   const { t } = useTranslation();
-  const { center, changeCenter, zoom } = useLocationMap();
+  const { changeCenter, zoom } = useLocationMap();
   const icon = new Icon({
     iconUrl: images.iconmap,
     iconSize: [30, 30],
@@ -42,7 +55,6 @@ export const LocationConfirm = () => {
       });
     }
   };
-
   return (
     <Box sx={{ paddingX: "20px", paddingY: "5px" }}>
       <Typography variant="body1" sx={{ fontWeight: "700", fontSize: "18px" }}>
@@ -72,11 +84,11 @@ export const LocationConfirm = () => {
                       variant="body1"
                       sx={{ fontWeight: "700", fontSize: "15px" }}
                     >
-                      Demo repair shop
+                      {storeName}
                     </Typography>
                     <Typography
                       component="a"
-                      href="tel:+1234567890"
+                      href={`tel:${phoneNumber}`}
                       sx={{
                         textDecoration: "none",
                         fontWeight: "400",
@@ -87,24 +99,34 @@ export const LocationConfirm = () => {
                         },
                       }}
                     >
-                      +1234567890
+                      {phoneNumber}
                     </Typography>
                     <Box display="flex" gap={1}>
                       <IconButton
                         aria-label="web"
                         sx={{ border: "1px solid black" }}
+                        onClick={() => window.open(website, "_blank")}
                       >
                         <LanguageIcon fontSize="small" />
                       </IconButton>
                       <IconButton
                         aria-label="map"
                         sx={{ border: "1px solid black" }}
+                        onClick={() => {
+                          if (center) {
+                            const googleMapsUrl = `https://www.google.com/maps/dir/?api=1&destination=${center[0]},${center[1]}`;
+                            window.open(googleMapsUrl, "_blank");
+                          }
+                        }}
                       >
                         <DirectionsCarIcon fontSize="small" />
                       </IconButton>
                       <IconButton
                         aria-label="mail"
                         sx={{ border: "1px solid black" }}
+                        onClick={() =>
+                          (window.location.href = `mailto:${email}`)
+                        }
                       >
                         <EmailIcon fontSize="small" />
                       </IconButton>
@@ -139,7 +161,7 @@ export const LocationConfirm = () => {
                           justifyContent="flex-start"
                           alignItems="center"
                           paddingRight="10px"
-                          gap={2}
+                          gap={4}
                           sx={{
                             width: "100%",
                             overflow: "none",
@@ -163,7 +185,7 @@ export const LocationConfirm = () => {
                               color: "darkgrey",
                               fontSize: "15px",
                               fontWeight: "400",
-                              flex: 1,
+                              flexGrow: 1,
                               whiteSpace: "nowrap",
                             }}
                           >
@@ -189,47 +211,49 @@ export const LocationConfirm = () => {
                   attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
-                <Marker
-                  key={1}
-                  position={center}
-                  icon={icon}
-                  eventHandlers={{ click: () => handleMarkerClick }}
-                >
-                  <Popup>
-                    <Box
-                      display="flex"
-                      flexDirection="column"
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Typography
-                        variant="subtitle1"
-                        fontSize="8"
-                        fontWeight="600"
-                        textAlign="center"
+                {center && (
+                  <Marker
+                    key={1}
+                    position={center}
+                    icon={icon}
+                    eventHandlers={{ click: () => handleMarkerClick }}
+                  >
+                    <Popup>
+                      <Box
+                        display="flex"
+                        flexDirection="column"
+                        alignItems="center"
+                        justifyContent="center"
                       >
-                        abc
-                      </Typography>
-                      <Button
-                        sx={{
-                          paddingX: "8px",
-                          paddingY: "4px",
-                          backgroundColor: "primary.main",
-                          borderRadius: "50px",
-                          cursor: "pointer",
-                          color: "white",
-                          marginTop: "5px",
-                        }}
-                        onClick={() => {
-                          const googleMapsUrl = `https://www.google.com/maps?q=${123},${123}`;
-                          window.open(googleMapsUrl, "_blank");
-                        }}
-                      >
-                        Open google map
-                      </Button>
-                    </Box>
-                  </Popup>
-                </Marker>
+                        <Typography
+                          variant="subtitle1"
+                          fontSize="8"
+                          fontWeight="600"
+                          textAlign="center"
+                        >
+                          {storeName}
+                        </Typography>
+                        <Button
+                          sx={{
+                            paddingX: "8px",
+                            paddingY: "4px",
+                            backgroundColor: "primary.main",
+                            borderRadius: "50px",
+                            cursor: "pointer",
+                            color: "white",
+                            marginTop: "5px",
+                          }}
+                          onClick={() => {
+                            const googleMapsUrl = `https://www.google.com/maps?q=${center[0]},${center[1]}`;
+                            window.open(googleMapsUrl, "_blank");
+                          }}
+                        >
+                          Open google map
+                        </Button>
+                      </Box>
+                    </Popup>
+                  </Marker>
+                )}
               </MapContainer>
             </Box>
           </Grid>
