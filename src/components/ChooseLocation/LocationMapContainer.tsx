@@ -39,6 +39,7 @@ export const LocationMapContainer = () => {
     } else {
       setIsFullWidth(prevIsFullWidth);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMdUp]);
 
   const filteredLocations = locations.filter((location) =>
@@ -55,10 +56,13 @@ export const LocationMapContainer = () => {
     id: number,
     lat: number,
     lng: number,
-    isActive: boolean
+    isActive: boolean,
   ) => {
     if (isActive) {
       setExpandedIndex(id);
+    }
+    if(!isMdUp){
+      setIsFullWidth(true);
     }
     changeCenter(lat, lng);
     const element = document.getElementById(`accordion-${id}`);

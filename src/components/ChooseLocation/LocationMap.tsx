@@ -70,11 +70,6 @@ export const LocationMap = ({
     setIsFullWidth(!isMdUp);
   }, [isMdUp, setIsFullWidth]);
 
-  useEffect(() => {
-    if (filteredLocations.length > 0) {
-      setSelectedLocation(filteredLocations[0]);
-    }
-  }, [filteredLocations]);
 
   const handleMarkerClick = (
     id: number,
@@ -86,7 +81,6 @@ export const LocationMap = ({
     setSelectedLocation(location); 
     onMarkerClick(id, lat, lng, isActive);
   };
-
   return (
     <Box sx={{ display: "flex", flexDirection: "row" }}>
       {isFullWidth && (

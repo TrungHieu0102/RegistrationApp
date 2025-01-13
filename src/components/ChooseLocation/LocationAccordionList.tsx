@@ -13,12 +13,12 @@ interface LocationAccordionListProps {
   locations: Location[];
   setQuery: (query: string) => void;
   query: string;
-  onLocationClick: () => void; 
-
+  onLocationClick: () => void;
 }
 export const LocationAccordionList = ({
-  expandedIndex, ...props
-}:  LocationAccordionListProps) => {
+  expandedIndex,
+  ...props
+}: LocationAccordionListProps) => {
   const { locations, setQuery, query } = props;
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +26,11 @@ export const LocationAccordionList = ({
   };
   return (
     <div style={{ paddingRight: "5px" }}>
-      <SearchBarLocation query={query} onSearchChange={handleSearchChange} onLocationClick={props.onLocationClick} />
+      <SearchBarLocation
+        query={query}
+        onSearchChange={handleSearchChange}
+        onLocationClick={props.onLocationClick}
+      />
 
       <Box
         sx={{
