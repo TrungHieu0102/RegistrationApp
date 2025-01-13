@@ -19,7 +19,7 @@ interface LocationAccordionProps {
   address?: string;
   id: number;
   coordinates: [number, number];
-  onOpen: (id: number, lat: number, lng: number, isActive: boolean) => void;
+  onOpen: (id: number, lat: number, lng: number, isActive: boolean, address: string| undefined) => void;
   isActive: boolean;
   onClose: () => void;
 }
@@ -42,7 +42,8 @@ export const LocationAccordion = ({
         index,
         props.coordinates[0],
         props.coordinates[1],
-        props.isActive
+        props.isActive,
+        props.address
       );
     } else {
       props.onClose();

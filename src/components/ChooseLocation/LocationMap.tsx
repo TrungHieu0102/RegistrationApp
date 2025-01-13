@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { Icon } from "leaflet";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -12,6 +12,10 @@ import {
   useTheme,
 } from "@mui/material";
 import { Location } from "../../Data/Location";
+import { StoreStatus } from "./StoreStatus";
+import { OpeningHours } from "../../Data/OpeningHours";
+import { useTranslation } from "react-i18next";
+import { ButtonLocation } from "./ButtonLocation";
 
 const UpdateMapCenter = ({
   center,
@@ -47,10 +51,16 @@ interface LocationMapContainerProps {
     id: number,
     lat: number,
     lng: number,
-    isActive: boolean
+    isActive: boolean,
+    address: string | undefined
   ) => void;
   isFullWidth: boolean;
   setIsFullWidth: (value: boolean) => void;
+  isActive: boolean;
+  setIsActive: (value: boolean) => void;
+  idLocation: number;
+  setIdLocation: (value: number) => void;
+  selectedLocation: string | undefined;
 }
 
 export const LocationMap = ({
@@ -61,26 +71,39 @@ export const LocationMap = ({
   onMarkerClick,
   isFullWidth,
   setIsFullWidth,
+  selectedLocation,
+  isActive,
+  setIsActive,
+  idLocation,
+  setIdLocation,
 }: LocationMapContainerProps) => {
-  const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
-
   useEffect(() => {
     setIsFullWidth(!isMdUp);
   }, [isMdUp, setIsFullWidth]);
-
+  const { t } = useTranslation();
+  const translatedOpeningHours = Object.keys(OpeningHours).map((day) => {
+    const key = day as keyof typeof OpeningHours;
+    return {
+      day: t(`days.${day}`),
+      start: OpeningHours[key].start,
+      end: OpeningHours[key].end,
+    };
+  });
 
   const handleMarkerClick = (
     id: number,
     lat: number,
     lng: number,
     isActive: boolean,
-    location: Location
+    address: string | undefined
   ) => {
-    setSelectedLocation(location); 
-    onMarkerClick(id, lat, lng, isActive);
+    onMarkerClick(id, lat, lng, isActive, address);
+    setIsActive(isActive);
+    setIdLocation(id);
   };
+  console.log("selectedLocation", selectedLocation);
   return (
     <Box sx={{ display: "flex", flexDirection: "row" }}>
       {isFullWidth && (
@@ -143,7 +166,7 @@ export const LocationMap = ({
                   location.coordinates[0],
                   location.coordinates[1],
                   location.isActive,
-                  location
+                  location.address
                 ),
             }}
           >
@@ -185,8 +208,7 @@ export const LocationMap = ({
         ))}
         <UpdateMapCenter center={center} zoom={zoom} />
       </MapContainer>
-
-      {isFullWidth && selectedLocation && (
+      {isFullWidth && selectedLocation && isActive && (
         <Box
           sx={{
             position: "fixed",
@@ -200,11 +222,37 @@ export const LocationMap = ({
           }}
         >
           <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
-            Address: {selectedLocation.address}
+            {selectedLocation}
           </Typography>
-          <Typography variant="subtitle2" sx={{ color: "text.secondary" }}>
-            abx
-          </Typography>
+          {isActive ? (
+            <StoreStatus OpeningHours={OpeningHours} />
+          ) : (
+            <Typography
+              color="#a9a2a2"
+              fontWeight="bold"
+              fontSize="16px"
+              variant="h6"
+            >
+              {t("Not available")}
+            </Typography>
+          )}
+          {translatedOpeningHours.map(({ day, start, end }) => (
+            <Box
+              key={day}
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+              marginBottom="4px"
+              paddingLeft="10px"
+              paddingRight="10px"
+            >
+              <Typography variant="body2">{t(`${day}`)}:</Typography>
+              <Typography variant="body2">
+                {start} - {end}
+              </Typography>
+            </Box>
+          ))}
+          <ButtonLocation locationId={idLocation} />
         </Box>
       )}
     </Box>

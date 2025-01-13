@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 interface LocationAccordionListProps {
   expandedIndex: number | false;
   handleAccordionChange: (index: number) => void;
-  onOpen: (id: number, lat: number, lng: number, isActive: boolean) => void;
+  onOpen: (id: number, lat: number, lng: number, isActive: boolean, address : string | undefined) => void;
   onClose: () => void;
   locations: Location[];
   setQuery: (query: string) => void;

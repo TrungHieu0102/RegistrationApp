@@ -13,8 +13,10 @@ export const LocationMapContainer = () => {
   const [query, setQuery] = useState<string>("");
   const [debouncedQuery, setDebouncedQuery] = useState<string>("");
   const [isFullWidth, setIsFullWidth] = useState<boolean>(false);
-  const [prevIsFullWidth, setPrevIsFullWidth] = useState<boolean>(false); 
-
+  const [prevIsFullWidth, setPrevIsFullWidth] = useState<boolean>(false);
+  const [isActive, setIsActive] = useState<boolean>(false);
+  const [idLocation, setIdLocation] = useState<number >(0);
+  const [test, setTest] = useState<string | undefined>("");
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
 
@@ -39,7 +41,7 @@ export const LocationMapContainer = () => {
     } else {
       setIsFullWidth(prevIsFullWidth);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isMdUp]);
 
   const filteredLocations = locations.filter((location) =>
@@ -57,12 +59,16 @@ export const LocationMapContainer = () => {
     lat: number,
     lng: number,
     isActive: boolean,
+    address: string | undefined
   ) => {
     if (isActive) {
       setExpandedIndex(id);
     }
-    if(!isMdUp){
+    if (!isMdUp) {
       setIsFullWidth(true);
+      setTest(address);
+      setIsActive(isActive);
+      setIdLocation(id);
     }
     changeCenter(lat, lng);
     const element = document.getElementById(`accordion-${id}`);
@@ -124,6 +130,11 @@ export const LocationMapContainer = () => {
             onMarkerClick={handleMarkerClick}
             isFullWidth={isFullWidth}
             setIsFullWidth={setIsFullWidth}
+            selectedLocation={test}
+            setIsActive={setIsActive}
+            isActive={isActive}
+            idLocation={idLocation}
+            setIdLocation={setIdLocation}
           />
         </Grid>
       )}
