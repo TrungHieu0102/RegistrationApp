@@ -12,9 +12,12 @@ export const LocationMapContainer = () => {
   const locations = useLocations();
   const [query, setQuery] = useState<string>("");
   const [debouncedQuery, setDebouncedQuery] = useState<string>("");
-  const [isFullWidth, setIsFullWidth] = useState<boolean>(false); 
+  const [isFullWidth, setIsFullWidth] = useState<boolean>(false);
+  const [prevIsFullWidth, setPrevIsFullWidth] = useState<boolean>(false); 
+
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
+
   useEffect(() => {
     let timeout: number;
     if (query) {
@@ -28,11 +31,16 @@ export const LocationMapContainer = () => {
       clearTimeout(timeout);
     };
   }, [query]);
+
   useEffect(() => {
     if (isMdUp) {
+      setPrevIsFullWidth(isFullWidth);
       setIsFullWidth(false);
+    } else {
+      setIsFullWidth(prevIsFullWidth);
     }
   }, [isMdUp]);
+
   const filteredLocations = locations.filter((location) =>
     location.name?.toLowerCase().includes(debouncedQuery.toLowerCase())
   );
@@ -61,13 +69,17 @@ export const LocationMapContainer = () => {
       });
     }
   };
+
   const handleLocationClick = () => {
     setIsFullWidth(true);
   };
+
   const icon = new Icon({
     iconUrl: images.iconmap,
     iconSize: [30, 30],
   });
+
+  console.log("isFullWidth container", isFullWidth);
 
   return (
     <Grid container spacing={2}>

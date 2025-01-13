@@ -37,19 +37,6 @@ const UpdateMapCenter = ({
 
   return null;
 };
-
-const UpdateMapSize = ({ isFullWidth }: { isFullWidth: boolean }) => {
-  const map = useMap();
-
-  useEffect(() => {
-    if (map) {
-      map.invalidateSize();
-    }
-  }, [isFullWidth, map]);
-
-  return null;
-};
-
 interface LocationMapContainerProps {
   center: [number, number];
   zoom: number;
@@ -80,7 +67,7 @@ export const LocationMap = ({
   useEffect(() => {
     setIsFullWidth(!isMdUp);
   }, [isMdUp, setIsFullWidth]);
-
+  console.log(isFullWidth);
   return (
     <Box sx={{ display: "flex", flexDirection: "row" }}>
       {isFullWidth && (
@@ -114,6 +101,7 @@ export const LocationMap = ({
         </AppBar>
       )}
       <MapContainer
+        key={isFullWidth ? "full-width" : "default"} 
         center={center}
         zoom={zoom}
         scrollWheelZoom={true}
@@ -121,7 +109,7 @@ export const LocationMap = ({
           height: isFullWidth ? "100vh" : "600px",
           width: isFullWidth ? "100vw" : "100%",
           position: isFullWidth ? "fixed" : "relative",
-          top: isFullWidth ? "0" : "auto",
+          top: isFullWidth ? "40px" : "auto",
           left: isFullWidth ? 0 : "auto",
           zIndex: isFullWidth ? 1000 : "auto",
         }}
@@ -182,7 +170,6 @@ export const LocationMap = ({
           </Marker>
         ))}
         <UpdateMapCenter center={center} zoom={zoom} />
-        <UpdateMapSize isFullWidth={isFullWidth} />
       </MapContainer>
     </Box>
   );
