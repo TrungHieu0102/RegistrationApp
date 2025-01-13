@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import { Icon } from "leaflet";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -37,6 +37,7 @@ const UpdateMapCenter = ({
 
   return null;
 };
+
 interface LocationMapContainerProps {
   center: [number, number];
   zoom: number;
@@ -61,13 +62,31 @@ export const LocationMap = ({
   isFullWidth,
   setIsFullWidth,
 }: LocationMapContainerProps) => {
+  const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
 
   useEffect(() => {
     setIsFullWidth(!isMdUp);
   }, [isMdUp, setIsFullWidth]);
-  console.log(isFullWidth);
+
+  useEffect(() => {
+    if (filteredLocations.length > 0) {
+      setSelectedLocation(filteredLocations[0]);
+    }
+  }, [filteredLocations]);
+
+  const handleMarkerClick = (
+    id: number,
+    lat: number,
+    lng: number,
+    isActive: boolean,
+    location: Location
+  ) => {
+    setSelectedLocation(location); 
+    onMarkerClick(id, lat, lng, isActive);
+  };
+
   return (
     <Box sx={{ display: "flex", flexDirection: "row" }}>
       {isFullWidth && (
@@ -101,7 +120,7 @@ export const LocationMap = ({
         </AppBar>
       )}
       <MapContainer
-        key={isFullWidth ? "full-width" : "default"} 
+        key={isFullWidth ? "full-width" : "default"}
         center={center}
         zoom={zoom}
         scrollWheelZoom={true}
@@ -125,11 +144,12 @@ export const LocationMap = ({
             icon={icon}
             eventHandlers={{
               click: () =>
-                onMarkerClick(
+                handleMarkerClick(
                   location.id,
                   location.coordinates[0],
                   location.coordinates[1],
-                  location.isActive
+                  location.isActive,
+                  location
                 ),
             }}
           >
@@ -171,6 +191,28 @@ export const LocationMap = ({
         ))}
         <UpdateMapCenter center={center} zoom={zoom} />
       </MapContainer>
+
+      {isFullWidth && selectedLocation && (
+        <Box
+          sx={{
+            position: "fixed",
+            bottom: 0,
+            left: 0,
+            width: "100vw",
+            backgroundColor: "white",
+            padding: "16px",
+            boxShadow: "0 -2px 10px rgba(0, 0, 0, 0.1)",
+            zIndex: 1200,
+          }}
+        >
+          <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+            Address: {selectedLocation.address}
+          </Typography>
+          <Typography variant="subtitle2" sx={{ color: "text.secondary" }}>
+            abx
+          </Typography>
+        </Box>
+      )}
     </Box>
   );
 };

@@ -78,9 +78,6 @@ export const LocationMapContainer = () => {
     iconUrl: images.iconmap,
     iconSize: [30, 30],
   });
-
-  console.log("isFullWidth container", isFullWidth);
-
   return (
     <Grid container spacing={2}>
       {(!isFullWidth || isMdUp) && (
