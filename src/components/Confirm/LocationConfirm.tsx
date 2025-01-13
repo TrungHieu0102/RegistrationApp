@@ -11,26 +11,43 @@ import EmailIcon from "@mui/icons-material/Email";
 import { useTranslation } from "react-i18next";
 import { OpeningHours } from "../../Data/OpeningHours";
 import images from "../../assets/images";
-import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer, useMap } from "react-leaflet";
 import useLocationMap from "../../hooks/useLocationMap";
 import { Icon } from "leaflet";
+import { useEffect, useMemo } from "react";
+import { useSessionData } from "../../hooks/useSessionData";
 
 interface LocationConfirmProps {
-  center?: [number, number];
   storeName?: string;
   phoneNumber?: string;
   email?: string;
   website?: string;
 }
+const UpdateMapCenter = ({ center }: { center: [number, number] }) => {
+  const map = useMap();
+  useEffect(() => {
+    if (center) {
+      map.setView(center, map.getZoom());
+    }
+  }, [center, map]);
+
+  return null;
+};
 export const LocationConfirm = ({
-  center = [0, 0],
   storeName,
   phoneNumber,
   email,
   website,
 }: LocationConfirmProps) => {
   const { t } = useTranslation();
-  const { changeCenter, zoom } = useLocationMap();
+  const { zoom } = useLocationMap();
+  const sesion = useSessionData();
+  const center = useMemo<[number, number]>(() => {
+    if (sesion.serviceDataAppointment?.location?.coordinates) {
+      return sesion.serviceDataAppointment.location.coordinates;
+    }
+    return [0, 0];
+  }, [sesion.serviceDataAppointment?.location?.coordinates]);
   const icon = new Icon({
     iconUrl: images.iconmap,
     iconSize: [30, 30],
@@ -44,17 +61,6 @@ export const LocationConfirm = ({
       end: OpeningHours[key].end,
     };
   });
-
-  const handleMarkerClick = (id: number, lat: number, lng: number) => {
-    changeCenter(lat, lng);
-    const element = document.getElementById(`accordion-${id}`);
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-    }
-  };
   return (
     <Box sx={{ paddingX: "20px", paddingY: "5px" }}>
       <Typography variant="body1" sx={{ fontWeight: "700", fontSize: "18px" }}>
@@ -212,12 +218,7 @@ export const LocationConfirm = ({
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                 />
                 {center && (
-                  <Marker
-                    key={1}
-                    position={center}
-                    icon={icon}
-                    eventHandlers={{ click: () => handleMarkerClick }}
-                  >
+                  <Marker key={1} position={center} icon={icon}>
                     <Popup>
                       <Box
                         display="flex"
@@ -254,6 +255,7 @@ export const LocationConfirm = ({
                     </Popup>
                   </Marker>
                 )}
+                <UpdateMapCenter center={center} />
               </MapContainer>
             </Box>
           </Grid>

@@ -38,6 +38,18 @@ const UpdateMapCenter = ({
   return null;
 };
 
+const UpdateMapSize = ({ isFullWidth }: { isFullWidth: boolean }) => {
+  const map = useMap();
+
+  useEffect(() => {
+    if (map) {
+      map.invalidateSize();
+    }
+  }, [isFullWidth, map]);
+
+  return null;
+};
+
 interface LocationMapContainerProps {
   center: [number, number];
   zoom: number;
@@ -170,6 +182,7 @@ export const LocationMap = ({
           </Marker>
         ))}
         <UpdateMapCenter center={center} zoom={zoom} />
+        <UpdateMapSize isFullWidth={isFullWidth} />
       </MapContainer>
     </Box>
   );
