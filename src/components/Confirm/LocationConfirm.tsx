@@ -66,7 +66,7 @@ export const LocationConfirm = ({
       <Typography variant="body1" sx={{ fontWeight: "700", fontSize: "18px" }}>
         Selected location
       </Typography>
-      <Box sx={{ flexGrow: 1, margin: "20px" }}>
+      <Box sx={{ flexGrow: 1, marginY: "15px", marginX: "10px", paddingRight: "20px" }}>
         <Grid
           container
           spacing={{ xs: 1, sm: 3, md: 4, lg: 4 }}

@@ -41,7 +41,6 @@ const UpdateMapCenter = ({
 
   return null;
 };
-
 interface LocationMapContainerProps {
   center: [number, number];
   zoom: number;
@@ -62,6 +61,8 @@ interface LocationMapContainerProps {
   setIdLocation: (value: number) => void;
   selectedLocation: string | undefined;
   setSelectedLocation: (value: string | undefined) => void;
+  mapHeight: string;
+  setMapHeight: (value: string) => void;
 }
 
 export const LocationMap = ({
@@ -78,6 +79,8 @@ export const LocationMap = ({
   setIsActive,
   idLocation,
   setIdLocation,
+  mapHeight= "100vh",
+  setMapHeight,
 }: LocationMapContainerProps) => {
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
@@ -104,8 +107,11 @@ export const LocationMap = ({
     onMarkerClick(id, lat, lng, isActive, address);
     setIsActive(isActive);
     setIdLocation(id);
+    setMapHeight(isActive ? "70vh" : "100vh");
   };
-  console.log("selectedLocation", selectedLocation);
+  console.log("mapheight", mapHeight);
+  console.log("LocationMap", isActive);
+
   return (
     <Box sx={{ display: "flex", flexDirection: "row" }}>
       {isFullWidth && (
@@ -120,6 +126,7 @@ export const LocationMap = ({
               onClick={() => {
                 setIsFullWidth(false);
                 setSelectedLocation(undefined);
+                setMapHeight("100vh");
               }}
               sx={{
                 position: "absolute",
@@ -142,15 +149,15 @@ export const LocationMap = ({
         </AppBar>
       )}
       <MapContainer
-        key={isFullWidth ? "full-width" : "default"}
+        key={`${isFullWidth}-${mapHeight}`}
         center={center}
         zoom={zoom}
         scrollWheelZoom={true}
         style={{
-          height: isFullWidth ? "100vh" : "600px",
+          height: isFullWidth ? mapHeight : "600px",
           width: isFullWidth ? "100vw" : "100%",
           position: isFullWidth ? "fixed" : "relative",
-          top: isFullWidth ? "40px" : "auto",
+          top: isFullWidth ? "50px" : "auto",
           left: isFullWidth ? 0 : "auto",
           zIndex: isFullWidth ? 1000 : "auto",
         }}
@@ -211,7 +218,8 @@ export const LocationMap = ({
             </Popup>
           </Marker>
         ))}
-        <UpdateMapCenter center={center} zoom={zoom} />
+       
+      <UpdateMapCenter center={center} zoom={zoom} />
       </MapContainer>
       {isFullWidth && selectedLocation && isActive && (
         <Box

@@ -5,7 +5,7 @@ export const GoodToKnow = () => {
       <Typography variant="body1" sx={{ fontWeight: "700", fontSize: "18px" }}>
         Good to know
       </Typography>
-      <Box sx={{ flexGrow: 1, margin: "20px" }}>
+      <Box sx={{ flexGrow: 1, marginY: "15px", marginX: "10px", paddingRight: "20px" }}>
         <Box>
           <Typography variant="body1" sx={{ fontWeight: "bold" }}>
             Find my functionality

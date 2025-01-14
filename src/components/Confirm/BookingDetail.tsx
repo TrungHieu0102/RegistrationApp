@@ -23,7 +23,7 @@ export const BookingDetail = ({ form, orderId }: BookingDetailProps) => {
       <Typography variant="body1" sx={{ fontWeight: "700", fontSize: "18px" }}>
         Booking details
       </Typography>
-      <Box sx={{ flexGrow: 1, margin: "20px" }}>
+      <Box sx={{ flexGrow: 1, marginY: "15px", marginX: "10px" }}>
         <Grid container columnSpacing={{ xs: 1, sm: 3, md: 4, lg: 4 }}>
           <Grid size={{ xs: 6, sm: 6, md: 3, lg: 3 }}>
             {details.map(

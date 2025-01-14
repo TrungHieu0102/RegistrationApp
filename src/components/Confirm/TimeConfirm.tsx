@@ -90,7 +90,8 @@ export const TimeConfirm = () => {
               {serviceDataAppointment.service.name}
             </Typography>
 
-            <AddToCalendarButton
+           <Box sx={{marginX: "7px"}}>
+           <AddToCalendarButton
               name={`${serviceDataAppointment.service.name} at ${serviceDataAppointment.location.name}`}
               options={["Apple", "Google", "Outlook.com"]}
               location={serviceDataAppointment.location.address || "World Wide Web"}
@@ -100,7 +101,9 @@ export const TimeConfirm = () => {
               endTime={endTime}
               timeZone="Asia/Ho_Chi_Minh"
               size="6|6|3|1"
+              
             />
+           </Box>
           </Grid>
           <Grid size={{ xs: 6, sm: 6, md: 9, lg: 9 }}>
             <CalendarCard

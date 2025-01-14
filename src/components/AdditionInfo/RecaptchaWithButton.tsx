@@ -39,7 +39,7 @@ const RecaptchaWithButton  = ({
           borderRadius: "30px",
           color: isButtonDisabled ? "#fff" : "#fff",
           "&:hover": {
-            backgroundColor: isButtonDisabled ? "#b0bec5" : "#388e3c",
+            backgroundColor: isButtonDisabled ? "#b0bec5" : "#5d97f5",
           },
         }}
       >

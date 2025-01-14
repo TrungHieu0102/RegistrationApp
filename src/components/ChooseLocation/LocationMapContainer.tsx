@@ -17,6 +17,7 @@ export const LocationMapContainer = () => {
   const [isActive, setIsActive] = useState<boolean>(false);
   const [idLocation, setIdLocation] = useState<number >(0);
   const [selectedLocation, setSelectedLocation] = useState<string | undefined>("");
+  const [mapHeight, setMapHeight] = useState<string>("100vh");
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
 
@@ -69,6 +70,7 @@ export const LocationMapContainer = () => {
       setSelectedLocation(address);
       setIsActive(isActive);
       setIdLocation(id);
+      setMapHeight(isActive ? "70vh" : "100vh");
     }
     changeCenter(lat, lng);
     const element = document.getElementById(`accordion-${id}`);
@@ -79,6 +81,7 @@ export const LocationMapContainer = () => {
       });
     }
   };
+  console.log("LocationMapContainer", isActive);
 
   const handleLocationClick = () => {
     setIsFullWidth(true);
@@ -136,6 +139,8 @@ export const LocationMapContainer = () => {
             isActive={isActive}
             idLocation={idLocation}
             setIdLocation={setIdLocation}
+            mapHeight={mapHeight}
+            setMapHeight={setMapHeight}
           />
         </Grid>
       )}

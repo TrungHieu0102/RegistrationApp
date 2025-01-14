@@ -34,8 +34,8 @@ export const CalendarCard= ({
             sm: "10px",      
         },
         paddingX: {
-            xs: "10px",
-            sm: "10px",
+            xs: "5px",
+            sm: "5px",
         }
       }}
     >
