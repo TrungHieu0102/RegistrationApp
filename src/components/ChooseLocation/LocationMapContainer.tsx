@@ -16,7 +16,7 @@ export const LocationMapContainer = () => {
   const [prevIsFullWidth, setPrevIsFullWidth] = useState<boolean>(false);
   const [isActive, setIsActive] = useState<boolean>(false);
   const [idLocation, setIdLocation] = useState<number >(0);
-  const [test, setTest] = useState<string | undefined>("");
+  const [selectedLocation, setSelectedLocation] = useState<string | undefined>("");
   const theme = useTheme();
   const isMdUp = useMediaQuery(theme.breakpoints.up("md"));
 
@@ -66,7 +66,7 @@ export const LocationMapContainer = () => {
     }
     if (!isMdUp) {
       setIsFullWidth(true);
-      setTest(address);
+      setSelectedLocation(address);
       setIsActive(isActive);
       setIdLocation(id);
     }
@@ -130,7 +130,8 @@ export const LocationMapContainer = () => {
             onMarkerClick={handleMarkerClick}
             isFullWidth={isFullWidth}
             setIsFullWidth={setIsFullWidth}
-            selectedLocation={test}
+            selectedLocation={selectedLocation}
+            setSelectedLocation={setSelectedLocation}
             setIsActive={setIsActive}
             isActive={isActive}
             idLocation={idLocation}

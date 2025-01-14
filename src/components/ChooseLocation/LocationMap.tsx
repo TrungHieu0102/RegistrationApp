@@ -61,6 +61,7 @@ interface LocationMapContainerProps {
   idLocation: number;
   setIdLocation: (value: number) => void;
   selectedLocation: string | undefined;
+  setSelectedLocation: (value: string | undefined) => void;
 }
 
 export const LocationMap = ({
@@ -72,6 +73,7 @@ export const LocationMap = ({
   isFullWidth,
   setIsFullWidth,
   selectedLocation,
+  setSelectedLocation,
   isActive,
   setIsActive,
   idLocation,
@@ -115,7 +117,10 @@ export const LocationMap = ({
             <Button
               variant="text"
               startIcon={<ArrowBackIosNewIcon />}
-              onClick={() => setIsFullWidth(false)}
+              onClick={() => {
+                setIsFullWidth(false);
+                setSelectedLocation(undefined);
+              }}
               sx={{
                 position: "absolute",
                 left: 0,

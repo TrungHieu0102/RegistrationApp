@@ -6,6 +6,7 @@ import { Confirm } from "./pages/Confirm.tsx";
 import ErrorBoundary from "./components/ErrorBoundary.tsx";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import theme from "./theme/theme.ts";
+import { NotFoundPage } from "./components/NotFoundPage.tsx";
 const routes = createBrowserRouter([
   {
     path: "/",
@@ -27,6 +28,16 @@ const routes = createBrowserRouter([
           <Confirm />
         </ThemeProvider>
       </ErrorBoundary>
+    ),
+  },
+  
+  {
+    path: "*",
+    element: (
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <NotFoundPage />
+      </ThemeProvider>
     ),
   },
 ]);

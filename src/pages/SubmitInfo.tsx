@@ -11,7 +11,7 @@ export const SubmitInfo = () => {
 
   return (
     <CommonContainer>     
-      <Box marginTop={"20px"}>
+      <Box marginLeft={"10px"} marginTop={"20px"}>
         <Typography variant="subtitle1" fontSize={"20px"} fontWeight={"bold"}>
           {t("Contact information")}
         </Typography>

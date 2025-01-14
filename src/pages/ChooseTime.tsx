@@ -8,12 +8,12 @@ export const ChooseTime = () => {
 
   return (
     <CommonContainer>
-      <Box marginTop={"20px"}>
+      <Box marginLeft={"10px"} marginTop={"20px"}>
         <Typography variant="subtitle1" fontSize={"20px"} fontWeight={"bold"}>
           {t("Select appointment")}
         </Typography>
       </Box>
-      <Box marginTop={"20px"}>
+      <Box marginLeft={"10px"} marginTop={"20px"}>
         <Appointments openingHours={OpeningHours} />
       </Box>
     </CommonContainer>
