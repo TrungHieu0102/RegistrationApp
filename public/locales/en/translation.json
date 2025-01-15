@@ -102,8 +102,23 @@
         "Saturday": "Saturday",
         "Sunday": "Sunday"
     },
-    "Additional details": "Additional details",
-    "accessories-included": "What accessories are included ? ",
-    "Accessories": "Accessories",
+    "confirm":{
+        "booking-is-confirmed": "Your booking is confirmed",
+        "back-to-home": "Back to home",
+        "duration": "Duration",
+        "booking-details": "Booking details",
+        "booking-id": "Booking ID",
+        "name":"Name",
+        "phone-number":"Phone number",
+        "email":"Email",
+        "selected-location": "Selected location",
+        "additional-details":"Additional Details",
+        "something":"Something",
+        "yes":"Yes",
+        "accessories-included":"What accessories are included?",
+        "screen-protector": "Do you need a screen protector?",
+        "good-to-know":"Good to know",
+        "find-my":"Find my functionality"
+    },
     "": ""
 }

@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-
+import { useTranslation } from "react-i18next";
 interface CalendarCardProps {
   month: string;
   date: string;
@@ -13,6 +13,7 @@ export const CalendarCard= ({
   time,
   duration,
 }:CalendarCardProps ) => {
+  const { t } = useTranslation();
   return (
     <Box
       display="flex"
@@ -90,7 +91,7 @@ export const CalendarCard= ({
           variant="body2"
           sx={{ fontSize: "13px", fontWeight: "400" }}
         >
-          Duration
+          {t("confirm.duration")}
         </Typography>
         <Typography
           variant="body1"

@@ -48,7 +48,6 @@ export const ChooseBrand = () => {
             <LanguageSwitcher />
           </Stack>
         </Box>
-
         <Grid
           container
           spacing={{ xs: 1, sm: 2, md: 3 }}

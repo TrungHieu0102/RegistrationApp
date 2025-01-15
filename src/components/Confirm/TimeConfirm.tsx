@@ -1,8 +1,10 @@
 import { Box, Link, Typography, Grid2 as Grid } from "@mui/material";
 import { CalendarCard } from "./CalendarCard";
 import { AddToCalendarButton } from "add-to-calendar-button-react";
+import { useTranslation } from "react-i18next";
 
 export const TimeConfirm = () => {
+  const { t } = useTranslation();
   const serviceDataAppointment = JSON.parse(
     sessionStorage.getItem("serviceDataAppointment") || "{}"
   );
@@ -65,7 +67,7 @@ export const TimeConfirm = () => {
             },
           }}
         >
-          Your booking is confirmed!
+          {t("confirm.booking-is-confirmed")}
         </Typography>
         <Link href="/" underline="none">
           <Typography
@@ -76,7 +78,7 @@ export const TimeConfirm = () => {
               lineHeight: "18px",
             }}
           >
-            Back to home page
+            {t("confirm.back-to-home")}
           </Typography>
         </Link>
       </Box>

@@ -16,7 +16,6 @@ import useLocationMap from "../../hooks/useLocationMap";
 import { Icon } from "leaflet";
 import { useEffect, useMemo } from "react";
 import { useSessionData } from "../../hooks/useSessionData";
-
 interface LocationConfirmProps {
   storeName?: string;
   phoneNumber?: string;
@@ -64,7 +63,7 @@ export const LocationConfirm = ({
   return (
     <Box sx={{ paddingX: "20px", paddingY: "5px" }}>
       <Typography variant="body1" sx={{ fontWeight: "700", fontSize: "18px" }}>
-        Selected location
+        {t("confirm.selected-location")}
       </Typography>
       <Box sx={{ flexGrow: 1, marginY: "15px", marginX: "10px", paddingRight: "20px" }}>
         <Grid

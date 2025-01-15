@@ -1,27 +1,27 @@
 import { Box, Typography, Grid2 as Grid } from "@mui/material";
 import { FormDataAppointment } from "../../hooks/useSessionData";
-
+import { useTranslation } from "react-i18next";
 interface BookingDetailProps {
   form: FormDataAppointment | null;
   orderId: string | null;
 }
 
 export const BookingDetail = ({ form, orderId }: BookingDetailProps) => {
+  const {t} = useTranslation()
   if (!form) {
     return <Typography>No booking details available.</Typography>;
   }
-
   const details = [
-    { label: "Booking ID", value: orderId },
-    { label: "Name", value: form.name },
-    { label: "Phone Number", value: form.phone },
-    { label: "Email address", value: form.email },
+    { label: `${t("confirm.booking-id")}`, value: orderId },
+    { label: `${t("confirm.name")}`, value: form.name },
+    { label: `${t("confirm.phone-number")}`, value: form.phone },
+    { label: `${t("confirm.email")}`, value: form.email },
   ];
 
   return (
     <Box sx={{ paddingX: "20px", paddingY: "5px" }}>
       <Typography variant="body1" sx={{ fontWeight: "700", fontSize: "18px" }}>
-        Booking details
+        {t("confirm.booking-details")}
       </Typography>
       <Box sx={{ flexGrow: 1, marginY: "15px", marginX: "10px" }}>
         <Grid container columnSpacing={{ xs: 1, sm: 3, md: 4, lg: 4 }}>

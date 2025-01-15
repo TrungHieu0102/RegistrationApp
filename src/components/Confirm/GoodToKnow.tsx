@@ -1,14 +1,23 @@
 import { Box, Typography } from "@mui/material";
+import { useTranslation } from "react-i18next";
 export const GoodToKnow = () => {
+  const { t } = useTranslation();
   return (
     <Box sx={{ paddingX: "20px", paddingY: "5px" }}>
       <Typography variant="body1" sx={{ fontWeight: "700", fontSize: "18px" }}>
-        Good to know
+        {t("confirm.good-to-know")}
       </Typography>
-      <Box sx={{ flexGrow: 1, marginY: "15px", marginX: "10px", paddingRight: "20px" }}>
+      <Box
+        sx={{
+          flexGrow: 1,
+          marginY: "15px",
+          marginX: "10px",
+          paddingRight: "20px",
+        }}
+      >
         <Box>
           <Typography variant="body1" sx={{ fontWeight: "bold" }}>
-            Find my functionality
+            {t("confirm.find-my")}
           </Typography>
           <Typography variant="body1">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident,

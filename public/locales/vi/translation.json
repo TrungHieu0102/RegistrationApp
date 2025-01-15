@@ -101,9 +101,24 @@
         "Friday": "Thứ Sáu",
         "Saturday": "Thứ Bảy",
         "Sunday": "Chủ Nhật"
+    }   ,
+    "confirm":{
+        "booking-is-confirmed": "Đã được xác nhận",
+        "back-to-home": "Trở về trang chủ",
+        "duration": "Thời gian",
+        "booking-details": "Chi tiết đơn hàng",
+        "booking-id": "Mã đơn hàng",
+        "name":"Tên",
+        "phone-number":"Số điện thoại",
+        "email":"Địa chỉ Email",
+        "selected-location": "Địa chỉ đã chọn",
+        "additional-details":"Thông tin thêm",
+        "accessories-included":"Có những phụ kiện nào đi kèm?",
+        "something":"Một vài thứ",
+        "yes": "Có",
+        "screen-protector": "Bạn có cần miếng dán màn hình không?",
+        "good-to-know":"Thông tin thêm",
+        "find-my":"Chức năng tìm thiết bị của tôi"
     },
-    "Additional details": "Thông tin chi tiết bổ sung",
-    "accessories-included": "Những phụ kiện nào được đi kèm?",
-    "Accessories": "Phụ kiện",
     "": ""
 }
