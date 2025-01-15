@@ -4,7 +4,7 @@ import { AddToCalendarButton } from "add-to-calendar-button-react";
 import { useTranslation } from "react-i18next";
 
 export const TimeConfirm = () => {
-  const { t } = useTranslation();
+  const { t , i18n} = useTranslation();
   const serviceDataAppointment = JSON.parse(
     sessionStorage.getItem("serviceDataAppointment") || "{}"
   );
@@ -17,6 +17,7 @@ export const TimeConfirm = () => {
   const durationInMinutes = parseDuration(
     serviceDataAppointment?.service?.duration || "1 hour"
   );
+  const currentLanguage = i18n.language;
 
   const calculateEndTime = (startTime: string, duration: number): string => {
     const [startHour, startMinute] = startTime.split(":").map(Number);
@@ -103,8 +104,8 @@ export const TimeConfirm = () => {
               endTime={endTime}
               timeZone="Asia/Ho_Chi_Minh"
               size="6|6|3|1"
-              
-            />
+              language={currentLanguage === "vi" ? "vi" : "en"}  
+              />
            </Box>
           </Grid>
           <Grid size={{ xs: 6, sm: 6, md: 9, lg: 9 }}>

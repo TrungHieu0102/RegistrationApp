@@ -10,7 +10,7 @@ const SITE_KEY = "6LcwUKYqAAAAAC1Q6hGdFwMcGs-xFRyMItEyRtjw";
 export const AccessoriesCheck = () => {
   const { t } = useTranslation();
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
-  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [accessories, setAccessories] = useState<string>("");
   const navigate = useNavigate();
   const location = useLocation();
@@ -21,7 +21,7 @@ export const AccessoriesCheck = () => {
   };
   const storeData = useStoreData(queryParams);
   const handleSubmit = () => {
-    if (!recaptchaToken) {
+    if (recaptchaToken) {
       sessionStorage.setItem("accessoriesAppointment", accessories);
       storeData();
       navigate("/confirm");
@@ -31,7 +31,7 @@ export const AccessoriesCheck = () => {
     <Box display={"flex"} flexDirection={"column"} sx={{ padding: "20px" }}>
       <Box>
         <Typography variant="subtitle1" fontSize="15px" fontWeight="bold">
-          {t("accessories-included")}
+          {t("confirm.accessories-included")}
         </Typography>
         <TextField
           label={t("Accessories")}

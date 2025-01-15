@@ -65,7 +65,14 @@ export const LocationConfirm = ({
       <Typography variant="body1" sx={{ fontWeight: "700", fontSize: "18px" }}>
         {t("confirm.selected-location")}
       </Typography>
-      <Box sx={{ flexGrow: 1, marginY: "15px", marginX: "10px", paddingRight: "20px" }}>
+      <Box
+        sx={{
+          flexGrow: 1,
+          marginY: "15px",
+          marginX: "10px",
+          paddingRight: "20px",
+        }}
+      >
         <Grid
           container
           spacing={{ xs: 1, sm: 3, md: 4, lg: 4 }}
@@ -179,7 +186,13 @@ export const LocationConfirm = ({
                               color: "darkgrey",
                               fontSize: "15px",
                               fontWeight: "400",
-                              minWidth: "80px",
+                              minWidth: "70px",
+                              "@media (min-width: 1200px)": {
+                                minWidth: "95px",
+                              },
+                              "@media (min-width: 900px)": {
+                                minWidth: "95px",
+                              },
                             }}
                           >
                             {t(`${day}`)}:
@@ -190,11 +203,10 @@ export const LocationConfirm = ({
                               color: "darkgrey",
                               fontSize: "15px",
                               fontWeight: "400",
-                              flexGrow: 1,
                               whiteSpace: "nowrap",
                             }}
                           >
-                            {start} - {end}
+                            {start}-{end}
                           </Typography>
                         </Box>
                       ))}

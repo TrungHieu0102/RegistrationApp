@@ -19,6 +19,7 @@ export const Confirm = () => {
             md: "0px",
             lg: "50px",
           },
+          overflow: "hidden",
         }}
       >
         <TimeConfirm />

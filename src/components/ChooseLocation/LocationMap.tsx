@@ -79,7 +79,7 @@ export const LocationMap = ({
   setIsActive,
   idLocation,
   setIdLocation,
-  mapHeight= "100vh",
+  mapHeight = "100vh",
   setMapHeight,
 }: LocationMapContainerProps) => {
   const theme = useTheme();
@@ -113,7 +113,7 @@ export const LocationMap = ({
   console.log("LocationMap", isActive);
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "row" }}>
+    <Box sx={{ display: "flex", flexDirection: "row", height: "100vh" }}>
       {isFullWidth && (
         <AppBar
           position="fixed"
@@ -140,10 +140,10 @@ export const LocationMap = ({
                 },
               }}
             >
-              Back
+              {t("Back")}
             </Button>
             <Typography variant="h6" sx={{ fontWeight: 600 }}>
-              Appointment booking
+              {t("title")}
             </Typography>
           </Toolbar>
         </AppBar>
@@ -157,7 +157,7 @@ export const LocationMap = ({
           height: isFullWidth ? mapHeight : "600px",
           width: isFullWidth ? "100vw" : "100%",
           position: isFullWidth ? "fixed" : "relative",
-          top: isFullWidth ? "50px" : "auto",
+          top: isFullWidth ? "60px" : "auto",
           left: isFullWidth ? 0 : "auto",
           zIndex: isFullWidth ? 1000 : "auto",
         }}
@@ -218,8 +218,8 @@ export const LocationMap = ({
             </Popup>
           </Marker>
         ))}
-       
-      <UpdateMapCenter center={center} zoom={zoom} />
+
+        <UpdateMapCenter center={center} zoom={zoom} />
       </MapContainer>
       {isFullWidth && selectedLocation && isActive && (
         <Box

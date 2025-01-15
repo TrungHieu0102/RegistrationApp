@@ -141,7 +141,7 @@ export const useSelections = (): Selection[] => {
         id: id++,
         name: t("fields.email"),
         value: email,
-        link: `/?brand=${brand}&deviceId=${deviceId}&serviceId=${serviceId}&locationId=${locationId}&time=${timeParam}&date=${date}`,
+        link:`/?brand=${brand}&deviceId=${deviceId}&serviceId=${serviceId}&locationId=${locationId}&time=${timeParam}&date=${date}`,
       });
     }
   }
